@@ -41,6 +41,10 @@
           </span>
           <h5 class="icon-title">{{ page.title }}</h5>
         </div>
+        {% elsif page.banner %}
+        <div class="sectionbanner">
+          <img src="{{page.banner}}" alt="section banner" />
+        </div>
         {% endif %}
         <div class="container {{ page.style }}">
           {{ page.content }}

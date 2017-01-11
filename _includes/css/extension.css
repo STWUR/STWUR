@@ -1,0 +1,39 @@
+/* page starts where sticky header ends */
+body {
+  padding-top: 49px;
+}
+
+@media only screen and (min-width: 700px) {
+  body {
+    padding-top: 69px;
+  }
+}
+
+.section#intro {
+    padding-top: 0px;
+}
+
+/* sectionbanner, for now only used in intro */
+.sectionbanner {
+  margin-bottom: 50px;
+}
+
+
+/* intro specific */
+#intro .intro-social-links {
+  margin: 0 auto;
+}
+
+#intro .intro-social-link {
+  text-decoration: none;
+  padding-right: 15px;
+}
+
+#intro .intro-social-link.twitter {
+  color: #446CB3;
+}
+
+/* projects */
+#projects h2 {
+  margin-top: 80px;
+}
