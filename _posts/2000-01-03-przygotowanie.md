@@ -11,7 +11,9 @@ Przed zajęciami warto:
 
 * zainstalować niezbędne pakiety *ggplot2* oraz *dplyr* i ściągnąć dane za pomocą poniższego skryptu:
 
-{% highlight text linenos=table %}
+```rconsole
 install.packages(c("ggplot2", "dplyr"), repos = "https://cloud.r-project.org/")
-download.file("https://github.com/michbur/Diagnoza_dane/archive/master.zip")
-{% endhighlight %}
+download.file(url = "https://github.com/michbur/Diagnoza_dane/archive/master.zip", 
+              destfile = "diagnoza.zip")
+unzip("diagnoza.zip")
+```

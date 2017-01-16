@@ -12,7 +12,6 @@ timezone: null
 lsi: false
 markdown: kramdown
 
-
 ### content configuration ###
 title:       "STWUR - Stowarzyszenie Wrocławskich Użytkowników R"
 keywords:    "SinglePaged, jekyll, template, github, blog, single page"
@@ -35,4 +34,5 @@ colors:
 
 kramdown:
   auto_ids:  false
+  syntax_highlighter: pygments
 
