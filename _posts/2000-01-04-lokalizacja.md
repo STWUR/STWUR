@@ -1,7 +1,7 @@
 ---
 title: "Data i miejsce"
-bg: '#a6ff4d'
-color: black
+bg: blue
+color: white
 fa-icon: globe
 ---
 
