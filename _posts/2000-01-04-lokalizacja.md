@@ -1,8 +1,8 @@
 ---
 title: "Data i miejsce"
-bg: blue
-color: white
-fa-icon: check-square-o
+bg: '#a6ff4d'
+color: black
+fa-icon: globe
 ---
 
 Spotkanie odbędzie się w budynku [Wydziału Biotechnologii Uniwersytetu Wrocławskiego](www.biotech.uni.wroc.pl), **sala 1.03 (pierwsze piętro, aula)**, ul. Fryderyka Joliot-Curie 14a, 50-383 Wrocław.

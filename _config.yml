@@ -11,6 +11,7 @@ permalink: /:title ## disables post output
 timezone: null
 lsi: false
 markdown: kramdown
+highlighter: pygments
 
 ### content configuration ###
 title:       "STWUR - Stowarzyszenie Wrocławskich Użytkowników R"
@@ -34,5 +35,3 @@ colors:
 
 kramdown:
   auto_ids:  false
-  syntax_highlighter: pygments
-
