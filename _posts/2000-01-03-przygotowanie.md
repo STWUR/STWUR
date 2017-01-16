@@ -1,7 +1,7 @@
 ---
 title: "Przed spotkaniem"
 bg: '#ffcccc'
-color: blue 
+color: '#9999ff'
 fa-icon: check-square-o
 ---
 
