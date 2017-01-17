@@ -14,8 +14,10 @@ body {
 }
 
 /* sectionbanner, for now only used in intro */
-.sectionbanner {
-  margin-bottom: 50px;
+.sectionbanner, img{
+  background-color: white;
+  display: block;
+  margin: 0 auto;
 }
 
 
