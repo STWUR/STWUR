@@ -20,7 +20,7 @@ description: "Wrocławska społeczność skupiona wokół zastosowań języka R"
 source_link: "https://github.com/t413/SinglePaged"
 favicon:     
 touch_icon:  
-google_analytics_key: ## put YOUR key here to enable tracking! (blank to disable)
+google_analytics_key: UA-54221551-7 ## put YOUR key here to enable tracking! (blank to disable)
 
 
 ### template colors, used site-wide via css ###
