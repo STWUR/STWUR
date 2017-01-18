@@ -20,19 +20,16 @@
     <nav><ul>
       {% for node in site.posts reversed %}
         {% capture id %}{{ node.id | remove:'/' | downcase }}{% endcapture %}
-        <li class="p-{{id}}"><a href="#{{id}}">{{node.title}}</a></li>
+        <li class="p-{{id}}"><a href="#{{id}}" target="_blank">{{node.title}}</a></li>
       {% endfor %}
-    
-    <a href="https://github.com/{{ site.github_username }}">
-      <i class="fa fa-github fa-2x"></i> 
-    </a>
-    <a href="https://www.facebook.com/{{ site.facebook_username }}">
-      <i class="fa fa-facebook fa-2x"></i> 
-    </a>
-    <a href="https://www.meetup.com/{{ site.meetup_username }}">
-      <i class="fa fa-meetup fa-2x"></i> 
-    </a>
     </ul>
+    
+    <div id="footer" class="section text-white">
+      <div class="container">
+        {% include header.md %}
+      </div>
+    </div>
+    
     </nav>
 
 

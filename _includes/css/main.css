@@ -189,6 +189,15 @@ nav ul li:hover, nav ul li.active {
 }
 #footer .container p { font-size:13px; margin:0; }
 
+#header {
+  padding: 0px 0;
+  min-height:0;
+  text-align:center;
+  background-color:#2e2e2e;
+  background-image:none;
+}
+#header .container p { font-size:13px; margin:0; }
+
 .subtlecircle {
   text-align:center;
   z-index:3;
