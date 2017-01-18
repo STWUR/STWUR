@@ -15,14 +15,12 @@ highlighter: rouge
 
 ### content configuration ###
 title:       "STWUR - Stowarzyszenie Wrocławskich Użytkowników R"
-keywords:    "SinglePaged, jekyll, template, github, blog, single page"
+keywords:    "R, big data, RStudio, data analysis, Wrocław, RConsole, R language"
 description: "Wrocławska społeczność skupiona wokół zastosowań języka R"
 source_link: "https://github.com/t413/SinglePaged"
 facebook_username:  "groups/stwur/"
 github_username:    "michbur/STWUR/"
 meetup_username:    "Wroclaw-R-Users-Group/"
-favicon:     
-touch_icon:  
 google_analytics_key: UA-54221551-7 ## put YOUR key here to enable tracking! (blank to disable)
 
 
