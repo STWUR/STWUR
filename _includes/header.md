@@ -1,12 +1,11 @@
-<a href="http://github.com/{{ site.github_username }}">
+<a href="https://github.com/michbur/STWUR/">
       <i class="fa fa-github fa-2x"></i> 
     </a>
     &nbsp; &nbsp;
-    <a href="http://www.facebook.com/{{ site.facebook_username }}">
+    <a href="https://www.facebook.com/groups/stwur/">
       <i class="fa fa-facebook fa-2x"></i> 
     </a>
     &nbsp; &nbsp;
-    <a href="http://www.meetup.com/{{ site.meetup_username }}">
+    <a href="https://www.meetup.com/Wroclaw-R-Users-Group/">
       <i class="fa fa-meetup fa-2x"></i> 
     </a>
-    
