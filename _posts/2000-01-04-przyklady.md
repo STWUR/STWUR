@@ -2,7 +2,7 @@
 title: "Przykłady"
 bg: '#2c7fb8'
 color: white
-fa-icon: globe
+fa-icon: puzzle-piece
 ---
 
 Przykładowe analizy w oparciu o dane z Diagnozy Społecznej:
