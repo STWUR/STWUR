@@ -1,7 +1,7 @@
 ---
 title: "Przykłady"
-bg: '#2c7fb8'
-color: white
+bg: '#7fcdbb'
+color: '#edf8b1'
 fa-icon: puzzle-piece
 ---
 
