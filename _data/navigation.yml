@@ -1,0 +1,13 @@
+# Site navigation links
+
+- title: O STWURZE
+  url: /about/
+
+- title: Artykuły
+  url: /articles/
+
+- title: Blog
+  url: /blog/
+
+- title: Szukaj
+  url: /search/

@@ -1,5 +1,11 @@
-_site/
+_site
 .DS_Store
+*.sublime-project
+*.sublime-workspace
+codekit-config.json
+node_modules
+.sass-cache
+.jekyll-metadata
 .Rproj.user
-STWUR.Rproj
 .Rhistory
+stwur_blog.Rproj

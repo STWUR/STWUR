@@ -1,38 +1,60 @@
----
+# Site wide configuration
 
-port: 4000
-host: 0.0.0.0
-safe: false
+title: STWUR
+locale: pl_PL
+description: Stowarzyszenie Wrocławskich Użytowników R.
+logo: site-logo.png
+search: true
+url: http://localhost:4000
+share: true
 
+# Jekyll configuration
 
-### site serving configuration ###
-exclude: [CNAME, README.md, .gitignore]
-permalink: /:title ## disables post output
-timezone: null
-lsi: false
-markdown: kramdown
+permalink:   /:categories/:title/
+markdown:    kramdown
 highlighter: rouge
-
-### content configuration ###
-title:       "STWUR - Stowarzyszenie Wrocławskich Użytkowników R"
-keywords:    "R, big data, RStudio, data analysis, Wrocław, RConsole, R language"
-description: "Wrocławska społeczność skupiona wokół zastosowań języka R"
-source_link: "https://stwur.pl"
-facebook_username:  "groups/stwur/"
-github_username:    "michbur/STWUR/"
-meetup_username:    "Wroclaw-R-Users-Group/"
-google_analytics_key: UA-54221551-7 ## put YOUR key here to enable tracking! (blank to disable)
-
-
-### template colors, used site-wide via css ###
-colors:
-  black:     '#111111'
-  white:     '#f8f8f8'
-  blue:      '#49a7e9'
-  green:     '#9bcf2f'
-  purple:    '#c869bf'
-  orange:    '#fab125'
-  turquoise: '#0fbfcf'
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
 
 kramdown:
-  auto_ids:  false
+  input: GFM
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..2
+  enable_coderay: false
+
+mathjax: true
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
+
+
+# Site owner
+owner:
+  name: STWUR
+  email: kontakt@stwur.pl
+  disqus-shortname:
+  twitter: #username
+  facebook: #username
+  github: #username
+  stackexchange: #http://stackoverflow.com/users/123456/username
+  linkedin: #username
+  instagram: #username
+  flickr: #username
+  tumblr: #username
+  pinterest: #username
+  weibo: #userid
+  google:
+    plus: #username
+    analytics: UA-54221551-7
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
+
