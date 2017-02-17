@@ -5,7 +5,7 @@ locale: pl_PL
 description: Stowarzyszenie Wrocławskich Użytowników R.
 logo: site-logo.png
 search: true
-url: https://michbur.github.io/STWUR/
+url: https://stwur.github.io/STWUR/
 share: true
 
 # Jekyll configuration
