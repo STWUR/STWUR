@@ -1,0 +1,54 @@
+---
+layout: post
+title: "Jak się przygotować?"
+excerpt: "Wszystko co warto zrobić przed spotkaniem STWURa"
+categories: articles
+author: michal
+comments: true
+share: true
+modified: 2017-02-10
+---
+
+```{r setup, echo=FALSE}
+library(knitr)
+render_jekyll(highlight = "pygments")
+```
+
+
+Przy większej liczbie obserwacji wykresy punktowe bywają nieczytelne. Losowe przesuwanie punktów (geom_point(position = "jitter")) w ggplot2 nie wygląda zbyt estetycznie, poza tym punkty cały czas mogą na siebie nachodzić. Prostym rozwiązaniem jest zastosowanie pakietu [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), który zawiera kilka geometrii tworzących estetyczne i informatywne wykresy punktowe.
+
+Funkcjonalność pakietu beeswarm najlepiej zaprezentować na przykładzie - w tym przypadku dochodzie netto mieszkańców dużych miast (powyżej 500 tys. mieszkanców) w województwach Mazowieckim i Dolnośląskim.
+
+```{r}
+library(dplyr)
+library(haven)
+library(ggplot2)
+library(ggbeeswarm)
+
+load("./Diagnoza_dane-master/osoby.RData")
+dochod_df <- data.frame(woj = as_factor(osoby[[74]]),
+           dochod = osoby[[646]],
+           miasto = osoby[[75]]) %>% 
+  filter(!(is.na(woj) | is.na(dochod))) %>% 
+  filter(dochod > 0) %>% 
+  mutate(dochod = as.numeric(dochod)) %>% 
+  filter(woj %in% c("Dolnośląskie", "Mazowieckie")) %>% 
+  filter(miasto %in% c(1))
+
+ggplot(dochod_df, aes(x = woj, y = dochod)) +
+  geom_boxplot() 
+
+ggplot(dochod_df, aes(x = woj, y = dochod)) +
+  geom_point() 
+
+ggplot(dochod_df, aes(x = woj, y = dochod)) +
+  geom_point(position = "jitter") 
+
+
+ggplot(dochod_df, aes(x = woj, y = dochod)) +
+  geom_quasirandom() 
+
+ggplot(dochod_df, aes(x = woj, y = dochod)) +
+  geom_beeswarm() 
+```
+
