@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Jak się przygotować?"
-excerpt: "Wszystko co warto zrobić przed spotkaniem STWURa"
+title: "Wykresy beeswarm"
+excerpt: "Rój pszczół zamiast chmury punktów"
 categories: articles
 author: michal
 comments: true
 share: true
-modified: 2017-02-10
+modified: 2017-02-20
 ---
 
 ```{r setup, echo=FALSE}
