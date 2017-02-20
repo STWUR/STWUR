@@ -1,25 +1,31 @@
 ---
 layout: post
 title: "Wykresy beeswarm"
-excerpt: "Rój pszczół zamiast chmury punktów"
-categories: articles
+modified:
 author: michal
-comments: true
-share: true
-modified: 2017-02-20
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2017-02-20
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, echo=FALSE}
-library(knitr)
-render_jekyll(highlight = "pygments")
+#library(knitr)
+#render_jekyll(highlight = "pygments")
 ```
 
+### Roje pszczół zamiast chmur punktów
 
 Przy większej liczbie obserwacji wykresy punktowe bywają nieczytelne. Losowe przesuwanie punktów (geom_point(position = "jitter")) w ggplot2 nie wygląda zbyt estetycznie, poza tym punkty cały czas mogą na siebie nachodzić. Prostym rozwiązaniem jest zastosowanie pakietu [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), który zawiera kilka geometrii tworzących estetyczne i informatywne wykresy punktowe.
 
 Funkcjonalność pakietu beeswarm najlepiej zaprezentować na przykładzie - w tym przypadku dochodzie netto mieszkańców dużych miast (powyżej 500 tys. mieszkanców) w województwach Mazowieckim i Dolnośląskim.
 
-```{r}
+```{r beeswarm}
 library(dplyr)
 library(haven)
 library(ggplot2)
