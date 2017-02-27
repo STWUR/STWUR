@@ -13,7 +13,7 @@ date: 2017-02-27
 
 Drugie spotkanie STWURa odbędzie się 1 marca (środa) o godzina 18:00 w budynku [Wydziału Biotechnologii Uniwersytetu Wrocławskiego](www.biotech.uni.wroc.pl), **sala 1.05 (pierwsze piętro, aula)**, ul. Fryderyka Joliot-Curie 14a, 50-383 Wrocław.
 
-Chcesz wizualizować dane? Interesuje Cię jak przedstawiać je pięknie i precyzyjnie? Wpadnij na STWURa! Spotkanie zaczniemy od krótkiego wprowadzenia do pakietu ggplot. Następnie, posiłkując się przykładowymi skryptami, będziemy przedstawiać wyniki badania ,,Diagnoza Społeczna". Na końcu podzielimy się sukcesami i problemami, na jakie napotkaliśmy podczas spotkania. Zachęcamy do uprzedniego zapoznania się ze skryptami z poprzednich spotkań (http://tinyurl.com/stwur01) - będą pomocne w sprawnym przetwarzaniu danych.
+Chcesz wizualizować dane? Interesuje Cię jak przedstawiać je pięknie i precyzyjnie? Wpadnij na STWURa! Spotkanie zaczniemy od krótkiego wprowadzenia do pakietu ggplot. Następnie, posiłkując się przykładowymi skryptami, będziemy przedstawiać wyniki badania ,,Diagnoza Społeczna". Na końcu podzielimy się sukcesami i problemami, na jakie napotkaliśmy podczas spotkania. Zachęcamy do uprzedniego zapoznania się ze skryptami z poprzednich spotkań [http://tinyurl.com/stwur01](http://tinyurl.com/stwur01) - będą pomocne w sprawnym przetwarzaniu danych.
 
 Pamiętajcie o swoich laptopach! Przygotowanie ich do wspólnej pracy będzie proste dzięki [informacjom z naszej strony](https://stwur.github.io/STWUR//articles/przygotowania/).
 
