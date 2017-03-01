@@ -4,7 +4,7 @@ library(dplyr)
 
 render_post <- function(post_name) {
   topic_name <- last(strsplit(strsplit(post_name, "-")[[1]], ".Rmd", fixed = TRUE))
-  output_name <- paste0("./_posts/blog/", sub("Rmd", "md", last(strsplit(tmp, "/")[[1]])))
+  output_name <- paste0("./_posts/blog/", sub("Rmd", "md", last(strsplit(topic_name, "/")[[1]])))
   
   opts_chunk$set(fig.path = paste0("./blog/", topic_name, "/figure/"))
   
