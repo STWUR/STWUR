@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wizualizacja w R"
+title: "STWUR #2: Wizualizacja w R"
 modified:
 author: piotr
 categories: blog
