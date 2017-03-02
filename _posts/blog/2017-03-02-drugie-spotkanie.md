@@ -8,7 +8,7 @@ excerpt:
 tags: []
 image:
   feature:
-date: 2017-01-30
+date: 2017-03-02
 ---
 
 ## Jak STWURy wizualizują dane?
