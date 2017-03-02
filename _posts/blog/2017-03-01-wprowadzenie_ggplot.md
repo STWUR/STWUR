@@ -497,9 +497,9 @@ https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/master/education_data.c
 
 
 ```r
-download.file(url = "https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/master/edu_dat.csv",
+download.file(url = "https://github.com/STWUR/STWUR-2017-03-01/blob/master/education_data.csv",
               destfile = "education_data.csv")
-edu_dat <- read.csv("edu_dat.csv")
+edu_dat <- read.csv("education_data.csv")
 ```
 
 Jakie dane wybraliśmy?
