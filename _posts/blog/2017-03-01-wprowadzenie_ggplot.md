@@ -512,3 +512,6 @@ Jakie dane wybraliśmy?
  - waga,
  - rok w którym przeprowadzono badanie (2000, 2003, 2005, 2007, 2009, 2011, 2013, 2015).
  
+### Kody i dane
+
+Kody **R** niezbędne do odtworzenie wizualizacji przedstawionych w tym dokumencie, a także dane znajdują się w [repozytorium spotkania](https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/).
