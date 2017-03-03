@@ -5,7 +5,7 @@ locale: pl_PL
 description: Stowarzyszenie Wrocławskich Użytowników R.
 logo: stwur_logo_Mar2017.svg
 search: true
-url: http://localhost:4000
+url: https://stwur.github.io./STWUR/
 share: true
 
 # Jekyll configuration
