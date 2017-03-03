@@ -497,9 +497,9 @@ https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/master/education_data.c
 
 
 ```r
-download.file(url = "https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/master/edu_dat.csv",
-              destfile = "edu_dat.csv")
-edu_dat <- read.csv("edu_dat.csv")
+download.file(url = "https://github.com/STWUR/STWUR-2017-03-01/blob/master/education_data.csv",
+              destfile = "education_data.csv")
+edu_dat <- read.csv("education_data.csv")
 ```
 
 Jakie dane wybraliśmy?
@@ -512,3 +512,6 @@ Jakie dane wybraliśmy?
  - waga,
  - rok w którym przeprowadzono badanie (2000, 2003, 2005, 2007, 2009, 2011, 2013, 2015).
  
+### Kody i dane
+
+Kody **R** niezbędne do odtworzenie wizualizacji przedstawionych w tym dokumencie, a także dane znajdują się w [repozytorium spotkania](https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/).
