@@ -8,13 +8,13 @@ excerpt:
 tags: []
 image:
   feature:
-date: 2017-03-07
+date: 2017-03-16
 output:
   md_document:
     variant: markdown_github
 ---
 
-Drugi STWURek odbył się dzisiaj, a podczas spotkania dalej zgłębialiśmy tajniki wizualizacji danych w ggplot2.
+Drugi STWURek został przygotowany przez członków [Koła Naukowego Statystyki Matematycznej Gauss](gauss.im.pwr.wroc.pl/): **Paulinę Krzysztoporską**, **Marcina Koralewskiego** i **Bartosza Pawliczaka**.
 
 ```{r setup, include=FALSE}
 load("osoby.RData")
@@ -26,8 +26,6 @@ library(haven)
 library(ggthemes)
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
-
-Materiały na spotkanie zostały przygotowane przez członków [Koła Naukowego Statystyki Matematycznej Gauss](gauss.im.pwr.wroc.pl/): Paulinę Krzysztoporską, Marcina Koralewskiego i Bartosza Pawliczaka.
 
 ### Typy prezentacji danych
 
