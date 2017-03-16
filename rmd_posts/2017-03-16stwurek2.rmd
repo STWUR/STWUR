@@ -1,0 +1,515 @@
+---
+title: '2017-03-16'
+author: "P.Krzysztoporska, M.Koralewski, B.Pawliczak"
+date: "16 marca 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+setwd("~/R/Diagnoza/data/")
+load("~/R/Diagnoza/data/gospodarstwa.rda")
+load("~/R/Diagnoza/data/osoby.rda")
+load("~/R/Diagnoza/data/osobyDict.rda")
+load("~/R/Diagnoza/data/gospodarstwaDict.rda")
+library(RColorBrewer)
+library(ggplot2)
+library(dplyr)
+library(haven)
+library(ggthemes)
+knitr::opts_chunk$set(fig.width=12, fig.height=8, warning=FALSE, message=FALSE)
+```
+
+###Typy prezentacji danych
+
+Podstawowe 4 typy prezentacji danych:
+
+- **Porównanie**
+- **Kompozycja**
+- Rozkład
+- Relacje między danymi
+
+###Pytania, które warto sobie zadać:
+
+
+- Jak dużo zmiennych chcemy pokazać na jednym wykresie?
+- Jak wiele punktów danych pokażemy?
+- Czy dane są zmienne w czasie? A może zmieniają się w zależności od grup?
+
+
+###Czy zawsze potrzebujemy wykresu?
+
+
+**Tabela** dobrze prezentuje dane, gdy
+- chcemy znaleźć i porównać pojedyncze wartości,
+- pokazujemy dokładne wartości,
+- mamy do czynienia z różnymi jednostkami,
+- pokazujemy ilościowe informacje, a nie trend.
+
+**Wykres** będzie odpowiedni, gdy
+- będzie przekazywał wiadomość poprzez kształt,
+- chcemy pokazać relacje między wieloma zmiennymi.
+
+
+###Wykres punktowy (scatter plot)
+
+
+```{r myplot,echo=FALSE,fig.width=20,fig.height=10}
+
+
+internet_przyjaciele <- osoby %>%
+  select(poziom_wyksztalcenia_2003,numer_gd, bp53, bp130, waga_2003_ind) %>%
+  mutate_each(funs(as_factor), poziom_wyksztalcenia_2003) %>% 
+  #mutate_each(funs(as.numeric),waga_2013_ind) %>%
+  group_by(numer_gd,poziom_wyksztalcenia_2003) %>% 
+  summarise(przyjaciele = sum(waga_2003_ind*bp53, na.rm=TRUE)/sum(waga_2003_ind[!is.na(bp53)], na.rm=T), internet = sum(waga_2003_ind*bp130, na.rm=TRUE)/sum(waga_2003_ind[!is.na(bp130)], na.rm=T),rok = 2003) %>% rename(edukacja= poziom_wyksztalcenia_2003) 
+
+
+# edu <- c("wyższe ze stopniem inżyniera, licencjata",
+#          "wyższe ze stopniem magistra lub równorzędnym",
+#          "wyższe ze stopniem naukowym co najmniej doktora")
+
+my_theme<- theme(title=element_text(size=20),
+        panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white"),
+        legend.background = element_rect(fill = "white"),
+        strip.background = element_rect(fill = "white"),
+        axis.text.x = element_text(size = 20, face = "plain"),
+        axis.text.y = element_text(size = 20, face = "plain"),
+        legend.text = element_text(size = 18, face = "plain"),
+        legend.key.height = unit(1,"cm"))
+
+ggplot(internet_przyjaciele, aes(x=przyjaciele, internet,col=edukacja)) +
+  geom_point(size=5)+ scale_color_manual(name = "", values = brewer.pal(10, "Paired"))+my_theme
+
+```
+
+
+
+###Wykres kołowy (pie chart)
+
+
+```{r pie,echo=FALSE,fig.width=20,fig.height=10, eval=FALSE}
+edukacja <- osoby %>%
+  select(poziom_wyksztalcenia_2003, waga_2003_ind) %>%
+  mutate_each(funs(as_factor), poziom_wyksztalcenia_2003) %>% 
+  #mutate_each(funs(as.numeric),waga_2013_ind) %>%
+  group_by(poziom_wyksztalcenia_2003) %>% 
+  summarise(suma = sum(waga_2003_ind, na.rm=TRUE),
+            rok = 2003) %>% rename(edukacja= poziom_wyksztalcenia_2003) 
+
+p<-ggplot(edukacja,aes(x=factor(1), y=suma, fill=edukacja))+geom_bar(width=1,stat="identity")+coord_polar(theta="y")
+
+p+my_theme+theme(axis.text=element_blank())+scale_fill_manual(name = "", values = brewer.pal(10, "Paired"))+labs(x="",y="")+ggtitle("Wyksztalcenie u osob bioracych udzial w badaniu w 2003 roku")
+```
+
+
+
+###Wykres słupkowy (bar plot)
+
+
+- w pozycji horyzontalnej najlepiej obrazuje 5,7 zmiennych,
+- jeśli zmienną jest czas, umieszczamy ją na osi x,
+- osie startują z zera!
+
+
+Wykres słupkowy (bar plot)
+
+```{r echo=FALSE,fig.width=20,fig.height=10}
+standard_bp <- theme(text = element_text(colour="maroon", size=16))+  theme(axis.text.x=element_text(size=16,colour="maroon")) +
+  theme(axis.text.y=element_text(size=16,colour="maroon")) +
+  theme(axis.title.x=element_text(size=16,colour="black",face="bold",vjust=0.5)) +
+  theme(axis.title.y=element_text(size=16,colour="black",face="bold",vjust=0.5))
+download.file(url = "https://raw.githubusercontent.com/STWUR/STWUR-2017-03-01/master/education_data.csv",
+              destfile = "edu_dat.csv")
+
+### data in following years
+temp9 = osoby %>% select(ep69_3, ep69_2, ep69_1, ep70, ep68, ep127o22, eduk4_2009, wojewodztwo, plec_all, waga_2009_ind, wiek6_2009) %>% 
+  filter(!is.na(ep69_3)) %>% 
+  mutate_each(funs(as_factor), -waga_2009_ind) %>% 
+  group_by(ep69_3, ep69_2, ep69_1, ep70, ep68, ep127o22, eduk4_2009, wojewodztwo, plec_all, wiek6_2009) %>% 
+  summarise(waga = sum(waga_2009_ind, na.rm = TRUE), rok = 2009) %>% 
+  na.omit() %>% ungroup %>% 
+  rename(spotkania = ep69_3,  pub=ep69_2, kino=ep69_1, psycholog = ep70, TV = ep68, TV_przez_Internet = ep127o22, edukacja=eduk4_2009, plec = plec_all, wiek_kat = wiek6_2009)
+temp9$rok = 2009
+
+
+temp11 = osoby %>% select(fp71_3, fp71_2, fp71_1, fp72, fp70, fp12819, eduk4_2011, wojewodztwo, plec_all, waga_2011_ind, wiek6_2011) %>% 
+  filter(!is.na(fp71_3)) %>% 
+  mutate_each(funs(as_factor), -waga_2011_ind) %>% 
+  group_by(fp71_3, fp71_2, fp71_1, fp72, fp70, fp12819, eduk4_2011, wojewodztwo, plec_all, wiek6_2011) %>% 
+  summarise(waga = sum(waga_2011_ind, na.rm = TRUE), rok = 2011) %>% 
+  na.omit() %>% ungroup %>% 
+  rename(spotkania = fp71_3, pub=fp71_2, kino=fp71_1, psycholog = fp72, TV = fp70, TV_przez_Internet=fp12819, edukacja=eduk4_2011, plec = plec_all, wiek_kat = wiek6_2011)
+temp11$rok = 2011
+
+
+
+temp15 = osoby %>% select(hp71_3, hp71_2, hp71_1, hp72, hp70, hp134_22, eduk4_2015, wojewodztwo, plec_all, waga_2015_ind, wiek6_2015) %>% 
+  filter(!is.na(hp71_3)) %>% 
+  mutate_each(funs(as_factor), -waga_2015_ind) %>% 
+  group_by(hp71_3, hp71_2, hp71_1, hp72, hp70, hp134_22, eduk4_2015, wojewodztwo, plec_all, wiek6_2015) %>% 
+  summarise(waga = sum(waga_2015_ind, na.rm = TRUE), rok = 2015) %>% 
+  na.omit() %>% ungroup %>% 
+  rename(spotkania = hp71_3, pub=hp71_2, kino=hp71_1, psycholog=hp72, TV=hp70, TV_przez_Internet=hp134_22, edukacja=eduk4_2015, plec = plec_all, wiek_kat = wiek6_2015)
+temp15$rok = 2015
+
+
+### modified and joined
+temp9$edukacja<-as.numeric(temp9$edukacja!="wyższe i policealne")
+temp11$edukacja<-as.numeric(temp11$edukacja!="wyższe i policealne")
+temp15$edukacja<-as.numeric(temp15$edukacja!="wyższe i policealne")
+spotkan = rbind(temp9, temp11, temp15)
+temp15$TV=tolower(temp15$TV)
+temp11$plec=substr(temp11$plec, 1, 1)
+temp15$plec=substr(temp15$plec, 1, 1)
+spotkan2 = rbind(temp11,temp15)
+
+
+
+
+```
+
+```{r bartosz_code_1, echo=TRUE,eval=TRUE}
+daneNaSzybko <- read.csv("edu_dat.csv", encoding="UTF-8")
+Wyksztalcenie<-as.numeric(daneNaSzybko$edukacja!="wyższe i policealne")
+ggplot(daneNaSzybko,aes(Wyksztalcenie,fill=wojewodztwo))+
+  geom_bar(position="stack")+xlab(expression(bold("W. wyższe/policealne a pozostałe")))+
+  theme_classic()+ylab("")
+ggplot(daneNaSzybko,aes(Wyksztalcenie,fill=wojewodztwo))+
+  geom_bar(position="fill")+xlab(expression(bold("W. wyższe/policealne a pozostałe")))+
+  theme_classic()+ylab("")
+
+```
+
+
+
+
+```{r bartosz_code_2, echo=FALSE,eval=FALSE}
+#PROBLEM Z INTERPRETACJĄ DLA WAG
+# wykres<-ggplot(spotkan, aes(x = plec, y = waga, fill = edukacja)) + 
+#   geom_bar(stat = "identity", position = "dodge") +
+#   facet_wrap(~ rok, ncol = 1)
+# wykres+ggtitle(expression(atop("Wykształcenie", atop(italic("Dane z Diagnozy Społecznej"), ""))))+standard_bp+labs(y="")
+
+# wykres<-ggplot(spotkan, aes(x = plec, y = waga, fill = psycholog)) + 
+#   geom_bar(stat = "identity", position = "fill") +
+#   facet_wrap(~ rok, ncol = 1)
+# wykres+ggtitle(expression(atop("Wizyty u psychologa", atop(italic("Dane z Diagnozy Społecznej"), ""))))+standard_bp+labs(y="")
+# 
+# wykres<-ggplot(spotkan, aes(x = plec, y = waga, fill = psycholog)) + 
+#   geom_bar(stat = "identity", position = "stack") +
+#   facet_wrap(~ rok, ncol = 1)
+# wykres+ggtitle(expression(atop("Wizyty u psychologa", atop(italic("Dane z Diagnozy Społecznej"), ""))))+standard_bp+labs(y="")
+```
+
+```{r bartosz_code_3, echo=TRUE,eval=TRUE}
+wykres<-ggplot(spotkan, aes(x = plec, y = waga, fill = psycholog)) + 
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ rok, ncol = 1)
+wykres+ggtitle(expression(atop("Wizyty u psychologa", 
+                               atop(italic("Dane z Diagnozy Społecznej"), ""))))+standard_bp+labs(y="")
+
+```
+
+```{r bartosz_code_4, echo=TRUE,eval=TRUE}
+wykres<-ggplot(spotkan2, aes(x = plec, y = waga, fill = TV)) + 
+  geom_bar(stat = "identity", position = "dodge") + coord_polar() +
+  facet_wrap(~ rok, ncol = 1)
+wykres+ggtitle(expression(atop("Częstość oglądania TV", 
+                               atop(italic("Dane z Diagnozy Społecznej"), ""))))+standard_bp+labs(y="")
+
+```
+
+
+###Wykres liniowy (line plot)
+
+- Używany najczęściej wtedy, kiedy chcemy pokazać zmienność cechy w czasie.
+- Bardzo podatny na zmniejszenie czytelności przez dużą liczbę cech
+```{r marcindata, echo=FALSE, eval=TRUE}
+
+### parts of data year by year
+temp = osoby %>%
+  select(ap83_1, wojewodztwo, podregion58, eduk4_2000, waga_2000_ind) %>%
+  mutate_each(funs(as_factor), -waga_2000_ind) %>% 
+  group_by(ap83_1, eduk4_2000, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2000_ind, na.rm = TRUE), rok = 2000) %>% 
+  filter(!is.na(ap83_1)) %>%
+  filter(!is.na(eduk4_2000)) %>%
+  rename(czy_pali = ap83_1, wyksztalcenie = eduk4_2000) 
+temp$rok = 2000
+
+temp2 = osoby %>%
+  select(bp64, wojewodztwo, podregion58, eduk4_2003, waga_2003_ind) %>%
+  mutate_each(funs(as_factor), -waga_2003_ind) %>% 
+  group_by(bp64, eduk4_2003, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2003_ind, na.rm = TRUE), rok = 2003) %>% 
+  filter(!is.na(bp64)) %>%
+  filter(!is.na(eduk4_2003)) %>%
+  rename(czy_pali = bp64, wyksztalcenie = eduk4_2003) 
+temp2$rok = 2003
+
+temp3 = osoby %>%
+  select(cp60, wojewodztwo, podregion58, eduk4_2005, waga_2005_ind) %>%
+  mutate_each(funs(as_factor), -waga_2005_ind) %>% 
+  group_by(cp60, eduk4_2005, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2005_ind, na.rm = TRUE), rok = 2005) %>% 
+  filter(!is.na(cp60)) %>%
+  filter(!is.na(eduk4_2005)) %>%
+  rename(czy_pali = cp60, wyksztalcenie = eduk4_2005) 
+temp3$rok = 2005
+
+temp4 = osoby %>%
+  select(dp56, wojewodztwo, podregion58, eduk4_2007, waga_2007_ind) %>%
+  mutate_each(funs(as_factor), -waga_2007_ind) %>% 
+  group_by(dp56, eduk4_2007, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2007_ind, na.rm = TRUE), rok = 2007) %>% 
+  filter(!is.na(dp56)) %>%
+  filter(!is.na(eduk4_2007)) %>%
+  rename(czy_pali = dp56, wyksztalcenie = eduk4_2007) 
+temp4$rok = 2007
+
+temp5 = osoby %>%
+  select(ep46, wojewodztwo, podregion58, eduk4_2009, waga_2009_ind) %>%
+  mutate_each(funs(as_factor), -waga_2009_ind) %>% 
+  group_by(ep46, eduk4_2009, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2009_ind, na.rm = TRUE), rok = 2009) %>% 
+  filter(!is.na(ep46)) %>%
+  filter(!is.na(eduk4_2009)) %>%
+  rename(czy_pali = ep46, wyksztalcenie = eduk4_2009) 
+temp5$rok = 2009
+
+temp6 = osoby %>%
+  select(fp44, wojewodztwo, podregion58, eduk4_2011, waga_2011_ind) %>%
+  mutate_each(funs(as_factor), -waga_2011_ind) %>% 
+  group_by(fp44, eduk4_2011, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2011_ind, na.rm = TRUE), rok = 2011) %>% 
+  filter(!is.na(fp44)) %>%
+  filter(!is.na(eduk4_2011)) %>%
+  rename(czy_pali = fp44, wyksztalcenie = eduk4_2011) 
+temp6$rok = 2011
+
+temp7 = osoby %>%
+  select(gp43, wojewodztwo, podregion58, eduk4_2013, waga_2013_ind) %>%
+  mutate_each(funs(as_factor), -waga_2013_ind) %>% 
+  group_by(gp43, eduk4_2013, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2013_ind, na.rm = TRUE), rok = 2013) %>% 
+  filter(!is.na(gp43)) %>%
+  filter(!is.na(eduk4_2013)) %>%
+  rename(czy_pali = gp43, wyksztalcenie = eduk4_2013) 
+temp7$rok = 2013
+
+temp8 = osoby %>%
+  select(hp43, wojewodztwo, podregion58, eduk4_2015, waga_2015_ind) %>%
+  mutate_each(funs(as_factor), -waga_2015_ind) %>% 
+  group_by(hp43, eduk4_2015, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2015_ind, na.rm = TRUE), rok = 2015) %>% 
+  filter(!is.na(hp43)) %>%
+  filter(!is.na(eduk4_2015)) %>%
+  rename(czy_pali = hp43, wyksztalcenie = eduk4_2015) 
+temp8$rok = 2015
+### join'em
+palenie = rbind(temp, temp2, temp3, temp4, temp5, temp6, temp7, temp8) 
+
+#### more factors
+palenie_a_podregion_region_wyksztalcenie_i_rok = palenie %>%
+  select(czy_pali, wyksztalcenie, podregion58, wojewodztwo, rok, waga) %>%
+  mutate_each(funs(as.factor), -waga) 
+
+# change values to numeric
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = gsub('TAK',1,palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = gsub('NIE',0,palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = as.numeric(palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+####
+
+palenie_a_wyksztalcenie_i_rok = palenie_a_podregion_region_wyksztalcenie_i_rok %>% 
+  filter(!is.na(wyksztalcenie)) %>%
+  group_by(wyksztalcenie, rok) %>% 
+  summarise(percent = sum(czy_pali*waga)/sum(waga)) 
+
+palenie_a_wyksztalcenie_i_rok$rok <- strptime(x = as.character(palenie_a_wyksztalcenie_i_rok$rok), format="%Y")
+
+```
+
+```{r marcin_code_1, echo=TRUE,eval=FALSE}
+
+temp = osoby %>%
+  select(ap83_1, wojewodztwo, podregion58, eduk4_2000, waga_2000_ind) %>%
+  mutate_each(funs(as_factor), -waga_2000_ind) %>% 
+  group_by(ap83_1, eduk4_2000, podregion58, wojewodztwo) %>% 
+  summarise(waga = sum(waga_2000_ind, na.rm = TRUE), rok = 2000) %>% 
+  filter(!is.na(ap83_1)) %>%
+  filter(!is.na(eduk4_2000)) %>%
+  rename(czy_pali = ap83_1, wyksztalcenie = eduk4_2000) 
+temp$rok = 2000
+### (...)
+palenie = rbind(temp, temp2, temp3, temp4, temp5, temp6, temp7, temp8) 
+
+```
+
+
+```{r marcin_code_2, echo=TRUE,eval=FALSE}
+
+#### more factors
+palenie_a_podregion_region_wyksztalcenie_i_rok = palenie %>%
+  select(czy_pali, wyksztalcenie, podregion58, wojewodztwo, rok, waga) %>%
+  mutate_each(funs(as.factor), -waga) 
+
+# change values to numeric
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = gsub(
+  'TAK',1,palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = gsub(
+  'NIE',0,palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali = as.numeric(
+  palenie_a_podregion_region_wyksztalcenie_i_rok$czy_pali)
+
+```
+
+
+
+```{r marcin_code_3, echo=TRUE,eval=FALSE}
+
+#group, count percent
+palenie_a_wyksztalcenie_i_rok = palenie_a_podregion_region_wyksztalcenie_i_rok %>% 
+  filter(!is.na(wyksztalcenie)) %>%
+  group_by(wyksztalcenie, rok) %>% 
+  summarise(percent = sum(czy_pali*waga)/sum(waga)) 
+
+# change to datetime object
+palenie_a_wyksztalcenie_i_rok$rok <- strptime(
+  x = as.character(palenie_a_wyksztalcenie_i_rok$rok), format="%Y")
+
+
+```
+
+
+
+```{r marcin_code_4, echo=TRUE,eval=FALSE}
+
+#First plot
+ggplot(data=palenie_a_wyksztalcenie_i_rok, aes(
+  x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  ggtitle('Procent palących na przestrzeni lat')+
+  ylab('Procent palących')+
+  xlab('Rok badania')
+
+```
+
+
+Pierwszy geom_line:
+
+```{r marcin_plot_1, echo=FALSE,fig.width=20,fig.height=10}
+
+#First plot
+ggplot(data=palenie_a_wyksztalcenie_i_rok, 
+       aes(x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  ggtitle('Procent palących na przestrzeni lat')+
+  ylab('Procent palących')+
+  xlab('Rok badania')
+
+```
+
+W wykresie powyżej nie pasuje nam bardzo wiele rzeczy :)
+
+- niska czytelność
+- mało czytelna skala osi Y
+- chcemy czytelnika poinformować o niepewności wynikającej z trendu
+- tytuł bardzo źle wygląda
+
+```{r marcin_code_5, echo=TRUE,eval=FALSE}
+# 2gi wykres
+ggplot(data=palenie_a_wyksztalcenie_i_rok, aes(
+  x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  ylab('Procent palących')+
+  xlab('Rok badania')+ ###############################
+  geom_smooth(method='loess')+
+  scale_y_continuous(labels = scales::percent)+
+  theme_dark()+
+  ggtitle(expression(atop("Procent palących na przestrzeni lat", atop(
+    italic("Dane z Diagnozy Społecznej"), "")))) +
+  theme(axis.text.x = element_text(angle=-45, hjust=0, vjust=1), 
+        plot.title = element_text(size = 25, face = "bold", colour = "black", vjust = -1))
+```
+
+
+
+```{r marcin_plot_2, echo=FALSE}
+# 2gi wykres
+ggplot(data=palenie_a_wyksztalcenie_i_rok, aes(x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  ylab('Procent palących')+
+  xlab('Rok badania')+
+  geom_smooth(method='loess')+
+  scale_y_continuous(labels = scales::percent)+
+  theme_dark()+
+  ggtitle(expression(atop("Procent palących na przestrzeni lat", atop(italic("Dane z Diagnozy Społecznej"), "")))) +
+  theme(axis.text.x = element_text(angle=-45, hjust=0, vjust=1), 
+        plot.title = element_text(size = 25, face = "bold", colour = "black", vjust = -1))
+
+```
+Na tą chwilę można dopracować:
+
+- podpisy osi
+- legenda jest mało czytelna
+- tytuł 
+
+
+```{r marcin_code_6, echo=TRUE,eval=FALSE}
+ggplot(data=palenie_a_wyksztalcenie_i_rok, aes(
+  x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  geom_smooth(method='loess')+
+  scale_y_continuous(labels = scales::percent)+
+  theme_dark()+
+  ggtitle(expression(atop("Procent palących na przestrzeni lat",
+                          atop(italic("Dane z Diagnozy Społecznej"), "")))) +
+  theme(axis.text.x = element_text(angle=-45, hjust=0, vjust=1), 
+        plot.title = element_text(size = 25, face = "bold", 
+                                  colour = "black", vjust = -1, hjust=0.5))+############
+  theme(legend.direction = 'vertical',
+        legend.key.size = unit(3, 'lines'), legend.justification = c(1, -0.015), 
+        legend.title = element_text(size = 18, colour = "black", vjust = 0),
+        legend.text = element_text(size = 11),
+        axis.title.x = element_text(size = 15, colour = 'grey35'),
+        axis.title.y = element_text(size = 15, colour = 'grey35'),
+        plot.background = element_rect(fill = 'grey90'),
+        legend.background = element_rect(fill = 'grey90')) +
+        labs(x = 'Rok badania', y = 'Procent palących', color='Wykształcenie')
+```
+
+
+```{r marcin_plot_3, echo=FALSE}
+ggplot(data=palenie_a_wyksztalcenie_i_rok, aes(
+  x=rok, y=percent, group=wyksztalcenie, color=wyksztalcenie))+
+  geom_line(stat = "identity")+
+  scale_colour_brewer(type='seq', palette = 'OrRd')+
+  scale_x_datetime(date_labels = "%Y", date_breaks = '2 years')+
+  geom_smooth(method='loess')+
+  scale_y_continuous(labels = scales::percent)+
+  theme_dark()+
+  ggtitle(expression(atop("Procent palących na przestrzeni lat", atop(italic("Dane z Diagnozy Społecznej"), "")))) +
+  theme(axis.text.x = element_text(angle=-45, hjust=0, vjust=1), 
+        plot.title = element_text(size = 25, face = "bold", colour = "black", vjust = -1, hjust=0.5))+
+  theme(legend.direction = 'vertical',
+        legend.key.size = unit(3, 'lines'), legend.justification = c(1, -0.015), 
+        legend.title = element_text(size = 18, colour = "black", vjust = 0),
+        legend.text = element_text(size = 11),
+        axis.title.x = element_text(size = 15, colour = 'grey35'),
+        axis.title.y = element_text(size = 15, colour = 'grey35'),
+        plot.background = element_rect(fill = 'grey90'),
+        legend.background = element_rect(fill = 'grey90')) +
+        labs(x = 'Rok badania', y = 'Procent palących', color='Wykształcenie')
+
+```
