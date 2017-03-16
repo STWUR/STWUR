@@ -1,23 +1,33 @@
 ---
-title: '2017-03-16'
-author: "P.Krzysztoporska, M.Koralewski, B.Pawliczak"
-date: "16 marca 2017"
-output: pdf_document
+layout: post
+title: "STWURek #2: ggplot - drugie starcie
+modified:
+author: michal
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2017-03-07
+output:
+  md_document:
+    variant: markdown_github
 ---
 
+Drugi STWURek odbył się dzisiaj, a podczas spotkania dalej zgłębialiśmy tajniki wizualizacji danych w ggplot2.
+
 ```{r setup, include=FALSE}
-setwd("~/R/Diagnoza/data/")
-load("~/R/Diagnoza/data/gospodarstwa.rda")
-load("~/R/Diagnoza/data/osoby.rda")
-load("~/R/Diagnoza/data/osobyDict.rda")
-load("~/R/Diagnoza/data/gospodarstwaDict.rda")
+load("osoby.RData")
+load("osobyDict.RData")
 library(RColorBrewer)
 library(ggplot2)
 library(dplyr)
 library(haven)
 library(ggthemes)
-knitr::opts_chunk$set(fig.width=12, fig.height=8, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
+
+Materiały na spotkanie zostały przygotowane przez członków [Koła Naukowego Statystyki Matematycznej Gauss](gauss.im.pwr.wroc.pl/): Paulinę Krzysztoporską, Marcina Koralewskiego i Bartosza Pawliczaka.
 
 ###Typy prezentacji danych
 
