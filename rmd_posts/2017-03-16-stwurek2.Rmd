@@ -29,7 +29,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 Materiały na spotkanie zostały przygotowane przez członków [Koła Naukowego Statystyki Matematycznej Gauss](gauss.im.pwr.wroc.pl/): Paulinę Krzysztoporską, Marcina Koralewskiego i Bartosza Pawliczaka.
 
-###Typy prezentacji danych
+### Typy prezentacji danych
 
 Podstawowe 4 typy prezentacji danych:
 
@@ -38,7 +38,7 @@ Podstawowe 4 typy prezentacji danych:
 - Rozkład
 - Relacje między danymi
 
-###Pytania, które warto sobie zadać:
+### Pytania, które warto sobie zadać:
 
 
 - Jak dużo zmiennych chcemy pokazać na jednym wykresie?
@@ -46,7 +46,7 @@ Podstawowe 4 typy prezentacji danych:
 - Czy dane są zmienne w czasie? A może zmieniają się w zależności od grup?
 
 
-###Czy zawsze potrzebujemy wykresu?
+### Czy zawsze potrzebujemy wykresu?
 
 
 **Tabela** dobrze prezentuje dane, gdy
@@ -60,7 +60,7 @@ Podstawowe 4 typy prezentacji danych:
 - chcemy pokazać relacje między wieloma zmiennymi.
 
 
-###Wykres punktowy (scatter plot)
+### Wykres punktowy (scatter plot)
 
 
 ```{r myplot,echo=FALSE,fig.width=20,fig.height=10}
@@ -95,7 +95,7 @@ ggplot(internet_przyjaciele, aes(x=przyjaciele, internet,col=edukacja)) +
 
 
 
-###Wykres kołowy (pie chart)
+### Wykres kołowy (pie chart)
 
 
 ```{r pie,echo=FALSE,fig.width=20,fig.height=10, eval=FALSE}
@@ -114,7 +114,7 @@ p+my_theme+theme(axis.text=element_blank())+scale_fill_manual(name = "", values 
 
 
 
-###Wykres słupkowy (bar plot)
+### Wykres słupkowy (bar plot)
 
 
 - w pozycji horyzontalnej najlepiej obrazuje 5,7 zmiennych,
@@ -231,7 +231,7 @@ wykres+ggtitle(expression(atop("Częstość oglądania TV",
 ```
 
 
-###Wykres liniowy (line plot)
+### Wykres liniowy (line plot)
 
 - Używany najczęściej wtedy, kiedy chcemy pokazać zmienność cechy w czasie.
 - Bardzo podatny na zmniejszenie czytelności przez dużą liczbę cech
