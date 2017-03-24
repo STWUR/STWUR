@@ -21,4 +21,5 @@ Data scientist w startupie [Infermedica](http://infermedica.com/), [bloger](http
 # Wspierają nas
 
 * [Wydział Biotechnologii Uniwersytetu Wrocławskiego](http://www.biotech.uni.wroc.pl/)
+* [Koło Naukowe Statystyki Matematycznej ,,Gauss"](http://gauss.im.pwr.wroc.pl)
 * [Doktoranckie Koło Naukowe Bioinformatyki](http://michbur.github.io/DKNB/)
