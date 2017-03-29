@@ -8,7 +8,7 @@ excerpt:
 tags: []
 image:
   feature:
-date: 2017-03-29
+date: 2017-03-24
 output:
   md_document:
     variant: markdown_github
@@ -18,7 +18,8 @@ output:
 
 Nasza strona, [stwur.pl](stwur.pl) istnieje już kilka miesięcy i od początku swojego istnienia cieszy się spory zainteresowaniem miłośników R z całego świata. Są dane, warto je zwizualizować, zwłaszcza, że pasują do tematyki naszego następnego spotkania [I ty możesz zostać kartografem!](https://www.meetup.com/Wroclaw-R-Users-Group/events/238204653/), które odbywa się już jutro!. W tej notce skupimy się na pokazaniu ilu użytkowników ze wszystkich krajów świata weszło na naszą stronę od stycznia do marca.
 
-```{r STWUR_map}
+
+```r
 library(ggplot2)
 library(ggmap)
 library(maps)
@@ -48,7 +49,13 @@ other_countries <- unique(world_map[["region"]])[!(unique(world_map[["region"]])
 
 # jeszcze dluga droga przed STWURem - w tylu krajach o nas nie slyszeli!
 print(length(other_countries))
+```
 
+```
+## [1] 237
+```
+
+```r
 # dodajmy informacje, ze mamy 0 uzytkownikow w kazdym z krajow ze zmiennej other_countries
 country_full <- rbind(summaries_country, 
                   data.frame(sessions = 0,
@@ -66,16 +73,21 @@ ggplot(country_full, aes(map_id = region)) +
   scale_fill_manual("STWURy", values = brewer.pal(5, "GnBu"))
 ```
 
+![plot of chunk STWUR_map](./figure/STWUR_map-1.png)
+
 Jak można oczekiwać i co potwierdza powyższa mapa, STWUR to wydarzenie głównie europejskie, dlatego też warto przyjrzeć się z bliska Staremu Kontynentowi.
 
 
-```{r STWUR_europe}
+
+```r
 ggplot(country_full, aes(map_id = region)) + 
   geom_map(aes(fill = usersF), map = world_map, color = "black", size = 0.1) +
   expand_limits(x = c(-10, 35), y = c(35, 70)) +
   theme_bw() +
   scale_fill_manual("STWURy", values = brewer.pal(5, "GnBu"))
 ```
+
+![plot of chunk STWUR_europe](./figure/STWUR_europe-1.png)
 
 STWUR, naturalnie, najbardziej popularny jest w Polsce, zaskakiwać może jednak duża liczba STWURów z Danii i Niemiec. O ile to pierwsze można jeszcze wyjaśnić moim pobytem na Politechnice Duńskiej, gdzie w czasie wolnym aktywnie pracowałem nad stroną STWURa, o tyle niemieckie STWURy budzą moje zaciekawienie. Ujawnijcie się :)
 
