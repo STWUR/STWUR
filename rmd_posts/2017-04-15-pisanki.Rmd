@@ -17,7 +17,8 @@ output:
 ### Malowanie pisanek w R
 
 Potężne graficzne możliwości **R** często mnie prowokują do szukania innych zastosowań niż wizualizacja zależności między analizowanymi danymi. Tworzenie w **R** kartek świątecznych wydaje się nieco oryginalne, ale wbrew pozorom jest bardzo proste, głównie ze względu na na gotowe do użycia skrypty rysujące [króliczki](https://www.rdocumentation.org/packages/onion/versions/1.2-4/topics/bunny) i jajka (kod poniżej). 
-Do zajmujących nas ostatnio kartogramów wracamy już niebawem, bo [STWUR spotyka się w środę 19.04 o 19:00 na Wydziale Biotechnologii UWr](https://www.meetup.com/Wroclaw-R-Users-Group/events/239151851/). Zapraszamy!
+
+Do zajmujących nas ostatnio kartogramów wracamy już niebawem, bo [STWUR spotyka się w środę 19.04 o 19:00 na Wydziale Biotechnologii UWr w sali 1.03](https://www.meetup.com/Wroclaw-R-Users-Group/events/239151851/). Zapraszamy!
 
 ```{r pisanka}
 library(ggplot2)
