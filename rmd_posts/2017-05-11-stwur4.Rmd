@@ -1,0 +1,36 @@
+---
+layout: post
+title: "STWUR #4: czynniki w R, czyli samotność w sieci"
+modified:
+author: michal
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2017-05-11
+output:
+  md_document:
+    variant: markdown_github
+---
+
+Czwarty STWUR odbędzie się 17.05.2017 - razem nauczymy się pracować z czynnikami (klasa factor), a potem sprawdzimy, czy polscy użytkownicy internetu częściej czują się samotni.
+
+S@motność w sieci to bestsellerowa książką Janusza Wiśniewskiego, której tytuł był bez wątpienia inspiracją dzisiejszej notki. Wykorzystując dane z Diagnozy Społecznej określiliśmy ilu Polaków używa internetu w pracy, ile Polacy spędzają czasu w internecie w ciągu tygodnia i czy czują się samotni. Informacje te prezentujemy na poniższym wykresie, a podczas następnego spotkania STWURa odpowiemy sobie na pytanie, czy rzeczywiście zapaleni internauci czują się bardziej samotni niż ludzie, którzy z internetem mają kontakt raczej sporadyczny.
+
+Oprócz tego dowiemy się jak prosto i szybko manipulować zmiennymi czynnikowymi w *R* - jak przekodować zmienne, zgrupować je, szybko wyliczyć ich częstość lub tabelę kontyngencji. 
+
+```{r echo = FALSE}
+library(ggplot2)
+
+dat <- read.csv("internet_samotnosc_aggregated.csv")
+
+ggplot(dat, aes(x = plec, y = internet_h, fill = samotnosc)) +
+  geom_col(position = "dodge") +
+  facet_wrap( ~ internet_zawodowo, labeller = label_both) +
+  scale_x_discrete("Płeć") +
+  scale_y_continuous("Użycie internetu w ostatnim tygodniu [h]") +
+  scale_fill_manual("Uczucie osamotnienia", values = c("navyblue", "darkred")) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
