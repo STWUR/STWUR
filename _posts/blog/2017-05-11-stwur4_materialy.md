@@ -14,6 +14,8 @@ output:
     variant: markdown_github
 ---
 
+Jak zawsze publikujemy materiały z ostatniego spotkania STWURa.
+
 
 
 ## Wstęp
