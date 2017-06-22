@@ -1,0 +1,141 @@
+---
+layout: post
+title: "STWUR #6: materiały ze spotkania"
+modified:
+author: michal
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2017-06-22
+output:
+  md_document:
+    variant: markdown_github
+---
+
+Czy stać mnie na mieszkanie moich marzeń we Wrocławiu?
+
+```{r setup, include=FALSE,message=FALSE}
+library(mlr)
+library(dplyr)
+library(ggplot2)
+load(url("https://github.com/STWUR/STWUR-2017-06-21/blob/master/results/tuning.RData?raw=true"))
+
+mieszkania <- na.omit(read.csv("https://raw.githubusercontent.com/STWUR/STWUR-2017-06-07/master/data/mieszkania_dane.csv", fileEncoding = "UTF-8")) 
+```
+
+## Link do repotyzorium
+
+https://tinyurl.com/stwur6 - kody i dane do dzisiejszego spotkania.
+
+
+## mlr
+
+Pakiet **mlr** standaryzuje pracę z uczeniem maszynowym w *R* poprzez stworzenie wraperów wokół najpopularniejszych implementacji algorytmów uczenia maszynowego.
+
+```{r}
+listLearners()
+```
+
+## Sieci neuronowe
+
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/296px-Colored_neural_network.svg.png"></center>
+
+Źródło: wikipedia
+
+
+## Głębokie sieci neuronowe
+
+<center><img src="http://www.opennn.net/images/deep_neural_network.png"></center>
+
+Źródło: www.opennn.net
+
+
+## Tuning
+
+Tuning to wybór optymalnych parametrów dla predyktora.
+
+## Stworzenie klasyfikatora
+
+```{r}
+predict_price <- makeRegrTask(id = "affordableApartments", 
+                              data = mieszkania, target = "cena_m2")
+
+learnerNN <- makeLearner("regr.nnet")
+```
+
+## Zakresy parametrów
+
+```{r}
+all_params <- makeParamSet(
+  makeDiscreteParam("size", values = c(1, 3, 4, 5)),
+  makeDiscreteParam("decay", values = seq(0.3, 0.8, length.out = 5))
+)
+```
+
+## Tuning
+
+```{r, eval=FALSE}
+set.seed(1792)
+
+res <- tuneParams(learnerNN, task = predict_price, 
+                  resampling = makeResampleDesc("CV", iters = 10L),
+                  par.set = all_params, 
+                  control =  makeTuneControlGrid())
+```
+
+## Wyniki tuningu
+
+```{r}
+res
+```
+
+## Wyniki tuningu
+
+```{r,eval=FALSE}
+as.data.frame(res[["opt.path"]]) %>% 
+  mutate(blad_cena = sqrt(mse.test.mean)) %>% 
+  ggplot(aes(x = size, y = blad_cena, color = as.factor(decay))) +
+  geom_point() +
+  theme_bw()
+```
+
+## Wyniki tuningu
+
+```{r,echo=FALSE}
+as.data.frame(res[["opt.path"]]) %>% 
+  mutate(blad_cena = sqrt(mse.test.mean)) %>% 
+  ggplot(aes(x = size, y = blad_cena, color = as.factor(decay))) +
+  geom_point() +
+  theme_bw()
+```
+
+## Ile będzie kosztować mieszkanie moich marzeń?
+
+```{r}
+res
+
+chosen_predictor <- train(makeLearner("regr.nnet", size=3, decay=0.55), predict_price)
+```
+
+## Ile będzie kosztować mieszkanie moich marzeń?
+
+```{r}
+predict(chosen_predictor, newdata = data.frame(n_pokoj = 3, 
+                                               metraz = 55, 
+                                               rok = 1920, 
+                                               pietro = 3, 
+                                               pietro_maks = 7, 
+                                               dzielnica = "Stare Miasto"))
+```
+
+## Zadanie
+
+Z pomocą skryptu *exploration.R* przewidźmy czy typowego wrocławianina stać na mieszkanie naszych marzeń.
+
+http://tinyurl.com/stwur6 - kody i dane do dzisiejszego spotkania.
+
+Dziękujemy firmie Kruk SA i Wydziałowi Biotechnologii UWr za wspieranie spotkań STWURa.
+
+<img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="35%" width="35%"/>
