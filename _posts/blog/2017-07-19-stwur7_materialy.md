@@ -14,7 +14,7 @@ output:
     variant: markdown_github
 ---
 
-Zzamieszczamy slajdy z prezentacji Marty Karaś o regresji grzbietowej:
+Zamieszczamy slajdy z prezentacji Marty Karaś o regresji grzbietowej:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQkM8RuTwomGs3RiAFst98xU3HF5DjG4nxm_H_aNWYyhjVJ91pmiLAewEktglQQ9AxeuWPLhquw1R_M/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
