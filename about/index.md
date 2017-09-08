@@ -18,6 +18,10 @@ Bioinformatyk, doktorant na Wydziale Biotechnologii Uniwersytetu Wrocławskiego,
 Data scientist w startupie [Infermedica](http://infermedica.com/), [bloger](http://szychtawdanych.pl/), 
 [doktorant](http://prac.im.pwr.wroc.pl/~sobczyk/) na Wydziale Matematyki Politechniki Wrocławskiej.
 
+#### Jakub Kwiecień
+
+Analityk danych w [Ultimo](https://ultimo.pl/), absolwent fizyki na Wydziale Fizyki i Astronomii Uniwersytetu Wrocławskiego.
+
 # Wspierają nas
 
 * [Wydział Biotechnologii Uniwersytetu Wrocławskiego](http://www.biotech.uni.wroc.pl/)
