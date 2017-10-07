@@ -22,15 +22,7 @@ eRementarz to forma spotkania o której dyskutowaliśmy niemal od początku istn
 
 Wiele organizacji związanych z **R**, takich jak R-Ladies i RConsortium, stara się zwiększać udział kobiet wśród użytkowników tego języka. Dlatego też szczególnie cieszy nas duża liczba przedstawicielek płci pięknej, które wzięły udział w eRementarzu. Udziały poszczególnych płci w zapisach prezentujemy na wykresie poniżej, za parę dni pokażemy dokładniejsze dane dotyczące spotkania.
 
-
-```
-## Warning in file(file, "rt"): cannot open file './rmd_posts/
-## erementarz_zapisy.csv': No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
+![plot of chunk unnamed-chunk-1](./figure/unnamed-chunk-1-1.png)
 
 ## Link do repotyzorium
 

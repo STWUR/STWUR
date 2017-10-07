@@ -26,7 +26,7 @@ Wiele organizacji związanych z **R**, takich jak R-Ladies i RConsortium, stara 
 library(dplyr)
 library(ggplot2)
 
-read.csv("./rmd_posts/erementarz_zapisy.csv") %>% 
+read.csv("erementarz_zapisy.csv") %>% 
   mutate(dzien = as.Date(data),
          plec = factor(plec, labels = c("Kobieta", "Mężczyzna"))) %>% 
   group_by(dzien, plec, typ) %>% 
