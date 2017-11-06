@@ -8,7 +8,7 @@ excerpt:
 tags: []
 image:
   feature:
-date: 2017-10-06
+date: 2017-11-06
 output:
   md_document:
     variant: markdown_github
