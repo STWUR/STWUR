@@ -33,6 +33,6 @@ Po eRementarzu zapraszamy na obowiązkowe STWUR-owe piwo w Cybermachinie!
 
 https://github.com/STWUR/eRementarz2 - kody i dane do spotkania.
 
-Dziękujemy firmie Kruk SA (jedzenie i napoje) za wspieranie spotkań STWURa.
+Dziękujemy firmie Kruk SA za wspieranie spotkań STWURa.
 
 <img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="35%" width="35%"/>
