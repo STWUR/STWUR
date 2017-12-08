@@ -268,37 +268,32 @@ with(titanic_train, ftable(Survived, Sex, Embarked))
 
 ```r
 library(DescTools)
-```
-
-```
-## Error in library(DescTools): there is no package called 'DescTools'
-```
-
-```r
 Desc(titanic_train$Survived, plotit=FALSE)
 ```
 
 ```
-## Error in Desc(titanic_train$Survived, plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## titanic_train$Survived (integer - dichotomous)
+## 
+##   length      n    NAs unique
+##      891    891      0      2
+##          100.0%   0.0%       
+## 
+##    freq   perc  lci.95  uci.95'
+## 0   549  61.6%   58.4%   64.8%
+## 1   342  38.4%   35.2%   41.6%
+## 
+## ' 95%-CI Wilson
 ```
 
 ## Wykresy
 
 ```r
 Desc(titanic_train$Survived, plotit=FALSE) -> d
-```
-
-```
-## Error in Desc(titanic_train$Survived, plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-13](./figure/unnamed-chunk-13-1.png)
 
 
 ## Więcej kategorii
@@ -309,26 +304,28 @@ Desc(titanic_train$Embarked, plotit=FALSE)
 ```
 
 ```
-## Error in Desc(titanic_train$Embarked, plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## titanic_train$Embarked (character)
+## 
+##   length      n    NAs unique levels  dupes
+##      891    891      0      4      4      y
+##          100.0%   0.0%                     
+## 
+##    level  freq   perc  cumfreq  cumperc
+## 1      S   644  72.3%      644    72.3%
+## 2      C   168  18.9%      812    91.1%
+## 3      Q    77   8.6%      889    99.8%
+## 4            2   0.2%      891   100.0%
 ```
 
 ## Wykresy
 
 ```r
 Desc(titanic_train$Embarked, plotit=FALSE) -> d
-```
-
-```
-## Error in Desc(titanic_train$Embarked, plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-15](./figure/unnamed-chunk-15-1.png)
 
 ## Zmienna ciągła
 
@@ -338,26 +335,31 @@ Desc(titanic_train$Age, plotit=FALSE)
 ```
 
 ```
-## Error in Desc(titanic_train$Age, plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## titanic_train$Age (numeric)
+## 
+##   length       n     NAs  unique      0s    mean  meanCI
+##      891     714     177      88       0  29.699  28.632
+##            80.1%   19.9%            0.0%          30.766
+##                                                         
+##      .05     .10     .25  median     .75     .90     .95
+##    4.000  14.000  20.125  28.000  38.000  50.000  56.000
+##                                                         
+##    range      sd   vcoef     mad     IQR    skew    kurt
+##   79.580  14.526   0.489  13.343  17.875   0.387   0.160
+##                                                         
+## lowest : 0.42, 0.67, 0.75 (2), 0.83 (2), 0.92
+## highest: 70.0 (2), 70.5, 71.0 (2), 74.0, 80.0
 ```
 
 ## Wykresy
 
 ```r
 Desc(titanic_train$Age, plotit=FALSE) -> d
-```
-
-```
-## Error in Desc(titanic_train$Age, plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-17](./figure/unnamed-chunk-17-1.png)
 
 ## Formuły
 
@@ -367,26 +369,42 @@ Desc(titanic_train$Survived ~ titanic_train$Age, plotit=FALSE)
 ```
 
 ```
-## Error in Desc(titanic_train$Survived ~ titanic_train$Age, plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## titanic_train$Survived ~ titanic_train$Age
+## 
+## Summary: 
+## n pairs: 891, valid: 714 (80.1%), missings: 177 (19.9%), groups: 2
+## 
+##                         
+##               0        1
+## mean     30.626   28.344
+## median   28.000   28.000
+## sd       14.172   14.951
+## IQR      18.000   17.000
+## n           424      290
+## np      59.384%  40.616%
+## NAs         125       52
+## 0s            0        0
+## 
+## Kruskal-Wallis rank sum test:
+##   Kruskal-Wallis chi-squared = 1.9701, df = 1, p-value = 0.1604
+## 
+## 
+## Proportions of titanic_train$Survived in the quantiles of titanic_train$Age:
+##    
+##          Q1      Q2      Q3      Q4
+##   0   54.2%   63.9%   56.6%   62.7%
+##   1   45.8%   36.1%   43.4%   37.3%
 ```
 
 ## Formuły
 
 ```r
 Desc(titanic_train$Survived ~ titanic_train$Age, plotit=FALSE) ->d
-```
-
-```
-## Error in Desc(titanic_train$Survived ~ titanic_train$Age, plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-19](./figure/unnamed-chunk-19-1.png)
 
 ## Formuły
 
@@ -396,26 +414,35 @@ Desc(titanic_train$Age ~ titanic_train$Survived, plotit=FALSE)
 ```
 
 ```
-## Error in Desc(titanic_train$Age ~ titanic_train$Survived, plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## titanic_train$Age ~ titanic_train$Survived
+## 
+## Summary: 
+## n pairs: 891, valid: 714 (80.1%), missings: 177 (19.9%), groups: 2
+## 
+##                         
+##               0        1
+## mean     30.626   28.344
+## median   28.000   28.000
+## sd       14.172   14.951
+## IQR      18.000   17.000
+## n           424      290
+## np      59.384%  40.616%
+## NAs         125       52
+## 0s            0        0
+## 
+## Kruskal-Wallis rank sum test:
+##   Kruskal-Wallis chi-squared = 1.9701, df = 1, p-value = 0.1604
 ```
 
 ## Formuły
 
 ```r
 Desc(titanic_train$Age ~ titanic_train$Survived, plotit=FALSE) ->d
-```
-
-```
-## Error in Desc(titanic_train$Age ~ titanic_train$Survived, plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-21](./figure/unnamed-chunk-21-1.png)
 
 ## Rozkład długoogonowy
 
@@ -425,26 +452,36 @@ Desc(log10(titanic_train$Fare), plotit=FALSE)
 ```
 
 ```
-## Error in Desc(log10(titanic_train$Fare), plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## log10(titanic_train$Fare) (numeric)
+## 
+##   length       n    NAs  unique    0s  mean  meanCI
+##      891     891      0     248     0  -Inf      NA
+##           100.0%   0.0%          0.0%            NA
+##                                                    
+##      .05     .10    .25  median   .75   .90     .95
+##     0.86    0.88   0.90    1.16  1.49  1.89    2.05
+##                                                    
+##    range      sd  vcoef     mad   IQR  skew    kurt
+##      Inf      NA     NA    0.39  0.59    NA      NA
+##                                                    
+## lowest : -Inf (15), 0.6, 0.7, 0.8, 0.81
+## highest: 2.36 (4), 2.39 (2), 2.42 (2), 2.42 (4), 2.71 (3)
 ```
 
 ## Rozkład długoogonowy
 
 ```r
 Desc(log10(titanic_train$Fare), plotit=FALSE) ->d
-```
-
-```
-## Error in Desc(log10(titanic_train$Fare), plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
 ```
-## Error in plot(d): object 'd' not found
+## Warning in bplt(at[i], wid = width[i], stats = z$stats[, i], out = z$out[z
+## $group == : Outlier (-Inf) in boxplot 1 is not drawn
 ```
+
+![plot of chunk unnamed-chunk-23](./figure/unnamed-chunk-23-1.png)
 
 ## Rozkład długoogonowy
 
@@ -456,26 +493,41 @@ Desc(log10(titanic_nozero$Fare), plotit=FALSE)
 ```
 
 ```
-## Error in Desc(log10(titanic_nozero$Fare), plotit = FALSE): could not find function "Desc"
+## ------------------------------------------------------------------------- 
+## log10(titanic_nozero$Fare) (numeric)
+## 
+##      length          n        NAs     unique         0s       mean
+##         891        876         15        247          0  1.2783017
+##                  98.3%       1.7%                  0.0%           
+##                                                                   
+##         .05        .10        .25     median        .75        .90
+##   0.8590902  0.8884828  0.8989993  1.1613680  1.4951973  1.8918624
+##                                                                   
+##       range         sd      vcoef        mad        IQR       skew
+##   2.1061341  0.4067163  0.3181693  0.3923808  0.5961980  0.8981877
+##                                                                   
+##      meanCI
+##   1.2513312
+##   1.3052722
+##            
+##         .95
+##   2.0541341
+##            
+##        kurt
+##   0.0782366
+##            
+## lowest : 0.603415, 0.69897, 0.7950106, 0.8087172, 0.8095597
+## highest: 2.3570291 (4), 2.3936117 (2), 2.4189225 (2), 2.4199557 (4), 2.7095491 (3)
 ```
 
 ## Rozkład długoogonowy
 
 ```r
 Desc(log10(titanic_nozero$Fare), plotit=FALSE) ->d
-```
-
-```
-## Error in Desc(log10(titanic_nozero$Fare), plotit = FALSE): could not find function "Desc"
-```
-
-```r
 plot(d)
 ```
 
-```
-## Error in plot(d): object 'd' not found
-```
+![plot of chunk unnamed-chunk-25](./figure/unnamed-chunk-25-1.png)
 
 ## Szybki sposób na outliery
 

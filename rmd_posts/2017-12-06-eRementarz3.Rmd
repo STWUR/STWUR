@@ -230,4 +230,4 @@ titanic_train %>%
 
 Dziękujemy firmie Kruk SA i Wydziałowi Biotechnologii UWr za wspieranie spotkań STWURa.
 
-<img src="img/kruk_logo.jpg" width="50%" />
+<img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="35%" width="35%"/>
