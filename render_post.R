@@ -18,4 +18,4 @@ render_post <- function(post_name) {
   print(paste0(output_name, " created."))
 }
 
-render_post("./rmd_posts/2017-11-10-erementarz2-wrazenia.Rmd")
+render_post("./rmd_posts/2017-12-06-eRementarz3.Rmd")
