@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pierwsze spotkanie STWURa"
+title: "STWUR w 2017"
 modified:
 author: michal
 categories: blog
@@ -8,7 +8,7 @@ excerpt:
 tags: []
 image:
   feature:
-date: 2017-01-30
+date: 2017-12-31
 ---
 
 Według chińskiego kalendarza 2017 to rok koguta, ale we Wrocławiu przeżyliśmy prawdziwy rok STWURa.
