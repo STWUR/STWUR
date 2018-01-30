@@ -14,7 +14,7 @@ output:
     variant: markdown_github
 ---
 
-Kolejne spotkanie z cyklu eRementarz już dzisiaj o 18:00 w sali 1.04 na Wydziale Biotechnologii Uniwersytetu Wrocławskiego (Fryderyka Joliot-Curie 14a, 50-383 Wrocław). 
+Kolejne spotkanie z cyklu eRementarz już dzisiaj o 18:00 w sali 1.05 na Wydziale Biotechnologii Uniwersytetu Wrocławskiego (Fryderyka Joliot-Curie 14a, 50-383 Wrocław). 
 
 Repozytorium z materiałami do spotkania jest dostępne pod adresem: 
 [https://github.com/STWUR/eRementarz4](https://github.com/STWUR/eRementarz4).
