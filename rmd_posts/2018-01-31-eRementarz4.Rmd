@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Materiały ze spotkania eRementarz #3: eksploracyjna analiza danych"
+title: "Materiały ze spotkania eRementarz #4: uczenie maszynowe z pakietem mlr"
 modified:
 author: michal
 categories: blog
@@ -41,7 +41,8 @@ library(mlr)
 library(dplyr)
 library(ggplot2)
 
-mieszkania  <- read.csv("mieszkania_wroclaw_ceny.csv")
+mieszkania <- read.csv("https://raw.githubusercontent.com/STWUR/STWUR-2017-06-07/master/data/mieszkania_dane.csv") %>%
+  filter(!is.na(cena_m2))
 
 head(mieszkania)
 ```
