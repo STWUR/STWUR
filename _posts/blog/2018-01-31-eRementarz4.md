@@ -1,3 +1,20 @@
+---
+layout: post
+title: "Materiały ze spotkania eRementarz #4: uczenie maszynowe z pakietem mlr"
+modified:
+author: michal
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2018-01-31
+output:
+  md_document:
+    variant: markdown_github
+---
+
+
 Pierwsze tegoroczne spotkanie STWUR-a poprowadził Mateusz Staniak, a zorganizował Jarosław Chilimoniuk. Zachęcamy do zapoznania się z materiałami.
 
 Materiały
