@@ -2,7 +2,7 @@
 layout: post
 title: "Materiały ze spotkania eRementarz #4: uczenie maszynowe z pakietem mlr"
 modified:
-author: michal
+author: mateusz
 categories: blog
 excerpt:
 tags: []
@@ -24,7 +24,7 @@ Pierwsze tegoroczne spotkanie STWUR-a poprowadził Mateusz Staniak, a zorganizow
 
 ## Materiały
 
-[https://github.com/STWUR/eRementarz3](Pełna prezentacja na Githubie)
+[https://github.com/STWUR/eRementarz4](Pełna prezentacja na Githubie)
 
 ### Work flow
 

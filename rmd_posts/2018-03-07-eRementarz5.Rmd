@@ -1,0 +1,413 @@
+---
+layout: post
+title: "Materiały ze spotkania eRementarz #5: R od środka"
+modified:
+author: mateusz
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2018-03-07
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+Lutowe spotkanie STWUR-a poprowadził Michał Kurtys, a zorganizował Jarosław Chilimoniuk. Zachęcamy do zapoznania się z materiałami.
+
+
+## Materiały - R od środka
+
+[https://github.com/STWUR/eRementarz5](Pełna prezentacja na Githubie)
+
+### R
+ 
+- Język/Standard - R Language (jak ANSI C, C++14)
+- Implementacja - GNU R ( gcc, Visual C++ )
+- W R różnica jest trochę zatarta
+
+### Struktury danych
+ 
+```{r echo=FALSE}
+data <- data.frame(Homogeneous=c("Atomic vector","Matrix","Array"),
+                   Heterogenous=c("List","Data Frame","-"),
+                   row.names = c("1d","2d","nd"))
+library(knitr)
+kable(data)
+```
+
+Vectors: logical, integer, double (often called numeric), character, complex, raw
+
+### Wektory
+ 
+```{r}
+x <- 1:5
+typeof(x)
+class(x)
+is.atomic(x)
+```
+
+### Skalary - wektory długości 1
+ 
+```{r}
+x <- 1
+typeof(x)
+typeof(1L)
+```
+
+### Wektory długości 0
+ 
+```{r}
+(1:10)[numeric(0)]
+(10:20)[-(1:3)]
+
+x <- 10:20
+x[-which(x==100)]
+```
+
+
+### Nazwy
+
+```{r}
+x <- c(a = 1, b = 2, c = 3)
+x <- 1:3; names(x) <- c("a", "b", "c") 
+x <- setNames(1:3, c("a", "b", "c"))
+attributes(x)
+```
+
+### Macierze
+
+```{r}
+mat <- matrix(1:25, nrow=5, ncol=5)
+mat
+class(mat)
+typeof(mat)
+```
+
+### Macierze
+ 
+```{r}
+attributes(mat)
+dim(mat)
+x <- 1:20
+dim(x) <- c(4,5)
+attr(x, "dim") <- c(5,4)
+```
+
+
+### Ramki Danych
+ 
+
+```{r}
+df <- data.frame(x=1:3,y=4:6)
+class(df)
+typeof(df)
+attributes(df)
+```
+
+
+### Pętle 1
+
+```{r}
+times_two_1 <- function(x)
+{
+  new_vector = c()
+  for(value in x)
+  {
+    new_value = value*2
+    new_vector = c(new_vector,new_value)
+  }
+  new_vector
+}
+x <- 1:10
+times_two_1(x)
+```
+
+### Pętle 2
+
+```{r}
+times_two_2 <- function(x)
+{
+  for(i in 1:length(x))
+    x[i] = x[i]*2
+  x
+}
+x <- 1:10
+times_two_2(x)
+x
+
+x[11] <- 11
+x
+x[20] <- 20
+
+```
+
+
+### Rcpp
+ 
+```{r}
+library(Rcpp)
+cppFunction(
+  'std::vector<int> times_two_cpp_1(NumericVector x) {
+  std::vector<int> out;
+  int n = x.size();
+  for(int i = 0; i < n; ++i) {
+    out.push_back(x[i]*2);
+  }
+  return out;
+}')
+x <- 1:10
+times_two_cpp_1(x)
+x
+```
+
+### Rcpp 2
+ 
+```{r}
+cppFunction(
+  'NumericVector times_two_cpp_2(NumericVector x) {
+  int n = x.size();
+  for(int i = 0; i < n; ++i) {
+    x[i] = x[i]*2;
+  }
+  return x;
+}')
+x <- 1:10
+times_two_cpp_2(x)
+x
+```
+
+### Microbenchmark
+ 
+microbenchmark serves as a more accurate replacement of the often seen `system.time(replicate(1000, expr))` expression.
+
+microbenchmark(..., list = NULL, times = 100L, unit, check = NULL,
+  control = list())
+
+```{r}
+library(microbenchmark)
+microbenchmark(
+  (1:10)*(1:10),
+  mapply("*",1:10,1:10)
+)
+
+mb <- microbenchmark(
+  vectorized = (1:10)*(1:10),
+  mapply = mapply("*",1:10,1:10)
+)
+
+print(mb, unit="relative")
+
+```
+
+### Microbenchmark - nasze funkcje
+ 
+```{r}
+x<-1:10e3
+microbenchmark(
+times_two_1(x),
+times_two_2(x),
+times_two_cpp_1(x),
+times_two_cpp_2(x),
+list = list( expression(x*2)),
+times = 3L,
+unit = "ms"
+)
+```
+
+### Microbenchmark - nasze funkcje 2
+ 
+```{r,, cache=TRUE}
+x<-1:10e7
+microbenchmark(
+times_two_2(x),
+times_two_cpp_1(x),
+times_two_cpp_2(x),
+list = list( expression(x*2)),
+times = 3L,
+unit = "ms"
+)
+```
+
+### Microbenchmark - Klasa
+
+```{r}
+class(mb)
+typeof(mb)library(microbenchmark)
+
+names(attributes(mb))
+```
+
+### Microbenchmark - Klasa S3
+ 
+```{r}
+library(pryr)
+otype(mb)
+
+methods(class = "microbenchmark")
+methods(class = "data.frame")
+methods(boxplot)
+```
+
+### S3 - Funkcje generyczne
+ 
+*UseMethod()*
+```{r}
+ftype(print)
+print
+getS3method("print","microbenchmark")
+```
+
+### S3 - Funkcje generyczne
+ 
+```{r}
+mean
+methods(mean)
+getS3method("mean","default")
+```
+
+### S3 - Konstruktory
+ 
+```{r}
+ftype(microbenchmark)
+```
+
+
+### Klasy S4 i RC
+ 
+* S4 = S3 + więcej formalizmu
+* RC pozwalają na przekazywanie przez referencje
+
+### Bezpośrednie używanie metod
+ 
+However, this is just as dangerous as changing the class of an object, so you shouldn’t do it. Please don’t point the loaded gun at your foot! The only reason to call the method directly is that sometimes you can get considerable performance improvements by skipping method dispatch. [Advanced R]
+
+
+### Wartości NA
+ 
+```{r, cache = TRUE}
+evalCpp("std::numeric_limits<int>::min()")
+evalCpp("std::numeric_limits<double>::min()")
+```
+
+
+### Funkcje
+ 
+    > To understand computations in R, two slogans are helpful:
+    >    Everything that exists is an object.
+    >    Everything that happens is a function call."
+
+    — John Chambers
+
+### Funkcje - przykłady
+ 
+```{r}
+#dynamiczne typowanie!
+"+"(1,2)
+"["(c(3,6,9),2)
+sapply(list(1:10,
+            11:20), "[", 2)
+
+```
+
+
+### Primitive functions
+ 
+```{r}
+length
+sum
+show_c_source(.Primitive(sum(x)))
+```
+
+
+### .Internal vs. Primitive
+ 
+
+.Internal and .Primitive refer to the interface used to call C-code. Internal is the standard approach, since you can check arguments in R-code before you call the C-code. Primitive is higher performance, but does not allow any R-code in the function.
+
+### Lazy Evaluation
+ 
+```{r}
+f <- function(x) 
+{
+  2
+}
+
+f(doesnt_matter)
+```
+
+### Quote i Substitute
+ 
+```{r}
+f <- function(x) {
+  cat(deparse(substitute(x)), "==", x)
+}
+x <- 5
+f( (2+x) )
+
+```
+
+### Environments
+ 
+```{r}
+
+gg <- function()
+{
+  ff <- function(x)
+  {
+    print(parent.frame())
+    print(environment())
+  }
+}
+
+```
+
+### Closures
+ 
+```{r}
+power <- function(exponent) {
+  function(x) {
+    x ^ exponent
+  }
+}
+
+square <- power(2)
+square(2)
+```
+
+
+### Closures 2
+
+```{r}
+fib <- function(n)
+{
+  if(n<=1)
+    return(n)
+  else
+    return( fib(n-1) + fib(n-2))
+  
+}
+
+fib(8)
+```
+
+
+### Closures 3
+ 
+```{r}
+library(memoise)
+fib2 <- memoise(fib)
+fib2(8)
+```
+
+### Źródła
+ 
+* Advanced R by Hadley Wickham
+* https://cran.r-project.org/manuals.html
+* R Inferno
