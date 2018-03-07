@@ -246,18 +246,17 @@ save(porownanie, file = "porownanie.rda")
 
 ```r
 load("porownanie.rda")
-```
-
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
-
-```r
 porownanie
 ```
 
 ```
-## Error in eval(expr, envir, enclos): nie znaleziono obiektu 'porownanie'
+##          task.id        learner.id mse.test.mean
+## 1     mieszkanie           regr.lm       2084932
+## 2     mieszkanie regr.randomForest       1119241
+## 3     mieszkanie         regr.nnet       2674150
+## 4 mieszkanie_ndz           regr.lm       2481207
+## 5 mieszkanie_ndz regr.randomForest       1748378
+## 6 mieszkanie_ndz         regr.nnet       2672237
 ```
 
 #### Wyniki porównania
@@ -269,9 +268,7 @@ porownanie
 plotBMRBoxplots(porownanie)
 ```
 
-```
-## Error in checkClass(x, classes, ordered, null.ok): nie znaleziono obiektu 'porownanie'
-```
+![plot of chunk wynikpor](./figure/wynikpor-1.png)
 
 #### Różne kryteria
 
@@ -313,13 +310,6 @@ m2_rf_czesc <- train(reg_rf2, m2_task, subset = uczacy)
 ```
 
 
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
-
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
 
 - przewidywane wartości:
 
@@ -329,7 +319,7 @@ pred <- predict(m2_rf, task = m2_task)
 ```
 
 ```
-## Error in predict(m2_rf, task = m2_task): nie znaleziono obiektu 'm2_rf'
+## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
 ```
 
 ```r
@@ -345,7 +335,7 @@ pred2 <- predict(m2_rf_czesc, newdata = mieszkania[testowy, ])
 ```
 
 ```
-## Error in predict(m2_rf_czesc, newdata = mieszkania[testowy, ]): nie znaleziono obiektu 'm2_rf_czesc'
+## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
 ```
 
 ```r
@@ -375,9 +365,6 @@ m2_params <- tuneParams(reg_rf2, task = m2_task,
 ```
 
 
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
 
 #### Wynik
 
@@ -387,24 +374,17 @@ m2_params
 ```
 
 ```
-## Error in eval(expr, envir, enclos): nie znaleziono obiektu 'm2_params'
+## Tune result:
+## Op. pars: mtry=3; nodesize=5
+## mse.test.mean=1.15e+06
 ```
 
 ```r
 par_data <- generateHyperParsEffectData(m2_params)
-```
-
-```
-## Error in checkClass(tune.result, "ResampleResult"): nie znaleziono obiektu 'm2_params'
-```
-
-```r
 plotHyperParsEffect(par_data, x = "mtry", y = "nodesize", z = "mse.test.mean", plot.type = "heatmap")
 ```
 
-```
-## Error in checkClass(x, classes, ordered, null.ok): nie znaleziono obiektu 'par_data'
-```
+![plot of chunk wyswietlpar](./figure/wyswietlpar-1.png)
 
 ```r
 reg_rf2 <- setHyperPars(reg_rf2, mtry = 3)
@@ -416,9 +396,6 @@ m2_rf2 <- train(reg_rf2, m2_task)
 ```
 
 
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
 
 #### Inne kontrolki
 
@@ -445,7 +422,7 @@ predict(m2_rf2, newdata = moje)
 ```
 
 ```
-## Error in predict(m2_rf2, newdata = moje): nie znaleziono obiektu 'm2_rf2'
+## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
 ```
 
 ### Wizualizacja modelu
@@ -460,18 +437,13 @@ pdp <- generatePartialDependenceData(m2_rf2,
 
 
 
-```
-## Error in readChar(con, 5L, useBytes = TRUE): nie można otworzyć połączenia
-```
 
 
 ```r
 plotPartialDependence(pdp)
 ```
 
-```
-## Error in checkClass(x, classes, ordered, null.ok): nie znaleziono obiektu 'pdp'
-```
+![plot of chunk plotpdp](./figure/plotpdp-1.png)
 
 ### Podsumowanie
 
