@@ -21,7 +21,7 @@ Lutowe spotkanie STWUR-a poprowadził Michał Kurtys, a zorganizował Jarosław 
 
 ## Materiały - R od środka
 
-[https://github.com/STWUR/eRementarz5](Pełna prezentacja na Githubie)
+[https://github.com/STWUR/eRementarz5]
 
 ### R
  

@@ -21,7 +21,7 @@ Pierwsze tegoroczne spotkanie STWUR-a poprowadził Mateusz Staniak, a zorganizow
 
 ## Materiały
 
-[https://github.com/STWUR/eRementarz4](Pełna prezentacja na Githubie)
+[https://github.com/STWUR/eRementarz4]
 
 ### Work flow
 
