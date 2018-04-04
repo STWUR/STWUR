@@ -1,0 +1,141 @@
+---
+layout: post
+title: "STWUR #8: Keras w R"
+modified:
+author: michal
+categories: blog
+excerpt:
+tags: []
+image:
+  feature:
+date: 2018-04-04
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami.
+
+## Co to jest Keras?
+
+Biblioteka (API) do pracy z sieciami neuronowymi implementowanymi w innych narzędziach (TensorFlow, Theano).
+
+## Implementacje
+
+Keras jest napisany w Pythonie. 
+
+Implementacje w **R** (https://github.com/rstudio/keras oraz https://github.com/statsmaths/kerasR) wykorzystują pakiet *reticulate*, aby komunikować się z Pythonem.
+
+Powoduje to konieczność zarządzania jednocześnie sesją **R** i sesją Pythona.
+
+```{r, eval = FALSE}
+# to ziarno losowosci dziala tylko dla sesji R
+set.seed(30)
+
+# to ziarno losowosci dziala zarowno dla sesji R jak i sesji Pythona
+keras::use_session_with_seed(30)
+```
+
+## Praca w Keras...
+
+...jest prosta i przyjemna.
+
+```{r, eval=FALSE}
+library(keras)
+model <- keras_model_sequential()
+
+model %>% 
+  layer_dense(units = 8, activation = 'relu', input_shape = c(12)) %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 8, activation = 'relu') %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 1, activation = 'sigmoid') %>% 
+  compile(
+    loss = 'mean_squared_error',
+    optimizer = 'sgd',
+    metrics = c('accuracy')
+  )
+```
+
+## Praca w Keras
+
+Pojedyncza warstwa sieci neuronowej:
+
+```{r, eval=FALSE}
+layer_dense(units = 8, activation = 'relu', input_shape = c(12))
+```
+
+ - units: liczba neuronów,
+ - activation: funkcja aktywacji,
+ - input_shape: liczba kolumn.
+
+## Praca w Keras
+
+Zapobiega przeuczeniu.
+
+```{r, eval=FALSE}
+layer_dropout
+```
+
+## Stabilność predykcja
+
+```{r, echo=FALSE}
+library(ggplot2)
+load("different_architectures.RData")
+ggplot(different_architectures, 
+       aes(x = factor(number_of_units), color = loss_function, y = acc)) +
+  geom_boxplot()
+```
+
+## Aktualizacja obiektów
+
+Obiekty w **R** nie są aktualizowane:
+
+```{r}
+x <- c(27, 3, 1988)
+x*2
+x
+```
+
+## Aktualizacja obiektów
+
+Obiekty w Keras są aktualizowane:
+
+```{r}
+library(keras)
+model <- keras_model_sequential()
+summary(model)
+```
+
+## Aktualizacja obiektów
+
+```{r}
+model %>% layer_dense(units = 4, input_shape = c(12))
+summary(model)
+```
+
+## Zapisywanie obiektów
+
+```{r, eval=FALSE}
+save_model_hdf5(model, filepath = "my_model.h5")
+
+cat(model_to_yaml(model), file = "my_model.yaml")
+```
+
+## Podziękowania
+
+https://tinyurl.com/stwur7 - kody i dane do dzisiejszego spotkania.
+
+Dziękujemy Wydziałowi Biotechnologii UWr i firmie Kruk SA za wspieranie spotkań STWURa.
+
+<img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="35%" width="35%"/>
+
+## Hackathon
+
+bankITpu: https://challengerocket.com/bankitup
+
+Hackathon: analiza danych z sektora finansowego. Darmowe jedzenie i wysokie nagrody! Michał Kurtys koordynuje zespoły STWURowiczów.
