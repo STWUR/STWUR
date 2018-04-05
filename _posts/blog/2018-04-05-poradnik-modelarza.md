@@ -16,7 +16,7 @@ output:
 
 21.04.2018 (sobota) STWUR ponownie organizuje całodzienne warsztaty, gdzie poznamy pracę data scientista na każdym poziomie: od eksploracji danych po udostępnienie opartego na nich modelu jako aplikacji internetowej. 
 
-<img src='https://raw.githubusercontent.com/STWUR/STWUR/gh-pages/images/banner_full.jpg' id="logo" height="55%" width="55%"/>
+<img src='https://raw.githubusercontent.com/STWUR/STWUR/gh-pages/images/banner_full.jpg' id="logo" height="95%" width="95%"/>
 
 Tematem naszego spotkania jest full stack data science. Oznacza to, że nie tylko analizujemy otrzymane dane, ale wyniki naszej pracy przestawiamy w postaci przystępnej dla klienta, czyli interaktywnych raportach bądź aplikacjach. To czaso- i energochłonne zadania, dlatego nauczymy się eRowych sztuczek wspierających taki model pracy.
 
