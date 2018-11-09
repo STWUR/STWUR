@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "eRementarz: Postmodelizm"
+title: "eRementarz #7: Postmodelizm"
 modified:
 author: michal
 categories: blog
@@ -16,7 +16,7 @@ output:
 
 24.11.2018 (sobota) STWUR ponownie organizuje całodzienne warsztaty, gdzie nauczymy się jak dopracować stworzone przez nas modele predykcyjne. Warsztaty poprowadzi Michał Burdukiewicz.
 
-<img src='https://stwur.github.io/STWUR//images/postmodelizm.png' id="plakat" height="35%" width="35%"/>
+<img src='https://stwur.github.io/STWUR//images/postmodelizm.png' id="plakat" height="85%" width="85%"/>
 
 Opracowanie modelu to dopiero połowa sukcesu. Podczas warsztatów dowiemy się jak dzięki strojeniu uzyskać poprawiać pracę naszego modelu, wyjaśnić reguły decyzyjne stojące za jego przewidywaniami, a na koniec udostępnić model w postać aplikacji internetowej.
 
