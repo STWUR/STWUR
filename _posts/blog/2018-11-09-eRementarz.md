@@ -26,5 +26,5 @@ W trakcie warsztatów pracować będziemy z wcześniej przygotowanymi skryptami,
 
 Spotkanie odbywa się na Wydziale Biotechnologii UWr (Fryderyka Joliot-Curie 14a, 50-383 Wrocław) o 10:00 w sali 1.03. Ok. 16 przenosimy się do [Cybermachiny](https://www.facebook.com/Cybermachina/) na rozmowy o **R** w luźniejszej atmosferze. Ze względu na to, że warsztaty potrwają około sześciu godzin, przewidujemy w trakcie przerwę na pizzę, którą sponsoruje Kruk S.A.
 
-<img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="35%" width="35%"/>
+<img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="36%" width="36%"/>
 
