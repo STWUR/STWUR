@@ -11,7 +11,7 @@ Nasz e-mail to kontakt@stwur.pl
 
 #### Michał Burdukiewicz
 
-Bioinformatyk, doktorant na Wydziale Biotechnologii Uniwersytetu Wrocławskiego, biostatystyk w [Medipan](http://www.medipan.de/).
+Bioinformatyk, miłośnik R, wykładowca na Wydziale Matematyki i Nauk Informatycznych Politechniki Warszawskiej, członek zarządu Fundacji Why R?.
 
 #### Piotr Sobczyk
 
@@ -22,8 +22,13 @@ Data scientist w startupie [Infermedica](http://infermedica.com/), [bloger](http
 
 Analityk danych w [Ultimo](https://ultimo.pl/), absolwent fizyki na Wydziale Fizyki i Astronomii Uniwersytetu Wrocławskiego.
 
+#### Jarosław Chilimoniuk
+
+Eksperymentalista i bioinformatyk, doktorant w programie BioTechNano na Wydziale Biotechnologii Uniwersytetu Wrocławskiego.
+
 # Wspierają nas
 
 * [Wydział Biotechnologii Uniwersytetu Wrocławskiego](http://www.biotech.uni.wroc.pl/)
 * [Koło Naukowe Statystyki Matematycznej ,,Gauss"](http://gauss.im.pwr.wroc.pl)
 * [Doktoranckie Koło Naukowe Bioinformatyki](http://michbur.github.io/DKNB/)
+* [Fundacja Why R?](http://whyr.pl)
