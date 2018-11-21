@@ -30,6 +30,9 @@ Eksperymentalista i bioinformatyk, doktorant w programie BioTechNano na Wydziale
 
 Absolwent Matematyki na PWr (specjalność: Statystyka Matematyczna) silnie związany ze środowiskiem akademickim, w szczególności KN Statystyki Matematycznej ,,Gauss"; pasjonat baz danych, od niedawna Programista Aplikacji Biznesowych.
 
+#### Michał Kurtys
+Lekarz, Data Scientist w startupie [Infermedica](http://infermedica.com/)
+
 # Wspierają nas
 
 * [Wydział Biotechnologii Uniwersytetu Wrocławskiego](http://www.biotech.uni.wroc.pl/)
