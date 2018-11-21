@@ -33,6 +33,10 @@ Absolwent Matematyki na PWr (specjalność: Statystyka Matematyczna) silnie zwi�
 #### Michał Kurtys
 Lekarz, Data Scientist w startupie [Infermedica](http://infermedica.com/)
 
+### Mateusz Staniak
+
+Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
+
 # Wspierają nas
 
 * [Wydział Biotechnologii Uniwersytetu Wrocławskiego](http://www.biotech.uni.wroc.pl/)
