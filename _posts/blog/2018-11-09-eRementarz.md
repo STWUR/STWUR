@@ -29,4 +29,3 @@ Spotkanie odbywa się na Wydziale Biotechnologii UWr (Fryderyka Joliot-Curie 14a
 [Zapisy na warsztaty odbywają się na MeetUpie](https://www.meetup.com/Wroclaw-R-Users-Group/events/256265867/).
 
 <img src='https://stwur.github.io/STWUR//images/kruk_logo.jpg' id="logo" height="36%" width="36%"/>
-
