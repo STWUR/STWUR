@@ -20,7 +20,7 @@ Podczas eRementarza używamy **R**, dlatego przyda się własny, odpowiednio sko
 
 * zainstalować [najnowszą wersję **R**](https://cran.r-project.org/) i [RStudio](https://www.rstudio.com/products/rstudio/download/).
 
-* zainstalować niezbędne pakiety i ściągnąć dane za pomocą poniższego skryptu:
+* zainstalować niezbędne pakiety za pomocą poniższego skryptu:
 
 {% highlight R %}
 source("https://raw.githubusercontent.com/STWUR/eRementarz-24-11-2018/master/setup-r.R")
