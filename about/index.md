@@ -39,7 +39,7 @@ Lekarz, Data Scientist w startupie [Infermedica](http://infermedica.com/)
 
 #### Mateusz Staniak
 
-Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
+Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej. Zajmuje się interpretowalnym uczeniem maszynowym. Statystyk, programista R.
 
 
 # Wspierają nas
