@@ -22,6 +22,10 @@ Data scientist w startupie [Infermedica](http://infermedica.com/), [bloger](http
 
 Analityk danych w [Ultimo](https://ultimo.pl/), absolwent fizyki na Wydziale Fizyki i Astronomii Uniwersytetu Wrocławskiego.
 
+#### Bartłomiej Karaban
+
+Analityk danych w [KRUK S.A.](https://pl.kruk.eu/kariera/zespoly-analityczne), abolwent Uniwersytetu Ekonomicznego we Wrocławiu na Wydziale Zarządzania, Informatyki i Finansów. Praktyk modelowania predykcyjnego w R, autor publikacji z zakresu data mining, prowadzący zajęcia "Modelowanie Statystyczne w Zarządzaniu Wierzytelnościami Masowymi" na Uniwersytecie Wrocławskim.
+
 #### Jarosław Chilimoniuk
 
 Eksperymentalista i bioinformatyk, doktorant w programie BioTechNano na Wydziale Biotechnologii Uniwersytetu Wrocławskiego.
@@ -33,9 +37,10 @@ Absolwent Matematyki na PWr (specjalność: Statystyka Matematyczna) silnie zwi�
 #### Michał Kurtys
 Lekarz, Data Scientist w startupie [Infermedica](http://infermedica.com/)
 
-### Mateusz Staniak
+#### Mateusz Staniak
 
 Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
+
 
 # Wspierają nas
 
