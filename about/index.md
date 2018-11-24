@@ -41,6 +41,10 @@ Lekarz, Data Scientist w startupie [Infermedica](http://infermedica.com/)
 
 Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej. Zajmuje się interpretowalnym uczeniem maszynowym. Statystyk, programista R.
 
+#### Bartosz Kolasa
+
+Matematyk i programista. Zajmuje się analizą dużych danych grafowych w firmie [DataWalk](http://datawalk.com).
+
 
 # Wspierają nas
 
