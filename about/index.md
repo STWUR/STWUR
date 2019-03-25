@@ -5,13 +5,13 @@ excerpt: "STWUR zrzesza użytkowników R z Dolnego Śląska."
 modified: 2017-02-09
 ---
 
-Chcemy mocniej zintegrować dolnośląską społeczność osób pracujących w środowisku **R**. W ramach STWUR będziemy organizować spotkania umożliwiające nie tylko wymianę informacji z innymi użytkownikami **R**, ale również wspólną analizę danych. Ponieważ jesteśmy związani zarówno ze środowiskiem akademickim jak i analizą danych w biznesie, zależy nam aby tematyka naszych spotkań odpowiadała wszystkim osobom zainteresowanym analizą danych.
+Stowarzyszenie Wrocławskich Użytkowników **R** (STWUR) to grupa pasjonatów języka **R**, jednego z najpopularniejszych środowisk wykorzystywanych w data science. Podczas naszych spotkań, podejmujemy tematy z pogranicza statystyki, uczenia maszynowego i big data. Zrzeszamy zarówno początkujących jak i doświadczonych miłośników **R** zarówno z biznesu jak i nauki. Ponieważ naszym celem jest promowanie **R**, co roku organizujemy warsztaty dla osób, które jeszcze nie poznały tego języka.
 
-Nasz e-mail to kontakt@stwur.pl
+Nasz e-mail kontaktowy to michal[at]whyr.pl.
 
 #### Michał Burdukiewicz
 
-Bioinformatyk, miłośnik R, wykładowca na Wydziale Matematyki i Nauk Informatycznych Politechniki Warszawskiej, członek zarządu Fundacji Why R?.
+Bioinformatyk, miłośnik **R**, wykładowca na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej, członek zarządu [Fundacji Why R?](whyr.pl).
 
 #### Piotr Sobczyk
 
