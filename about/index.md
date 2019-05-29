@@ -45,6 +45,10 @@ Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej
 
 Matematyk i programista. Zajmuje się analizą dużych danych grafowych w firmie [DataWalk](http://datawalk.com).
 
+#### Patryk Wielopolski
+
+Student Matematyki Stosowanej na Wydziale Matematyki Politechniki Wrocławskiej; prezes Koła Naukowego Statystyki Matematycznej ,,Gauss''; Data Scientist w firmie [DataWalk](http://datawalk.com).
+
 
 # Wspierają nas
 
