@@ -36,7 +36,7 @@ Bio: O rozwiązaniu opowie jeden z członków zwycięskiej drużyny - **Adrian �
 
 ## Czas i miejsce spotkania
 
-eRementarz odbędzie się 13.06.2019 od 18:00 do 20:00 w sali 1.03. na Wydziale Biotechnologii Uniwersytetu Wrocławskiego (Fryderyka Joliot-Curie 14a, 50-383 Wrocław). Link do zapisów: [https://www.meetup.com/Wroclaw-R-Users-Group/events/259119520/](https://www.meetup.com/Wroclaw-R-Users-Group/events/259119520/).
+eRementarz odbędzie się 13.06.2019 od 18:00 do 20:00 w sali 1.03. na Wydziale Biotechnologii Uniwersytetu Wrocławskiego (Fryderyka Joliot-Curie 14a, 50-383 Wrocław). Link do zapisów: [https://www.meetup.com/Wroclaw-R-Users-Group/events/261825090/](https://www.meetup.com/Wroclaw-R-Users-Group/events/261825090/).
 
 ## Sponsorzy
 
