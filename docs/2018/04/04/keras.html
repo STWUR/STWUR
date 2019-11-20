@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>STWUR #8: Keras w R | STWUR</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="STWUR #8: Keras w R" />
+<meta name="author" content="STWUR" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami." />
+<meta property="og:description" content="Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami." />
+<link rel="canonical" href="https://stwur.github.io/STWUR//2018/04/04/keras.html" />
+<meta property="og:url" content="https://stwur.github.io/STWUR//2018/04/04/keras.html" />
+<meta property="og:site_name" content="STWUR" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-04T00:00:00+02:00" />
+<script type="application/ld+json">
+{"description":"Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami.","mainEntityOfPage":{"@type":"WebPage","@id":"https://stwur.github.io/STWUR//2018/04/04/keras.html"},"@type":"BlogPosting","url":"https://stwur.github.io/STWUR//2018/04/04/keras.html","headline":"STWUR #8: Keras w R","dateModified":"2018-04-04T00:00:00+02:00","datePublished":"2018-04-04T00:00:00+02:00","author":{"@type":"Person","name":"STWUR"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://stwur.github.io/STWUR//images/STWUR/stwur_logo_Mar2017.svg"},"name":"STWUR"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/light.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="STWUR" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  stwur-8-keras-w-r">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posty</a></li><li><a href="/art/">Artykuły</a></li><li><a href="/about/">O STWURZE</a></li><li><a href="/search/">Szukaj</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="STWUR">
+        <img src="/images/STWUR/stwur_logo_Mar2017.svg" class="site-logo-img animated fadeInDown" alt="STWUR">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/">STWUR</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description"></p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">STWUR #8: Keras w R
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/STWUR/stwur_10_18-01.svg" class="author-avatar u-photo" alt="STWUR"><div class="author-info"><div class="author-name">
+        <span class="p-name">STWUR</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.facebook.com/stwur/"><i class="fab fa-facebook-f fa-lg" title="Facebook"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/STWUR"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.linkedin.com/company/stwur/?originalSubdomain=pl"><i class="fab fa-linkedin fa-lg" title="Linkedin"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/"><i class="fab fa-meetup fa-lg" title="Meetup"></i></a>
+          </li></ul>
+    <time class="page-date dt-published" datetime="2018-04-04T00:00:00+02:00"><a class="u-url" href="">April 4, 2018</a>
+</time>
+
+  </div>
+</div>
+
+        
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami.</p>
+
+<h2 id="co-to-jest-keras">Co to jest Keras?</h2>
+
+<p>Biblioteka (API) do pracy z sieciami neuronowymi implementowanymi w innych narzędziach (TensorFlow, Theano).</p>
+
+<h2 id="implementacje">Implementacje</h2>
+
+<p>Keras jest napisany w Pythonie.</p>
+
+<p>Implementacje w <strong>R</strong> (https://github.com/rstudio/keras oraz https://github.com/statsmaths/kerasR) wykorzystują pakiet <em>reticulate</em>, aby komunikować się z Pythonem.</p>
+
+<p>Powoduje to konieczność zarządzania jednocześnie sesją <strong>R</strong> i sesją Pythona.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># to ziarno losowosci dziala tylko dla sesji R</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">30</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># to ziarno losowosci dziala zarowno dla sesji R jak i sesji Pythona</span><span class="w">
+</span><span class="n">keras</span><span class="o">::</span><span class="n">use_session_with_seed</span><span class="p">(</span><span class="m">30</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="praca-w-keras">Praca w Keras…</h2>
+
+<p>…jest prosta i przyjemna.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model_sequential</span><span class="p">()</span><span class="w">
+
+</span><span class="n">model</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dropout</span><span class="p">(</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dropout</span><span class="p">(</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'sigmoid'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">compile</span><span class="p">(</span><span class="w">
+    </span><span class="n">loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'mean_squared_error'</span><span class="p">,</span><span class="w">
+    </span><span class="n">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'sgd'</span><span class="p">,</span><span class="w">
+    </span><span class="n">metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'accuracy'</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="praca-w-keras-1">Praca w Keras</h2>
+
+<p>Pojedyncza warstwa sieci neuronowej:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>units: liczba neuronów,</li>
+  <li>activation: funkcja aktywacji,</li>
+  <li>input_shape: liczba kolumn.</li>
+</ul>
+
+<h2 id="praca-w-keras-2">Praca w Keras</h2>
+
+<p>Zapobiega przeuczeniu.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">layer_dropout</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="stabilność-predykcja">Stabilność predykcja</h2>
+
+<p><img src="/images/STWUR/keras/figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" /></p>
+
+<h2 id="aktualizacja-obiektów">Aktualizacja obiektów</h2>
+
+<p>Obiekty w <strong>R</strong> nie są aktualizowane:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">27</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1988</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="o">*</span><span class="m">2</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   54    6 3976
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   27    3 1988
+</code></pre></div></div>
+
+<h2 id="aktualizacja-obiektów-1">Aktualizacja obiektów</h2>
+
+<p>Obiekty w Keras są aktualizowane:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model_sequential</span><span class="p">()</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## Total params: 0
+## Trainable params: 0
+## Non-trainable params: 0
+## ___________________________________________________________________________
+</code></pre></div></div>
+
+<h2 id="aktualizacja-obiektów-2">Aktualizacja obiektów</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## dense_1 (Dense)                  (None, 4)                     52          
+## ===========================================================================
+## Total params: 52
+## Trainable params: 52
+## Non-trainable params: 0
+## ___________________________________________________________________________
+</code></pre></div></div>
+
+<h2 id="zapisywanie-obiektów">Zapisywanie obiektów</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">save_model_hdf5</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_model.h5"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="n">model_to_yaml</span><span class="p">(</span><span class="n">model</span><span class="p">),</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_model.yaml"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="podziękowania">Podziękowania</h2>
+
+<p>https://tinyurl.com/stwur7 - kody i dane do dzisiejszego spotkania.</p>
+
+<p>Dziękujemy Wydziałowi Biotechnologii UWr i firmie Kruk SA za wspieranie spotkań STWURa.</p>
+
+<p><img src="https://stwur.github.io/STWUR//images/kruk_logo.jpg" id="logo" height="35%" width="35%" /></p>
+
+<h2 id="hackathon">Hackathon</h2>
+
+<p>bankITpu: https://challengerocket.com/bankitup</p>
+
+<p>Hackathon: analiza danych z sektora finansowego. Darmowe jedzenie i wysokie nagrody! Michał Kurtys koordynuje zespoły STWURowiczów.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2018%2F04%2F04%2Fkeras.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=STWUR+%238%3A+Keras+w+R%20https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2018%2F04%2F04%2Fkeras.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2018%2F04%2F04%2Fkeras.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=STWUR+%238%3A+Keras+w+R&url=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2018%2F04%2F04%2Fkeras.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/2018/03/23/keras.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Konfiguracja keras
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/2018/04/05/poradnik-modelarza.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Poradnik modelarza: full stack data science w R
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://www.facebook.com/stwur/"><i class="fab fa-facebook-f fa-2x" title="Facebook"></i></a><a class="social-icon" href="https://github.com/STWUR"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/company/stwur/?originalSubdomain=pl"><i class="fab fa-linkedin fa-2x" title="Linkedin"></i></a><a class="social-icon" href="https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/"><i class="fab fa-meetup fa-2x" title="Meetup"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2019 STWUR. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>STWURek #3: kaRtogRafia - druga przygoda z mapami w R | STWUR</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="STWURek #3: kaRtogRafia - druga przygoda z mapami w R" />
+<meta name="author" content="STWUR" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Trzeci STWURek odbył się 19.04.2017 - tradycyjnie po spotkaniu prezentujemy materiały z prelekcji." />
+<meta property="og:description" content="Trzeci STWURek odbył się 19.04.2017 - tradycyjnie po spotkaniu prezentujemy materiały z prelekcji." />
+<link rel="canonical" href="https://stwur.github.io/STWUR//2017/04/20/stwurek3.html" />
+<meta property="og:url" content="https://stwur.github.io/STWUR//2017/04/20/stwurek3.html" />
+<meta property="og:site_name" content="STWUR" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-04-20T00:00:00+02:00" />
+<script type="application/ld+json">
+{"description":"Trzeci STWURek odbył się 19.04.2017 - tradycyjnie po spotkaniu prezentujemy materiały z prelekcji.","mainEntityOfPage":{"@type":"WebPage","@id":"https://stwur.github.io/STWUR//2017/04/20/stwurek3.html"},"@type":"BlogPosting","url":"https://stwur.github.io/STWUR//2017/04/20/stwurek3.html","headline":"STWURek #3: kaRtogRafia - druga przygoda z mapami w R","dateModified":"2017-04-20T00:00:00+02:00","datePublished":"2017-04-20T00:00:00+02:00","author":{"@type":"Person","name":"STWUR"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://stwur.github.io/STWUR//images/STWUR/stwur_logo_Mar2017.svg"},"name":"STWUR"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/light.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="STWUR" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  stwurek-3-kartografia-druga-przygoda-z-mapami-w-r">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posty</a></li><li><a href="/art/">Artykuły</a></li><li><a href="/about/">O STWURZE</a></li><li><a href="/search/">Szukaj</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="STWUR">
+        <img src="/images/STWUR/stwur_logo_Mar2017.svg" class="site-logo-img animated fadeInDown" alt="STWUR">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/">STWUR</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description"></p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">STWURek #3: kaRtogRafia - druga przygoda z mapami w R
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/STWUR/stwur_10_18-01.svg" class="author-avatar u-photo" alt="STWUR"><div class="author-info"><div class="author-name">
+        <span class="p-name">STWUR</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.facebook.com/stwur/"><i class="fab fa-facebook-f fa-lg" title="Facebook"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/STWUR"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.linkedin.com/company/stwur/?originalSubdomain=pl"><i class="fab fa-linkedin fa-lg" title="Linkedin"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/"><i class="fab fa-meetup fa-lg" title="Meetup"></i></a>
+          </li></ul>
+    <time class="page-date dt-published" datetime="2017-04-20T00:00:00+02:00"><a class="u-url" href="">April 20, 2017</a>
+</time>
+
+  </div>
+</div>
+
+        
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>Trzeci STWURek odbył się 19.04.2017 - tradycyjnie po spotkaniu prezentujemy materiały z prelekcji.</p>
+
+<p>Kody znajdują się w repozytorium spotkania: https://github.com/STWUR/STWUR-2017-04-19</p>
+
+<h2 id="dwa-sposoby-tworzenia-map-w-r">Dwa sposoby tworzenia map w R</h2>
+
+<ul>
+  <li>Przez ściągnięcie mapy z google lub open street maps i nałożenie punktów</li>
+  <li>Przez narysowanie kształtów regionów (województw, krajów itp.)</li>
+</ul>
+
+<h2 id="ściąganie-mapy-z-google-lub-open-street-maps-flexbox-vcenter">Ściąganie mapy z google lub open street maps {.flexbox .vcenter}</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggmap</span><span class="p">)</span><span class="w">
+</span><span class="n">wroclaw_mapa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get_map</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"wrocław"</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="n">ggmap</span><span class="p">(</span><span class="n">wroclaw_mapa</span><span class="p">,</span><span class="w"> </span><span class="n">extent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/stwurek3/figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" /></p>
+
+<h2 id="kartogram-choropleth">Kartogram (choropleth)</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plotData</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procent_wyzsze_wyksztalcenie</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="n">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">rok</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_distiller</span><span class="p">(</span><span class="s2">"%"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"RdYlGn"</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pretty_breaks</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w">
+                       </span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"reverse"</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<h2 id="czego-nauczymy-się-dzisiaj">Czego nauczymy się dzisiaj?</h2>
+
+<ul>
+  <li>Wczytywanie plików shp file</li>
+  <li>Poprawne rysowanie map za pomocą pakietu ggplot</li>
+</ul>
+
+<hr />
+
+<h2 id="czym-jest-mapa">Czym jest mapa?</h2>
+
+<ul>
+  <li>określonym matematycznie obrazem przestrzeni odzwierciedlającym 
+rozmieszczenie obiektów i zjawisk geograficznych w zmniejszeniu (skala) i 
+rzucie prostokątnym (odwzorowanie)</li>
+  <li>zbiorem znaków kartograficznych i napisów, służących do prezentacji obiektów 
+i zjawisk geograficznych</li>
+  <li>odzwierciedla rzeczywistość w specyficznie uogólniony sposób – może być traktowana jako jej model.</li>
+</ul>
+
+<p>Na podstawie wykładu z Podstaw Kartografii dr. Waldemara Spalleka</p>
+
+<h2 id="matematyczny-problem-z-mapami">(matematyczny) problem z mapami</h2>
+
+<blockquote>
+  <p>Nie istnieją odwzorowania, które wiernie przenosiłyby powierzchnię kuli 
+na płaszczyznę mapy bez deformacji. 
+Dlatego powstają zniekształcenia kątów, powierzchni i odległości.</p>
+</blockquote>
+
+<h2 id="wczytywanie-mapy-do-r">Wczytywanie mapy do R</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">require</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w"> </span><span class="c1">#funkcja readOGR</span><span class="w">
+</span><span class="n">require</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span><span class="w"> </span><span class="c1">#funkcja gSimplify i spTransform</span><span class="w">
+</span><span class="n">EU_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readOGR</span><span class="p">(</span><span class="n">dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"./data/NUTS_2010_03M_SH/Data/"</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NUTS_RG_03M_2010"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## OGR data source with driver: ESRI Shapefile 
+## Source: "./data/NUTS_2010_03M_SH/Data/", layer: "NUTS_RG_03M_2010"
+## with 1920 features
+## It has 4 fields
+</code></pre></div></div>
+
+<p>W jakim układzie współrzędnych (Coordinate Reference System - CRS) 
+podane są nasze punkty?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">proj4string</span><span class="p">(</span><span class="n">EU_NUTS</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "+proj=longlat +ellps=GRS80 +no_defs"
+</code></pre></div></div>
+
+<h2 id="przekształcenia-na-spatialpolygons">Przekształcenia na SpatialPolygons</h2>
+
+<p>Zmiana układu współrzędnych na domyślny w pakiecie ggmap (zgodny z googlem)</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">EU_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spTransform</span><span class="p">(</span><span class="n">EU_NUTS</span><span class="p">,</span><span class="w"> </span><span class="n">CRS</span><span class="p">(</span><span class="s2">"+proj=longlat +datum=WGS84"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Podzbiór polygons, tak jak na zwykłej data.frame</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">czy_id_zawiera_pl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PL"</span><span class="p">,</span><span class="w"> </span><span class="n">EU_NUTS</span><span class="o">@</span><span class="n">data</span><span class="o">$</span><span class="n">NUTS_ID</span><span class="p">)</span><span class="w">
+</span><span class="n">PL_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">EU_NUTS</span><span class="p">[</span><span class="n">czy_id_zawiera_pl</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Zmniejszenie dokładności mapy</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PL_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gSimplify</span><span class="p">(</span><span class="n">PL_NUTS</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">topologyPreserve</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="kartogram-z-uwzględnieniem-układu-odniesienia">Kartogram z uwzględnieniem układu odniesienia</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="s2">"data/ksztalt_wojewodztw_data_frame.Rdata"</span><span class="p">)</span><span class="w">
+</span><span class="n">wojewodztwa_nazwy_kody</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">wojewodztwa_nazwy_kody</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">teryt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">teryt</span><span class="p">)),</span><span class="w">
+         </span><span class="n">woj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iconv</span><span class="p">(</span><span class="n">woj</span><span class="p">))</span><span class="w">
+</span><span class="n">internet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"internet_samotnosc.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">internet</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 'data.frame':	202 obs. of  6 variables:
+##  $ X            : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ rok          : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+##  $ woj          : int  2 2 4 4 6 6 8 8 10 10 ...
+##  $ plec         : int  1 2 1 2 1 2 1 2 1 2 ...
+##  $ internet_godz: num  11.55 6.6 5.56 3.2 8.74 ...
+##  $ samotnosc    : num  1.86 1.76 1.86 1.8 1.8 ...
+</code></pre></div></div>
+
+<h2 id="kartogram-z-uwzględnieniem-układu-odniesienia-1">Kartogram z uwzględnieniem układu odniesienia</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">internet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">internet</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">inner_join</span><span class="p">(</span><span class="n">wojewodztwa_nazwy_kody</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"woj"</span><span class="o">=</span><span class="s2">"teryt"</span><span class="p">))</span><span class="w">
+</span><span class="n">plotData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">inner_join</span><span class="p">(</span><span class="n">Wojewodztwa</span><span class="p">,</span><span class="w"> </span><span class="n">internet</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="rysowanie-mapy">Rysowanie mapy</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plotData</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">internet_godz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#rysujemy wielokąty</span><span class="w">
+  </span><span class="n">coord_map</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustawiamy układ współrzędnych</span><span class="w">
+  </span><span class="n">scale_fill_distiller</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"YlGn"</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pretty_breaks</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w"> 
+                       </span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"reverse"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustalamy paletę kolorów i skalę</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">rok</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustawiamy obok siebie wykresy dla poszczególnych lat</span><span class="w">
+  </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guide_legend</span><span class="p">(</span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_map</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)</span><span class="w"> </span><span class="c1">#sugerowany styl wyglądu mapy</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="rysowanie-mapy-1">Rysowanie mapy</h2>
+
+<p><img src="/images/STWUR/stwurek3/figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12" /></p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2017%2F04%2F20%2Fstwurek3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=STWURek+%233%3A+kaRtogRafia+-+druga+przygoda+z+mapami+w+R%20https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2017%2F04%2F20%2Fstwurek3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2017%2F04%2F20%2Fstwurek3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=STWURek+%233%3A+kaRtogRafia+-+druga+przygoda+z+mapami+w+R&url=https%3A%2F%2Fstwur.github.io%2FSTWUR%2F%2F2017%2F04%2F20%2Fstwurek3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/2017/04/15/pisanki.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> eRowe pisanki
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/2017/05/11/stwur4.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        STWUR #4: czynniki w R, czyli samotność w sieci
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://www.facebook.com/stwur/"><i class="fab fa-facebook-f fa-2x" title="Facebook"></i></a><a class="social-icon" href="https://github.com/STWUR"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/company/stwur/?originalSubdomain=pl"><i class="fab fa-linkedin fa-2x" title="Linkedin"></i></a><a class="social-icon" href="https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/"><i class="fab fa-meetup fa-2x" title="Meetup"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2019 STWUR. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </body>
+
+</html>
