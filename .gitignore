@@ -1,4 +1,3 @@
-_site
 .DS_Store
 *.sublime-project
 *.sublime-workspace
@@ -15,3 +14,6 @@ rmd_posts/internet_samotnosc.csv
 certificate.log
 certificate.synctex.gz
 certificate.pdf
+.Rproj.user
+STWUR.Rproj
+
