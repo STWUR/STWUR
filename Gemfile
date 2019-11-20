@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "jekyll"
-gem "jekyll-sitemap"
-gem "jekyll-gist"
-gem "jekyll-feed"
+# use local theme gem for testing
+gem "jekyll-theme-so-simple", path: "../"
+
+gem "wdm", "~> 0.1.0" if Gem.win_platform?

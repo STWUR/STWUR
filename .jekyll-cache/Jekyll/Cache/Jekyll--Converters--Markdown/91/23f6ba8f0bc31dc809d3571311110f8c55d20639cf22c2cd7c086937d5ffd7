@@ -1,0 +1,8 @@
+I"�<p>Już 27.03. spotkanie STWURa podczas którego będziemy wspólnie poznawać głębokie sieci neuronowe w <strong>R</strong>.</p>
+
+<p>Ponieważ konfiguracja środowiska zajmuje chwilę, przygotowaliśmy dla Was prosty skrypt, który przygotuje Wasze komputery do spotkania.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">source</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/michbur/STWUR-2018-03-27/master/setup_keras.R"</span><span class="p">)</span></code></pre></figure>
+
+<p>Przy tej okazji chcielibyśmy zaprosić Was do hackathonu <a href="https://challengerocket.com/bankitup2018">bankITup</a>, którego STWUR jest partnerem. Podczas wydarzenia wspólnie analizujemy dane, aby zidentyfikować spółki z największym potencjałem rozwojowym. <a href="https://challengerocket.com/bankitup2018#register">TUTAJ</a> do 8.04.2018 można się zarejestrować na hackathon, a samo wydarzenie odbywa się 14-15 kwietnia 2018.</p>
+:ET

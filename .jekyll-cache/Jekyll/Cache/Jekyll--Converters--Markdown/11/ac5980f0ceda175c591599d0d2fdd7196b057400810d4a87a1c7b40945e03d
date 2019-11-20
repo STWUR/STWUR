@@ -1,0 +1,388 @@
+I"��<p>Pierwsze tegoroczne spotkanie STWUR-a poprowadził Mateusz Staniak, a zorganizował Jarosław Chilimoniuk. Zachęcamy do zapoznania się z materiałami.</p>
+
+<h2 id="materiały">Materiały</h2>
+
+<p>[https://github.com/STWUR/eRementarz4]</p>
+
+<h3 id="work-flow">Work flow</h3>
+
+<ul>
+  <li>Przygotowanie danych (preprocessing)</li>
+  <li>Zadanie (task)</li>
+  <li>Wybór modelu (benchmark)</li>
+  <li>Strojenie parametrów (tuning)</li>
+  <li>Ocena modelu</li>
+</ul>
+
+<h3 id="dane">Dane</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">mlr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/STWUR/STWUR-2017-06-07/master/data/mieszkania_dane.csv"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">cena_m2</span><span class="p">))</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##   n_pokoj metraz cena_m2  rok pietro pietro_maks   dzielnica
+## 1       3  89.00    5270 2007      2           2      Krzyki
+## 2       4 163.00    6687 2002      2           2   Psie Pole
+## 3       3  52.00    6731 1930      1           2 Śródmieście
+## 4       4  95.03    5525 2016      1           2      Krzyki
+## 5       4  88.00    5216 1930      3           4 Śródmieście
+## 6       2  50.00    5600 1915      3           4      Krzyki
+</code></pre></div></div>
+
+<h3 id="przygotowanie-danych">Przygotowanie danych</h3>
+
+<p>Typowe zadania:</p>
+
+<ul>
+  <li>standaryzacja danych - <code class="highlighter-rouge">normalizeFeatures</code></li>
+  <li>łączenie mało licznych poziomów zmiennych jakościowych - <code class="highlighter-rouge">mergeSmallFactorLevels</code></li>
+  <li>wybranie części obserewacji - <code class="highlighter-rouge">subsetTask</code></li>
+  <li>imputacja danych brakujących - <code class="highlighter-rouge">impute</code></li>
+  <li>i inne…</li>
+</ul>
+
+<h3 id="zadania-task">Zadania (task)</h3>
+
+<ul>
+  <li>Obsługiwane klasy problemów</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">makeClassifTask</span><span class="p">()</span><span class="w">
+</span><span class="n">makeRegrTask</span><span class="p">()</span><span class="w">
+</span><span class="n">makeClusterTask</span><span class="p">()</span><span class="w">
+</span><span class="n">makeCostSensTask</span><span class="p">()</span><span class="w">
+</span><span class="n">makeMultilabelTask</span><span class="p">()</span><span class="w">
+</span><span class="n">makeSurvTask</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="nasz-problem">Nasz problem</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_task</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeRegrTask</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mieszkanie"</span><span class="p">,</span><span class="w">
+                        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mieszkania</span><span class="p">,</span><span class="w">
+                        </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cena_m2"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>Alternatywnie</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_task_ndz</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeRegrTask</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mieszkanie_ndz"</span><span class="p">,</span><span class="w">
+                            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">dzielnica</span><span class="p">),</span><span class="w">
+                            </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cena_m2"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="uwaga">Uwaga</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">fixup.data = "warn"</code>: czyszczenie danych (aktualnie tylko usuwanie pustych poziomów)</li>
+  <li><code class="highlighter-rouge">check.data = TRUE</code>: sprawdzanie poprawności danych (aktualnie: NA i puste poziomy zmiennej odpowiedzi)</li>
+</ul>
+
+<h3 id="metody-uczenia-learner">Metody uczenia (learner)</h3>
+
+<ul>
+  <li>Ogromna liczba dostępnych metod</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listLearners</span><span class="p">(</span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"regr"</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">4</span><span class="p">)]</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##              class  short.name package
+## 1     regr.cforest     cforest   party
+## 2       regr.ctree       ctree   party
+## 3    regr.cvglmnet    cvglmnet  glmnet
+## 4 regr.featureless featureless     mlr
+## 5     regr.gausspr     gausspr kernlab
+## 6         regr.glm         glm   stats
+</code></pre></div></div>
+
+<ul>
+  <li>Jak radzi sobie zwykła regresja liniowa?</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_lm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeLearner</span><span class="p">(</span><span class="s2">"regr.lm"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>A jak inne popularne metody?</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeLearner</span><span class="p">(</span><span class="s2">"regr.randomForest"</span><span class="p">)</span><span class="w">
+</span><span class="n">reg_nnet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeLearner</span><span class="p">(</span><span class="s2">"regr.nnet"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>Inaczej:</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lrns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeLearners</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"lm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"randomForest"</span><span class="p">,</span><span class="w"> </span><span class="s2">"nnet"</span><span class="p">),</span><span class="w">
+                    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"regr"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>takie wywołania tworzą obiekty typu <code class="highlighter-rouge">Learner</code></li>
+  <li>metody są zaimplementowane w odpowiednich pakietach - <code class="highlighter-rouge">mlr</code> jest nakładką</li>
+  <li>
+    <p>różne metody - różne wsparcie dla brakujących wartości, wag itd</p>
+  </li>
+  <li>Uwaga: w ten sposób wszystkie hiperparametry mają ustawione wartości domyślne</li>
+</ul>
+
+<h4 id="informacje-o-metodzie">Informacje o metodzie</h4>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getLearnerProperties</span><span class="p">(</span><span class="n">reg_rf</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "numerics" "factors"  "ordered"  "se"       "oobpreds" "featimp"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getLearnerParamSet</span><span class="p">(</span><span class="n">reg_rf</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##                      Type  len       Def                 Constr Req
+## ntree             integer    -       500               1 to Inf   -
+## se.ntree          integer    -       100               1 to Inf   Y
+## se.method        discrete    - jackknife bootstrap,jackknife,sd   Y
+## se.boot           integer    -        50               1 to Inf   -
+## mtry              integer    -         -               1 to Inf   -
+## replace           logical    -      TRUE                      -   -
+## strata            untyped    -         -                      -   -
+## sampsize    integervector &lt;NA&gt;         -               1 to Inf   -
+## nodesize          integer    -         5               1 to Inf   -
+## maxnodes          integer    -         -               1 to Inf   -
+## importance        logical    -     FALSE                      -   -
+## localImp          logical    -     FALSE                      -   -
+## nPerm             integer    -         1            -Inf to Inf   -
+## proximity         logical    -     FALSE                      -   -
+## oob.prox          logical    -         -                      -   Y
+## do.trace          logical    -     FALSE                      -   -
+## keep.forest       logical    -      TRUE                      -   -
+## keep.inbag        logical    -     FALSE                      -   -
+##             Tunable Trafo
+## ntree          TRUE     -
+## se.ntree       TRUE     -
+## se.method      TRUE     -
+## se.boot        TRUE     -
+## mtry           TRUE     -
+## replace        TRUE     -
+## strata        FALSE     -
+## sampsize       TRUE     -
+## nodesize       TRUE     -
+## maxnodes       TRUE     -
+## importance     TRUE     -
+## localImp       TRUE     -
+## nPerm          TRUE     -
+## proximity     FALSE     -
+## oob.prox      FALSE     -
+## do.trace      FALSE     -
+## keep.forest   FALSE     -
+## keep.inbag    FALSE     -
+</code></pre></div></div>
+
+<h3 id="ustawianie-hiperparametrów">Ustawianie hiperparametrów</h3>
+
+<ul>
+  <li>przy tworzeniu learnera:</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeLearner</span><span class="p">(</span><span class="s2">"regr.randomForest"</span><span class="p">,</span><span class="w">
+                       </span><span class="n">par.vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">ntree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>po utworzeniu learnera:</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setHyperPars</span><span class="p">(</span><span class="n">reg_rf</span><span class="p">,</span><span class="w"> </span><span class="n">ntree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getHyperPars</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## $ntree
+## [1] 1000
+</code></pre></div></div>
+
+<h3 id="porównywanie-modeli">Porównywanie modeli</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">porownanie</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">benchmark</span><span class="p">(</span><span class="n">learners</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">reg_lm</span><span class="p">,</span><span class="w"> </span><span class="n">reg_rf</span><span class="p">,</span><span class="w"> </span><span class="n">reg_nnet</span><span class="p">),</span><span class="w">
+                        </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">m2_task</span><span class="p">,</span><span class="w"> </span><span class="n">m2_task_ndz</span><span class="p">),</span><span class="w">
+                        </span><span class="n">resampling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv5</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">porownanie</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"porownanie.rda"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="s2">"porownanie.rda"</span><span class="p">)</span><span class="w">
+</span><span class="n">porownanie</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##          task.id        learner.id mse.test.mean
+## 1     mieszkanie           regr.lm       2084932
+## 2     mieszkanie regr.randomForest       1119241
+## 3     mieszkanie         regr.nnet       2674150
+## 4 mieszkanie_ndz           regr.lm       2481207
+## 5 mieszkanie_ndz regr.randomForest       1748378
+## 6 mieszkanie_ndz         regr.nnet       2672237
+</code></pre></div></div>
+
+<h4 id="wyniki-porównania">Wyniki porównania</h4>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># getBMRAggrPerformances(porownanie)</span><span class="w">
+</span><span class="c1"># getBMRPerformances(porownanie)</span><span class="w">
+</span><span class="n">plotBMRBoxplots</span><span class="p">(</span><span class="n">porownanie</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/eRementarz4/figure/wynikpor-1.png" alt="plot of chunk wynikpor" /></p>
+
+<h4 id="różne-kryteria">Różne kryteria</h4>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listMeasures</span><span class="p">(</span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"regr"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "rsq"         "rae"         "rmsle"       "mse"         "rrse"       
+##  [6] "medse"       "mae"         "timeboth"    "timepredict" "medae"      
+## [11] "featperc"    "mape"        "rmse"        "kendalltau"  "sse"        
+## [16] "arsq"        "expvar"      "msle"        "sae"         "timetrain"  
+## [21] "spearmanrho"
+</code></pre></div></div>
+
+<h3 id="wytrenowanie-pojedynczego-modelu">Wytrenowanie pojedynczego modelu</h3>
+
+<ul>
+  <li>podstawowe wywołanie:</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">m2_task</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>uwaga: można samodzielnie zdefiniować zbiór uczący</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uczacy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">),</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="m">0.7</span><span class="o">*</span><span class="n">nrow</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">)))</span><span class="w">
+</span><span class="n">testowy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">),</span><span class="w"> </span><span class="n">uczacy</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_rf_czesc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">m2_task</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uczacy</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>przewidywane wartości:</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m2_rf</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2_task</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">getPredictionResponse</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in getPredictionResponse(pred): nie znaleziono obiektu 'pred'
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pred2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">m2_rf_czesc</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mieszkania</span><span class="p">[</span><span class="n">testowy</span><span class="p">,</span><span class="w"> </span><span class="p">])</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">getPredictionResponse</span><span class="p">(</span><span class="n">pred2</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in getPredictionResponse(pred2): nie znaleziono obiektu 'pred2'
+</code></pre></div></div>
+
+<h3 id="strojenie-parametrów">Strojenie parametrów</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeParamSet</span><span class="p">(</span><span class="w">
+  </span><span class="n">makeDiscreteParam</span><span class="p">(</span><span class="s2">"mtry"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">),</span><span class="w">
+  </span><span class="n">makeDiscreteParam</span><span class="p">(</span><span class="s2">"nodesize"</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tuneParams</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2_task</span><span class="p">,</span><span class="w">
+                        </span><span class="n">resampling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv3</span><span class="p">,</span><span class="w">
+                        </span><span class="n">par.set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_params</span><span class="p">,</span><span class="w">
+                        </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">makeTuneControlGrid</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="wynik">Wynik</h4>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_params</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Tune result:
+## Op. pars: mtry=3; nodesize=5
+## mse.test.mean=1.15e+06
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">par_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">generateHyperParsEffectData</span><span class="p">(</span><span class="n">m2_params</span><span class="p">)</span><span class="w">
+</span><span class="n">plotHyperParsEffect</span><span class="p">(</span><span class="n">par_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mtry"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"nodesize"</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mse.test.mean"</span><span class="p">,</span><span class="w"> </span><span class="n">plot.type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"heatmap"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/eRementarz4/figure/wyswietlpar-1.png" alt="plot of chunk wyswietlpar" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setHyperPars</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">mtry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_rf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="n">reg_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">m2_task</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="inne-kontrolki">Inne kontrolki</h4>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">makeTuneControlCMAES</span><span class="p">()</span><span class="w">
+</span><span class="n">makeTuneControlIrace</span><span class="p">()</span><span class="w">
+</span><span class="n">makeTuneControlRandom</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="cena-mieszkania">Cena mieszkania</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">moje</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">n_pokoj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3L</span><span class="p">,</span><span class="w">
+                   </span><span class="n">metraz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60.00</span><span class="p">,</span><span class="w">
+                   </span><span class="n">rok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2010L</span><span class="p">,</span><span class="w">
+                   </span><span class="n">pietro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3L</span><span class="p">,</span><span class="w">
+                   </span><span class="n">pietro_maks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5L</span><span class="p">,</span><span class="w">
+                   </span><span class="n">dzielnica</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Srodmiescie"</span><span class="p">)</span><span class="w">
+</span><span class="n">moje</span><span class="o">$</span><span class="n">dzielnica</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">moje</span><span class="o">$</span><span class="n">dzielnica</span><span class="p">,</span><span class="w">
+                         </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels</span><span class="p">(</span><span class="n">mieszkania</span><span class="o">$</span><span class="n">dzielnica</span><span class="p">))</span><span class="w">
+</span><span class="n">predict</span><span class="p">(</span><span class="n">m2_rf2</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">moje</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in predict.randomForest(.model$learner.model, newdata = .newdata, : missing values in newdata
+</code></pre></div></div>
+
+<h3 id="wizualizacja-modelu">Wizualizacja modelu</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pdp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">generatePartialDependenceData</span><span class="p">(</span><span class="n">m2_rf2</span><span class="p">,</span><span class="w">
+                                     </span><span class="n">m2_task</span><span class="p">,</span><span class="w">
+                                     </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">)[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)])</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plotPartialDependence</span><span class="p">(</span><span class="n">pdp</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/eRementarz4/figure/plotpdp-1.png" alt="plot of chunk plotpdp" /></p>
+
+<h3 id="podsumowanie">Podsumowanie</h3>
+
+<ul>
+  <li>Tworzenie zadania: <code class="highlighter-rouge">makeRegrTask</code>, <code class="highlighter-rouge">makeClassifTask</code> itd</li>
+  <li>Metoda uczenia: <code class="highlighter-rouge">makeLearner</code>, <code class="highlighter-rouge">makeLearners</code></li>
+  <li>Porównanie kilku modeli: <code class="highlighter-rouge">benchmark</code></li>
+  <li>Ustawianie hiperparametrów: <code class="highlighter-rouge">setHyperPars</code></li>
+  <li>Wytrenowanie pojedynczego modelu: <code class="highlighter-rouge">train</code></li>
+  <li>Strojenie parametrów: <code class="highlighter-rouge">tuneParams</code></li>
+</ul>
+
+<h3 id="podziękowanie">Podziękowanie</h3>
+
+<p>Dziękujemy firmie Kruk i Wydziałowi Biotechnologii UWr.</p>
+
+:ET

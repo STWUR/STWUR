@@ -1,60 +1,130 @@
-# Site wide configuration
-
-title: STWUR
+theme: jekyll-theme-so-simple
+# remote_theme: mmistakes/so-simple-theme
+skin: "/assets/css/skins/light.css"
 locale: pl_PL
-description: Stowarzyszenie Wrocławskich Użytowników R.
-logo: stwur_10_18-01.svg
-search: true
-url: https://stwur.github.io/STWUR/
-share: true
-
-# Jekyll configuration
-
-permalink:   /:categories/:title/
-markdown:    kramdown
-highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-
-kramdown:
-  input: GFM
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..2
-  enable_coderay: false
-
+title:  STWUR
+description: ""
+baseurl:  # the subpath of your site, e.g. "/blog"
+url: https://fpietluch.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+logo: "/images/STWUR/stwur_logo_Mar2017.svg" # path of site logo, e.g. "/assets/images/logo.png"
+date_format: "%B %-d, %Y"
+read_time: false
+words_per_minute: 200
 mathjax: true
+google_fonts:
+  - name: "Source Sans Pro"
+    weights: "400,400i,700,700i"
+  - name: "Lora"
+    weights: "400,400i,700,700i"
+google_analytics: "UA-54221551-7"
 
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor", "rmd_posts", "render_post.R"]
+# Liquid
+liquid:
+  error_mode: strict
+
+# Build settings
+markdown: kramdown
+feed:
+  path: atom.xml
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
+
+# Search
+search_full_content: false
+
+# Taxonomy pages
+category_archive_path: "/categories/#"
+tag_archive_path: "/tags/#"
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+
+# Collections
+collections:
+  about:
+    output: true
+    permalink: /:collection/:path/
+  art:
+    output: true
+    permalink: /:collection/:path
 
 
-# Site owner
-owner:
+
+# Front Matter Defaults
+defaults:
+  # Post defaults
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      comments: false
+      share: true
+  # Recipe defaults
+  - scope:
+      path: "_about"
+      type: about
+    values:
+      layout: post
+      comments: false
+      share: false
+  #articles
+  - scope:
+      path: "_art"
+      type: art
+    values:
+      layout: post
+      comments: false
+      share: true
+# Site Author
+author:
   name: STWUR
+  picture: /images/STWUR/stwur_10_18-01.svg
   email: kontakt@stwur.pl
-  disqus-shortname:
-  twitter: #username
-  facebook: #username
-  github: #username
-  stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
-  instagram: #username
-  flickr: #username
-  tumblr: #username
-  pinterest: #username
-  weibo: #userid
-  google:
-    plus: #username
-    analytics: UA-54221551-7
-    verify:
-    ad-client:
-    ad-slot:
-  bing-verify:
+  links:
+  - title: Facebook
+    url: https://www.facebook.com/stwur/
+    icon: fab fa-facebook-f
+  - title: GitHub
+    url: https://github.com/STWUR
+    icon: fab fa-github-square
+  - title: Linkedin
+    url: https://www.linkedin.com/company/stwur/?originalSubdomain=pl
+    icon: fab fa-linkedin
+  - title: Meetup
+    url: https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/
+    icon: fab fa-meetup
+
+
+# Footer Links
+footer_links:
+  - title: Facebook
+    url: https://www.facebook.com/stwur/
+    icon: fab fa-facebook-f
+  - title: GitHub
+    url: https://github.com/STWUR
+    icon: fab fa-github-square
+  - title: Linkedin
+    url: https://www.linkedin.com/company/stwur/?originalSubdomain=pl
+    icon: fab fa-linkedin
+  - title: Meetup
+    url: https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/
+    icon: fab fa-meetup
 

@@ -1,0 +1,142 @@
+I";F<p>Trzeci STWURek odbył się 19.04.2017 - tradycyjnie po spotkaniu prezentujemy materiały z prelekcji.</p>
+
+<p>Kody znajdują się w repozytorium spotkania: https://github.com/STWUR/STWUR-2017-04-19</p>
+
+<h2 id="dwa-sposoby-tworzenia-map-w-r">Dwa sposoby tworzenia map w R</h2>
+
+<ul>
+  <li>Przez ściągnięcie mapy z google lub open street maps i nałożenie punktów</li>
+  <li>Przez narysowanie kształtów regionów (województw, krajów itp.)</li>
+</ul>
+
+<h2 id="ściąganie-mapy-z-google-lub-open-street-maps-flexbox-vcenter">Ściąganie mapy z google lub open street maps {.flexbox .vcenter}</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggmap</span><span class="p">)</span><span class="w">
+</span><span class="n">wroclaw_mapa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get_map</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"wrocław"</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="n">ggmap</span><span class="p">(</span><span class="n">wroclaw_mapa</span><span class="p">,</span><span class="w"> </span><span class="n">extent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/stwurek3/figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" /></p>
+
+<h2 id="kartogram-choropleth">Kartogram (choropleth)</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plotData</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procent_wyzsze_wyksztalcenie</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="n">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">rok</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_distiller</span><span class="p">(</span><span class="s2">"%"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"RdYlGn"</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pretty_breaks</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w">
+                       </span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"reverse"</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<h2 id="czego-nauczymy-się-dzisiaj">Czego nauczymy się dzisiaj?</h2>
+
+<ul>
+  <li>Wczytywanie plików shp file</li>
+  <li>Poprawne rysowanie map za pomocą pakietu ggplot</li>
+</ul>
+
+<hr />
+
+<h2 id="czym-jest-mapa">Czym jest mapa?</h2>
+
+<ul>
+  <li>określonym matematycznie obrazem przestrzeni odzwierciedlającym 
+rozmieszczenie obiektów i zjawisk geograficznych w zmniejszeniu (skala) i 
+rzucie prostokątnym (odwzorowanie)</li>
+  <li>zbiorem znaków kartograficznych i napisów, służących do prezentacji obiektów 
+i zjawisk geograficznych</li>
+  <li>odzwierciedla rzeczywistość w specyficznie uogólniony sposób – może być traktowana jako jej model.</li>
+</ul>
+
+<p>Na podstawie wykładu z Podstaw Kartografii dr. Waldemara Spalleka</p>
+
+<h2 id="matematyczny-problem-z-mapami">(matematyczny) problem z mapami</h2>
+
+<blockquote>
+  <p>Nie istnieją odwzorowania, które wiernie przenosiłyby powierzchnię kuli 
+na płaszczyznę mapy bez deformacji. 
+Dlatego powstają zniekształcenia kątów, powierzchni i odległości.</p>
+</blockquote>
+
+<h2 id="wczytywanie-mapy-do-r">Wczytywanie mapy do R</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">require</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w"> </span><span class="c1">#funkcja readOGR</span><span class="w">
+</span><span class="n">require</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span><span class="w"> </span><span class="c1">#funkcja gSimplify i spTransform</span><span class="w">
+</span><span class="n">EU_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readOGR</span><span class="p">(</span><span class="n">dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"./data/NUTS_2010_03M_SH/Data/"</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NUTS_RG_03M_2010"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## OGR data source with driver: ESRI Shapefile 
+## Source: "./data/NUTS_2010_03M_SH/Data/", layer: "NUTS_RG_03M_2010"
+## with 1920 features
+## It has 4 fields
+</code></pre></div></div>
+
+<p>W jakim układzie współrzędnych (Coordinate Reference System - CRS) 
+podane są nasze punkty?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">proj4string</span><span class="p">(</span><span class="n">EU_NUTS</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "+proj=longlat +ellps=GRS80 +no_defs"
+</code></pre></div></div>
+
+<h2 id="przekształcenia-na-spatialpolygons">Przekształcenia na SpatialPolygons</h2>
+
+<p>Zmiana układu współrzędnych na domyślny w pakiecie ggmap (zgodny z googlem)</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">EU_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spTransform</span><span class="p">(</span><span class="n">EU_NUTS</span><span class="p">,</span><span class="w"> </span><span class="n">CRS</span><span class="p">(</span><span class="s2">"+proj=longlat +datum=WGS84"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Podzbiór polygons, tak jak na zwykłej data.frame</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">czy_id_zawiera_pl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PL"</span><span class="p">,</span><span class="w"> </span><span class="n">EU_NUTS</span><span class="o">@</span><span class="n">data</span><span class="o">$</span><span class="n">NUTS_ID</span><span class="p">)</span><span class="w">
+</span><span class="n">PL_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">EU_NUTS</span><span class="p">[</span><span class="n">czy_id_zawiera_pl</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Zmniejszenie dokładności mapy</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PL_NUTS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gSimplify</span><span class="p">(</span><span class="n">PL_NUTS</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">topologyPreserve</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="kartogram-z-uwzględnieniem-układu-odniesienia">Kartogram z uwzględnieniem układu odniesienia</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="s2">"data/ksztalt_wojewodztw_data_frame.Rdata"</span><span class="p">)</span><span class="w">
+</span><span class="n">wojewodztwa_nazwy_kody</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">wojewodztwa_nazwy_kody</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">teryt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">teryt</span><span class="p">)),</span><span class="w">
+         </span><span class="n">woj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iconv</span><span class="p">(</span><span class="n">woj</span><span class="p">))</span><span class="w">
+</span><span class="n">internet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"internet_samotnosc.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">internet</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 'data.frame':	202 obs. of  6 variables:
+##  $ X            : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ rok          : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+##  $ woj          : int  2 2 4 4 6 6 8 8 10 10 ...
+##  $ plec         : int  1 2 1 2 1 2 1 2 1 2 ...
+##  $ internet_godz: num  11.55 6.6 5.56 3.2 8.74 ...
+##  $ samotnosc    : num  1.86 1.76 1.86 1.8 1.8 ...
+</code></pre></div></div>
+
+<h2 id="kartogram-z-uwzględnieniem-układu-odniesienia-1">Kartogram z uwzględnieniem układu odniesienia</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">internet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">internet</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">inner_join</span><span class="p">(</span><span class="n">wojewodztwa_nazwy_kody</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"woj"</span><span class="o">=</span><span class="s2">"teryt"</span><span class="p">))</span><span class="w">
+</span><span class="n">plotData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">inner_join</span><span class="p">(</span><span class="n">Wojewodztwa</span><span class="p">,</span><span class="w"> </span><span class="n">internet</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="rysowanie-mapy">Rysowanie mapy</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plotData</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">internet_godz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#rysujemy wielokąty</span><span class="w">
+  </span><span class="n">coord_map</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustawiamy układ współrzędnych</span><span class="w">
+  </span><span class="n">scale_fill_distiller</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"YlGn"</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pretty_breaks</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w"> 
+                       </span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"reverse"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustalamy paletę kolorów i skalę</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">rok</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">#ustawiamy obok siebie wykresy dla poszczególnych lat</span><span class="w">
+  </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guide_legend</span><span class="p">(</span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_map</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)</span><span class="w"> </span><span class="c1">#sugerowany styl wyglądu mapy</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="rysowanie-mapy-1">Rysowanie mapy</h2>
+
+<p><img src="/images/STWUR/stwurek3/figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12" /></p>
+
+:ET

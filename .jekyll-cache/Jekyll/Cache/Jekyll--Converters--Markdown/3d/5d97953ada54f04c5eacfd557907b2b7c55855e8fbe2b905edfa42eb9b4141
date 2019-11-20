@@ -1,0 +1,30 @@
+I"�<p>Już 13.06.2019 odbędzie się pierwszy WAMPIR podczas którego porozmawiamy o zaawansowanych metodach uczenia maszynowego w R i Pythonie.</p>
+
+<h2 id="wampir">WAMPIR</h2>
+
+<p>STWUR otwiera się na Pythona! Rozpoczynamy nową sesję spotkań WAMPIR (Wrocławski Alians Miłośników Pythona i R). Spotkania Wampira przeznaczone są dla bardziej zaawansowanych miłośników data science, którzy chcą pogłębić swoją wiedzę z zakresu tak szybko rozwijających się technologii jak NLP czy głębokie sieci neuronowe. Będzie technicznie, będzie dogłębnie, ale zawsze w przyjaznej STWURowej atmosferze. Serdecznie zapraszamy na inauguracyjne spotkanie.</p>
+
+<h3 id="praktyczne-aspekty-modeli-generatywnych-na-przykładzie-modeli-typu-gan">Praktyczne aspekty modeli generatywnych na przykładzie modeli typu GAN</h3>
+
+<p>W ramach prezentacji przedstawione zostaną praktyczne aspekty modeli generatywnych. W pierwszej kolejności zaprezentowane zostaną podstawy teoretyczne i podstawowe własności GANów. Dalsza część prezentacji będzie dotyczyć rozwinięć i praktycznych zastosowań tego typu modeli. W ostatniej części przedstawiona zostanie krótka implementacja podstawowego modelu GAN.</p>
+
+<p>Bio: <strong>Maciej Zięba</strong> jest adiunktem na Politechnice Wrocławskiej, pracuje również jako Senior ML Researcher w firmie Tooploox. Jego zainteresowania badawcze koncentrują się wokół zastosowań modeli generatywnych, głównie do efektywnego uczenia kompaktowych reprezentacji danych. <strong>Maciej</strong> jest współautorem wielu prac z obszarów ML, część z nich była prezentowana na konferencjach NeurIPS, ICML czy ICLR.</p>
+
+<h3 id="chatbot-drużyny-uniwersytetu-wrocławskiego-w-nips-conversational-intelligence-challenge">Chatbot drużyny Uniwersytetu Wrocławskiego w NIPS Conversational Intelligence Challenge</h3>
+
+<p>Drużyna studentów i pracowników Instytutu Informatyki UWr w składzie Jan Chorowski, Adrian Łańcucki, Szymon Malik, Maciej Pawlikowski, Paweł Rychlikowski, Paweł Zykowski zajęła pierwsze miejsce (ex aequo) w konkursie NIPS Conversational Intelligence Challenge.</p>
+
+<p>Konkurs rozgrywany był od kwietnia do grudnia 2017. Celem było stworzenie systemu dialogowego (chatbota), który konwersowałby z użytkownikiem na temat losowego paragrafu artykułu (Wikipedia, wiadomości). Ten skomplikowany i złożony problem jest uważany za jedno z najważniejszych zadań sztucznej inteligencji.</p>
+
+<p>Bio: O rozwiązaniu opowie jeden z członków zwycięskiej drużyny - <strong>Adrian Łańcucki</strong>, który w marcu br. obronił doktorat z informatyki na Uniwersytecie Wrocławskim. <strong>Adrian</strong> jest współautorem prac z zakresu NLP oraz pasjonatem uczenia maszynowego.</p>
+
+<h2 id="czas-i-miejsce-spotkania">Czas i miejsce spotkania</h2>
+
+<p>eRementarz odbędzie się 13.06.2019 od 18:00 do 20:00 w sali 1.03. na Wydziale Biotechnologii Uniwersytetu Wrocławskiego (Fryderyka Joliot-Curie 14a, 50-383 Wrocław). Link do zapisów: <a href="https://www.meetup.com/Wroclaw-R-Users-Group/events/261825090/">https://www.meetup.com/Wroclaw-R-Users-Group/events/261825090/</a>.</p>
+
+<h2 id="sponsorzy">Sponsorzy</h2>
+
+<p>Nasze spotkania wspiera <a href="https://pl.kruk.eu/">Kruk SA</a>, <a href="http://whyr.pl/">Fundacja Why R?</a>, Doktoranckie Koło Naukowe Bioinformatyki oraz Wydział Biotechnologii Uniwersytetu Wrocławskiego.</p>
+
+<p><img src="https://stwur.github.io/STWUR//images/kruk_logo.jpg" id="logo" height="35%" width="35%" /></p>
+:ET
