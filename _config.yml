@@ -5,7 +5,8 @@ locale: pl_PL
 title: STWUR
 destination: docs/
 description: ""
-baseurl: https://stwur.github.io/STWUR # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl: "/docs" # the subpath of your site, e.g. "/blog"
+url: "https://stwur.github.io/STWUR" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 logo: "/images/STWUR/stwur_logo_Mar2017.svg" # path of site logo, e.g. "/assets/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: false
