@@ -5,6 +5,7 @@ codekit-config.json
 node_modules
 .sass-cache
 .jekyll-metadata
+.jekyll-cache
 .Rproj.user
 .Rhistory
 stwur_blog.Rproj
