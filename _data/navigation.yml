@@ -1,0 +1,11 @@
+# Site navigation links
+
+- title: Posty
+  url: /posts/
+- title: Artykuły
+  url: /art/
+- title: O STWURZE
+  url: /about/
+- title: Szukaj
+  url: /search/
+

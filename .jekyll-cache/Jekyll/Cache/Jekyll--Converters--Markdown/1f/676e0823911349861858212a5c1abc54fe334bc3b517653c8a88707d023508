@@ -1,0 +1,17 @@
+I"�<p>Już pojutrze kolejne całodniowe warsztaty STWURa. Przygotowaliśmy prosty skrypt, który pomoże się do nich przygotować.</p>
+
+<p>Podczas eRementarza używamy <strong>R</strong>, dlatego przyda się własny, odpowiednio skonfigurowany laptop. Przed spotkaniem dobrze jest:</p>
+
+<ul>
+  <li>
+    <p>zainstalować <a href="https://cran.r-project.org/">najnowszą wersję <strong>R</strong></a> i <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>.</p>
+  </li>
+  <li>
+    <p>zainstalować niezbędne pakiety za pomocą poniższego skryptu:</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">source</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/STWUR/eRementarz-24-11-2018/master/setup-r.R"</span><span class="p">)</span></code></pre></figure>
+
+<p><a href="https://www.meetup.com/Wroclaw-R-Users-Group/events/256265867/">Zapisy na warsztaty odbywają się na MeetUpie</a>.</p>
+:ET

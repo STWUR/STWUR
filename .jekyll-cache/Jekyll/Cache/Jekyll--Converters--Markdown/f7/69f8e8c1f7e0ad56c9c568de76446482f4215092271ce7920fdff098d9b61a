@@ -1,0 +1,138 @@
+I"k-<p>Na ostatnim spotkaniu STWURa uczyliśmy się pracować z Keras w R. Zachęcamy do zapoznania się z materiałami.</p>
+
+<h2 id="co-to-jest-keras">Co to jest Keras?</h2>
+
+<p>Biblioteka (API) do pracy z sieciami neuronowymi implementowanymi w innych narzędziach (TensorFlow, Theano).</p>
+
+<h2 id="implementacje">Implementacje</h2>
+
+<p>Keras jest napisany w Pythonie.</p>
+
+<p>Implementacje w <strong>R</strong> (https://github.com/rstudio/keras oraz https://github.com/statsmaths/kerasR) wykorzystują pakiet <em>reticulate</em>, aby komunikować się z Pythonem.</p>
+
+<p>Powoduje to konieczność zarządzania jednocześnie sesją <strong>R</strong> i sesją Pythona.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># to ziarno losowosci dziala tylko dla sesji R</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">30</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># to ziarno losowosci dziala zarowno dla sesji R jak i sesji Pythona</span><span class="w">
+</span><span class="n">keras</span><span class="o">::</span><span class="n">use_session_with_seed</span><span class="p">(</span><span class="m">30</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="praca-w-keras">Praca w Keras…</h2>
+
+<p>…jest prosta i przyjemna.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model_sequential</span><span class="p">()</span><span class="w">
+
+</span><span class="n">model</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dropout</span><span class="p">(</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dropout</span><span class="p">(</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'sigmoid'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">compile</span><span class="p">(</span><span class="w">
+    </span><span class="n">loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'mean_squared_error'</span><span class="p">,</span><span class="w">
+    </span><span class="n">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'sgd'</span><span class="p">,</span><span class="w">
+    </span><span class="n">metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'accuracy'</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="praca-w-keras-1">Praca w Keras</h2>
+
+<p>Pojedyncza warstwa sieci neuronowej:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'relu'</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>units: liczba neuronów,</li>
+  <li>activation: funkcja aktywacji,</li>
+  <li>input_shape: liczba kolumn.</li>
+</ul>
+
+<h2 id="praca-w-keras-2">Praca w Keras</h2>
+
+<p>Zapobiega przeuczeniu.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">layer_dropout</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="stabilność-predykcja">Stabilność predykcja</h2>
+
+<p><img src="/images/STWUR/keras/figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" /></p>
+
+<h2 id="aktualizacja-obiektów">Aktualizacja obiektów</h2>
+
+<p>Obiekty w <strong>R</strong> nie są aktualizowane:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">27</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1988</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="o">*</span><span class="m">2</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   54    6 3976
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   27    3 1988
+</code></pre></div></div>
+
+<h2 id="aktualizacja-obiektów-1">Aktualizacja obiektów</h2>
+
+<p>Obiekty w Keras są aktualizowane:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model_sequential</span><span class="p">()</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## Total params: 0
+## Trainable params: 0
+## Non-trainable params: 0
+## ___________________________________________________________________________
+</code></pre></div></div>
+
+<h2 id="aktualizacja-obiektów-2">Aktualizacja obiektów</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">input_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">))</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## dense_1 (Dense)                  (None, 4)                     52          
+## ===========================================================================
+## Total params: 52
+## Trainable params: 52
+## Non-trainable params: 0
+## ___________________________________________________________________________
+</code></pre></div></div>
+
+<h2 id="zapisywanie-obiektów">Zapisywanie obiektów</h2>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">save_model_hdf5</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_model.h5"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="n">model_to_yaml</span><span class="p">(</span><span class="n">model</span><span class="p">),</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_model.yaml"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="podziękowania">Podziękowania</h2>
+
+<p>https://tinyurl.com/stwur7 - kody i dane do dzisiejszego spotkania.</p>
+
+<p>Dziękujemy Wydziałowi Biotechnologii UWr i firmie Kruk SA za wspieranie spotkań STWURa.</p>
+
+<p><img src="https://stwur.github.io/STWUR//images/kruk_logo.jpg" id="logo" height="35%" width="35%" /></p>
+
+<h2 id="hackathon">Hackathon</h2>
+
+<p>bankITpu: https://challengerocket.com/bankitup</p>
+
+<p>Hackathon: analiza danych z sektora finansowego. Darmowe jedzenie i wysokie nagrody! Michał Kurtys koordynuje zespoły STWURowiczów.</p>
+:ET

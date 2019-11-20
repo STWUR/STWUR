@@ -1,0 +1,327 @@
+I"Q�<p>Jak zawsze publikujemy materiały z ostatniego spotkania STWURa, które poprowadził Bartosz Kolasa - data scientist z firmy PiLab, a zorganizował Mateusz Staniak.</p>
+
+<h3 id="materiały">Materiały</h3>
+
+<p>Data Visualisation cheatsheet</p>
+
+<p><a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</a></p>
+
+<p>Github</p>
+
+<p><a href="https://github.com/STWUR/eRementarz2">https://github.com/STWUR/eRementarz2</a></p>
+
+<p>Eseje o sztuce prezentowania danych
+<a href="http://www.biecek.pl/Eseje/">http://www.biecek.pl/Eseje/</a></p>
+
+<p>Pakiety:</p>
+<ul>
+  <li>ggplot2</li>
+  <li>dplyr</li>
+</ul>
+
+<h3 id="cele-wizualizacji">Cele wizualizacji</h3>
+
+<ul>
+  <li>zrozumienie danych</li>
+  <li>prezentacja zjawiska</li>
+  <li>przekonanie odbiorcy do określonej tezy</li>
+</ul>
+
+<h3 id="gramatyka-wykresów">Gramatyka wykresów</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">hwy</span><span class="p">,</span><span class="w"> </span><span class="n">cty</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cyl</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"lm"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_color_gradient</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_bw</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+
+<h3 id="najprostszy-przykład">Najprostszy przykład</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" /></p>
+
+<h3 id="zmienna-ciągła">Zmienna ciągła</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+</code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /></p>
+
+<h3 id="ograniczenie-danych">Ograniczenie danych</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">metraz</span><span class="o">&lt;</span><span class="m">150</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mieszkania</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+</code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" /></p>
+
+<h3 id="kolejny-wymiar">Kolejny wymiar</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+<h3 id="rozsądniejsze-kolory">Rozsądniejsze kolory</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /></p>
+
+<h3 id="porównywanie-wartości">Porównywanie wartości</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Liczba pokoi"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+
+<h3 id="etykietki">Etykietki</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
+</span><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Liczba pokoi"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">..count..</span><span class="p">),</span><span class="w"> </span><span class="n">stat</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
+
+<h3 id="ostatnie-szlify">Ostatnie szlify</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mutate</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">n_pokoj</span><span class="o">=</span><span class="n">if_else</span><span class="p">(</span><span class="n">n_pokoj</span><span class="o">&gt;</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"więcej niż 4"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mieszkania</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">n_pokoj</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Liczba pokoi"</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">..count..</span><span class="p">),</span><span class="w"> </span><span class="n">stat</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
+
+<h3 id="zadania">Zadania</h3>
+
+<p>Do użycia nowy zbiór z pliku “data/mieszkania_wroclaw_ceny_rozbudowana.csv”</p>
+<ul>
+  <li>Narysuj wykres słupkowy liczby mieszkań w wybranych kategoriach cenowych.</li>
+  <li>Zbadaj jak rozkłada się to w zależności od dzielnic.</li>
+  <li>Zbadaj odwrotną relację tzn. liczbę mieszkań w określonych kategoriach cenowych w wybranych dzielnicach</li>
+</ul>
+
+<h3 id="rozkład-kategorii-cenowych">Rozkład kategorii cenowych</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">kat_cenowa</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /></p>
+
+<h3 id="rozkład-kategorii-cenowych-wg-dzielnic">Rozkład kategorii cenowych wg dzielnic</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">kat_cenowa</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /></p>
+
+<h3 id="rozkład-dzielnic-wg-kategorii">Rozkład dzielnic wg kategorii</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">kat_cenowa</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">"fill"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /></p>
+
+<h3 id="dwa-wymiary">Dwa wymiary</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" /></p>
+
+<h3 id="skala-logarytmiczna">Skala logarytmiczna</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /></p>
+
+<h3 id="z-etykietką">Z etykietką</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"boxplot"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aggregate</span><span class="p">(</span><span class="n">cena</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">dzielnica</span><span class="p">,</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">cena</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">),</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="m">-0.75</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" /></p>
+
+<h3 id="bez-outlierów">Bez outlierów</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">cena</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1000000</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mieszkania</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"boxplot"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aggregate</span><span class="p">(</span><span class="n">cena</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">dzielnica</span><span class="p">,</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">cena</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">),</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="m">-0.75</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" /></p>
+
+<h3 id="bez-outlierów-1">Bez outlierów</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"boxplot"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aggregate</span><span class="p">(</span><span class="n">cena</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">dzielnica</span><span class="p">,</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">cena</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena</span><span class="p">),</span><span class="w"> </span><span class="n">vjust</span><span class="o">=</span><span class="m">-0.75</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ylim</span><span class="p">(</span><span class="m">1e5</span><span class="p">,</span><span class="w"> </span><span class="m">1e6</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Scale for 'y' is already present. Adding another scale for 'y', which
+## will replace the existing scale.
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Warning: Removed 97 rows containing non-finite values (stat_boxplot).
+</code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" /></p>
+
+<h3 id="zadania-1">Zadania</h3>
+
+<ul>
+  <li>Pokaż na wykresie pudełkowym zależność metrażu mieszkań w zależności od dzielnicy</li>
+  <li>Zaznacz kolorem kategorie cenowe</li>
+  <li>Jaką tendencję można wyciągnąć z tego wykresu?</li>
+  <li>Jakie są wartości liczbowe median metrażu?</li>
+</ul>
+
+<h3 id="metraż-wg-dzielnic">Metraż wg dzielnic</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">metraz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" /></p>
+
+<h3 id="metraż-wg-dzielnic-i-kategorii-cenowych">Metraż wg dzielnic i kategorii cenowych</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">kat_cenowa</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" /></p>
+
+<h3 id="mediany">Mediany</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aggregate</span><span class="p">(</span><span class="n">metraz</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">kat_cenowa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##          kat_cenowa    dzielnica metraz
+## 1   1. bardzo tanie    Fabryczna  64.00
+## 2          2. tanie    Fabryczna  56.43
+## 3         3. drogie    Fabryczna  53.60
+## 4  4. bardzo drogie    Fabryczna  48.00
+## 5   1. bardzo tanie       Krzyki  70.00
+## 6          2. tanie       Krzyki  64.25
+## 7         3. drogie       Krzyki  56.00
+## 8  4. bardzo drogie       Krzyki  49.00
+## 9   1. bardzo tanie    Psie Pole  65.40
+## 10         2. tanie    Psie Pole  55.25
+## 11        3. drogie    Psie Pole  49.69
+## 12 4. bardzo drogie    Psie Pole  53.13
+## 13  1. bardzo tanie  Srodmiescie  70.00
+## 14         2. tanie  Srodmiescie  63.00
+## 15        3. drogie  Srodmiescie  52.60
+## 16 4. bardzo drogie  Srodmiescie  64.00
+## 17  1. bardzo tanie Stare Miasto  72.00
+## 18         2. tanie Stare Miasto  56.75
+## 19        3. drogie Stare Miasto  50.55
+## 20 4. bardzo drogie Stare Miasto  54.00
+</code></pre></div></div>
+
+<h3 id="wykres-punktowy">Wykres punktowy</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" style="display: block; margin: auto;" /></p>
+
+<h3 id="wykres-punktowy-z-podziałami">Wykres punktowy z podziałami</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">dzielnica</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" /></p>
+
+<h3 id="wykres-z-rozrzutem">Wykres z rozrzutem</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">dzielnica</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" style="display: block; margin: auto;" /></p>
+
+<h3 id="wykres-z-pomocnikiem">Wykres z pomocnikiem…</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">dzielnica</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" style="display: block; margin: auto;" /></p>
+
+<p>… i poprawioną skalą</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">metraz</span><span class="o">&lt;</span><span class="m">150</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mieszkania</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">dzielnica</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" style="display: block; margin: auto;" /></p>
+
+<p>… i bez Starego Miasta</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">metraz</span><span class="o">&lt;</span><span class="m">150</span><span class="p">,</span><span class="w"> </span><span class="n">dzielnica</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"Stare Miasto"</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mieszkania</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">metraz</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">cena_m2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">dzielnica</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" style="display: block; margin: auto;" /></p>
+
+<h3 id="zadanie">Zadanie</h3>
+
+<ul>
+  <li>Stwórz wersję wykresu metrażu w zależności od dzielnic z użyciem podziałów</li>
+  <li>Czy ta wizualizacja jest lepsza czy gorsza od wersji z kolorami?</li>
+</ul>
+
+<h3 id="metraż-wg-dzielnic-i-kategorii-cenowych-1">Metraż wg dzielnic i kategorii cenowych</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mieszkania</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"data/mieszkania_wroclaw_ceny_rozbudowana.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mieszkania</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dzielnica</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">metraz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">kat_cenowa</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/erementarz2_wrazenia/figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" style="display: block; margin: auto;" /></p>
+
+<h2 id="link-do-repotyzorium">Link do repotyzorium</h2>
+
+<p>https://github.com/STWUR/eRementarz2 - kody i dane do spotkania.</p>
+
+<p>Dziękujemy firmie Kruk SA (jedzenie i napoje) za wspieranie spotkań STWURa.</p>
+
+<p><img src="https://stwur.github.io/STWUR//images/kruk_logo.jpg" id="logo" height="35%" width="35%" /></p>
+:ET

@@ -1,38 +1,124 @@
----
+remote_theme: "mmistakes/so-simple-theme@3.2.0"
+# remote_theme: mmistakes/so-simple-theme
+skin: "/assets/css/skins/light.css"
+locale: pl_PL
+title: STWUR
+description: ""
+url: https://stwur.github.io/STWUR/ # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+logo: "/images/STWUR/stwur_logo_Mar2017.svg" # path of site logo, e.g. "/assets/images/logo.png"
+date_format: "%B %-d, %Y"
+read_time: false
+words_per_minute: 200
+mathjax: true
+google_fonts:
+  - name: "Source Sans Pro"
+    weights: "400,400i,700,700i"
+  - name: "Lora"
+    weights: "400,400i,700,700i"
+google_analytics: "UA-54221551-7"
 
-port: 4000
-host: 0.0.0.0
-safe: false
+# Liquid
+liquid:
+  error_mode: strict
 
-
-### site serving configuration ###
-exclude: [CNAME, README.md, .gitignore]
-permalink: /:title ## disables post output
-timezone: null
-lsi: false
+# Build settings
 markdown: kramdown
+feed:
+  path: atom.xml
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
+
+# Search
+search_full_content: false
+
+# Taxonomy pages
+category_archive_path: "/categories/#"
+tag_archive_path: "/tags/#"
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
 
 
-### content configuration ###
-title:       "SinglePaged - Simple Jekyll template"
-keywords:    "SinglePaged, jekyll, template, github, blog, single page"
-description: "A single-page template for Jekyll based blogs (like what you'd use on github pages!)"
-source_link: "https://github.com/t413/SinglePaged"
-favicon:     "img/favicon.ico"
-touch_icon:  "img/apple-touch-icon.png"
-google_analytics_key: UA-49607422-1 ## put YOUR key here to enable tracking! (blank to disable)
+#plugins:
+#  - jekyll-seo-tag
+#  - jekyll-sitemap
+#  - jekyll-feed
+#  - jekyll-paginate
+
+# Collections
+collections:
+  about:
+    output: true
+    permalink: /:collection/:path/
+  art:
+    output: true
+    permalink: /:collection/:path
 
 
-### template colors, used site-wide via css ###
-colors:
-  black:     '#111111'
-  white:     '#f8f8f8'
-  blue:      '#49a7e9'
-  green:     '#9bcf2f'
-  purple:    '#c869bf'
-  orange:    '#fab125'
-  turquoise: '#0fbfcf'
 
-kramdown:
-  auto_ids:  false
+# Front Matter Defaults
+defaults:
+  # Post defaults
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      comments: false
+      share: true
+  # Recipe defaults
+  - scope:
+      path: "_about"
+      type: about
+    values:
+      layout: post
+      comments: false
+      share: false
+  #articles
+  - scope:
+      path: "_art"
+      type: art
+    values:
+      layout: post
+      comments: false
+      share: true
+# Site Author
+author:
+  name: STWUR
+  picture: /images/STWUR/stwur_10_18-01.svg
+  email: kontakt@stwur.pl
+  links:
+  - title: Facebook
+    url: https://www.facebook.com/stwur/
+    icon: fab fa-facebook-f
+  - title: GitHub
+    url: https://github.com/STWUR
+    icon: fab fa-github-square
+  - title: Linkedin
+    url: https://www.linkedin.com/company/stwur/?originalSubdomain=pl
+    icon: fab fa-linkedin
+  - title: Meetup
+    url: https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/
+    icon: fab fa-meetup
+
+
+# Footer Links
+footer_links:
+  - title: Facebook
+    url: https://www.facebook.com/stwur/
+    icon: fab fa-facebook-f
+  - title: GitHub
+    url: https://github.com/STWUR
+    icon: fab fa-github-square
+  - title: Linkedin
+    url: https://www.linkedin.com/company/stwur/?originalSubdomain=pl
+    icon: fab fa-linkedin
+  - title: Meetup
+    url: https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/
+    icon: fab fa-meetup
 

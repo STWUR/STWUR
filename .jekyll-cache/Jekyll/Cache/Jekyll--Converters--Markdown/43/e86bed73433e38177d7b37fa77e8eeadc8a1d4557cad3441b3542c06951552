@@ -1,0 +1,11 @@
+I"<p>Użyteczne i darmowe materiały do nauki R:</p>
+
+<ul>
+  <li><a href="https://www.rstudio.com/resources/cheatsheets/">cheatsheets</a> - w skondensowanej formie zebrane najważniejsze funkcje do m.in. dplyr i ggplot2.</li>
+  <li><a href="http://tryr.codeschool.com/">tryR</a> - przystępny kurs online R.</li>
+  <li><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">An introduction do R</a> - całościowy wstęp do podstawowych funkcji R.</li>
+  <li><a href="https://leanpub.com/exdata">Exploratory Data Analysis with R</a> - książka Rogera Penga, która może służyć jako wprowadzenie do R z użyciem tidyverse (czyli np. dplyr).</li>
+</ul>
+
+<p>Każdemu polecamy też <a href="http://www.biecek.pl/R/">Przewodnik po pakiecie R</a> autorstwa Przemysława Biecka.</p>
+:ET

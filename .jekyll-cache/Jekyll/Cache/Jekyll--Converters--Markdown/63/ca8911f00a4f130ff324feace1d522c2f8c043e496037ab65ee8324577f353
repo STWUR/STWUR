@@ -1,0 +1,741 @@
+I"�<p>Lutowe spotkanie STWUR-a poprowadził Michał Kurtys, a zorganizował Jarosław Chilimoniuk. Zachęcamy do zapoznania się z materiałami.</p>
+
+<h2 id="materiały---r-od-środka">Materiały - R od środka</h2>
+
+<p>[https://github.com/STWUR/eRementarz5]</p>
+
+<h3 id="r">R</h3>
+
+<ul>
+  <li>Język/Standard - R Language (jak ANSI C, C++14)</li>
+  <li>Implementacja - GNU R ( gcc, Visual C++ )</li>
+  <li>W R różnica jest trochę zatarta</li>
+</ul>
+
+<h3 id="struktury-danych">Struktury danych</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Homogeneous</th>
+      <th style="text-align: left">Heterogenous</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1d</td>
+      <td style="text-align: left">Atomic vector</td>
+      <td style="text-align: left">List</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2d</td>
+      <td style="text-align: left">Matrix</td>
+      <td style="text-align: left">Data Frame</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">nd</td>
+      <td style="text-align: left">Array</td>
+      <td style="text-align: left">-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Vectors: logical, integer, double (often called numeric), character, complex, raw</p>
+
+<h3 id="wektory">Wektory</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="w">
+</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "integer"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "integer"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">is.atomic</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] TRUE
+</code></pre></div></div>
+
+<h3 id="skalary---wektory-długości-1">Skalary - wektory długości 1</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "double"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">typeof</span><span class="p">(</span><span class="m">1L</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "integer"
+</code></pre></div></div>
+
+<h3 id="wektory-długości-0">Wektory długości 0</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)[</span><span class="n">numeric</span><span class="p">(</span><span class="m">0</span><span class="p">)]</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## integer(0)
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="m">10</span><span class="o">:</span><span class="m">20</span><span class="p">)[</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)]</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 13 14 15 16 17 18 19 20
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="o">:</span><span class="m">20</span><span class="w">
+</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">100</span><span class="p">)]</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## integer(0)
+</code></pre></div></div>
+
+<h3 id="nazwy">Nazwy</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">)</span><span class="w"> 
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setNames</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">))</span><span class="w">
+</span><span class="nf">attributes</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## $names
+## [1] "a" "b" "c"
+</code></pre></div></div>
+
+<h3 id="macierze">Macierze</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">mat</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    6   11   16   21
+## [2,]    2    7   12   17   22
+## [3,]    3    8   13   18   23
+## [4,]    4    9   14   19   24
+## [5,]    5   10   15   20   25
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">class</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "matrix"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">typeof</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "integer"
+</code></pre></div></div>
+
+<h3 id="macierze-1">Macierze</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">attributes</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## $dim
+## [1] 5 5
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">dim</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 5 5
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="nf">attr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s2">"dim"</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="ramki-danych">Ramki Danych</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">)</span><span class="w">
+</span><span class="nf">class</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "data.frame"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">typeof</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "list"
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">attributes</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## $names
+## [1] "x" "y"
+## 
+## $row.names
+## [1] 1 2 3
+## 
+## $class
+## [1] "data.frame"
+</code></pre></div></div>
+
+<h3 id="pętle-1">Pętle 1</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">times_two_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="n">new_vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">()</span><span class="w">
+  </span><span class="k">for</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="n">new_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="o">*</span><span class="m">2</span><span class="w">
+    </span><span class="n">new_vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span><span class="n">new_value</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="n">new_vector</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="w">
+</span><span class="n">times_two_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  2  4  6  8 10 12 14 16 18 20
+</code></pre></div></div>
+
+<h3 id="pętle-2">Pętle 2</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">times_two_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">
+    </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="m">2</span><span class="w">
+  </span><span class="n">x</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="w">
+</span><span class="n">times_two_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  2  4  6  8 10 12 14 16 18 20
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">[</span><span class="m">11</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">11</span><span class="w">
+</span><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">[</span><span class="m">20</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="rcpp">Rcpp</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">Rcpp</span><span class="p">)</span><span class="w">
+</span><span class="n">cppFunction</span><span class="p">(</span><span class="w">
+  </span><span class="s1">'std::vector&lt;int&gt; times_two_cpp_1(NumericVector x) {
+  std::vector&lt;int&gt; out;
+  int n = x.size();
+  for(int i = 0; i &lt; n; ++i) {
+    out.push_back(x[i]*2);
+  }
+  return out;
+}'</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="w">
+</span><span class="n">times_two_cpp_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  2  4  6  8 10 12 14 16 18 20
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre></div></div>
+
+<h3 id="rcpp-2">Rcpp 2</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cppFunction</span><span class="p">(</span><span class="w">
+  </span><span class="s1">'NumericVector times_two_cpp_2(NumericVector x) {
+  int n = x.size();
+  for(int i = 0; i &lt; n; ++i) {
+    x[i] = x[i]*2;
+  }
+  return x;
+}'</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="w">
+</span><span class="n">times_two_cpp_2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  2  4  6  8 10 12 14 16 18 20
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre></div></div>
+
+<h3 id="microbenchmark">Microbenchmark</h3>
+
+<p>microbenchmark serves as a more accurate replacement of the often seen <code class="highlighter-rouge">system.time(replicate(1000, expr))</code> expression.</p>
+
+<p>microbenchmark(…, list = NULL, times = 100L, unit, check = NULL,
+  control = list())</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span><span class="w">
+</span><span class="n">microbenchmark</span><span class="p">(</span><span class="w">
+  </span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span><span class="w">
+  </span><span class="n">mapply</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Unit: nanoseconds
+##                     expr   min      lq     mean  median      uq   max
+##          (1:10) * (1:10)   405   476.0   807.87   615.5   676.5 13828
+##  mapply("*", 1:10, 1:10) 17361 18122.5 19457.65 18375.5 18680.5 76105
+##  neval cld
+##    100  a 
+##    100   b
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">microbenchmark</span><span class="p">(</span><span class="w">
+  </span><span class="n">vectorized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),</span><span class="w">
+  </span><span class="n">mapply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapply</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">mb</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="s2">"relative"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Unit: relative
+##        expr     min       lq     mean   median       uq      max neval cld
+##  vectorized  1.0000  1.00000  1.00000  1.00000  1.00000 1.000000   100  a 
+##      mapply 44.1784 31.76694 21.72461 28.52665 29.56658 2.743807   100   b
+</code></pre></div></div>
+
+<h3 id="microbenchmark---nasze-funkcje">Microbenchmark - nasze funkcje</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">&lt;</span><span class="m">-1</span><span class="o">:</span><span class="m">10e3</span><span class="w">
+</span><span class="n">microbenchmark</span><span class="p">(</span><span class="w">
+</span><span class="n">times_two_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">times_two_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">times_two_cpp_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">times_two_cpp_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="m">2</span><span class="p">)),</span><span class="w">
+</span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3L</span><span class="p">,</span><span class="w">
+</span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ms"</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Unit: milliseconds
+##                expr        min          lq         mean     median
+##      times_two_1(x) 103.270977 105.3815760 106.08523433 107.492175
+##      times_two_2(x)   0.630641   0.6337660   1.72979767   0.636891
+##  times_two_cpp_1(x)   0.043655   0.0478280   0.05163633   0.052001
+##  times_two_cpp_2(x)   0.019163   0.0192315   0.02244600   0.019300
+##   expression(x * 2)   0.000021   0.0000905   0.00019800   0.000160
+##           uq        max neval cld
+##  107.4923630 107.492551     3   b
+##    2.2793760   3.921861     3  a 
+##    0.0556270   0.059253     3  a 
+##    0.0240875   0.028875     3  a 
+##    0.0002865   0.000413     3  a
+</code></pre></div></div>
+
+<h3 id="microbenchmark---nasze-funkcje-2">Microbenchmark - nasze funkcje 2</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">&lt;</span><span class="m">-1</span><span class="o">:</span><span class="m">10e7</span><span class="w">
+</span><span class="n">microbenchmark</span><span class="p">(</span><span class="w">
+</span><span class="n">times_two_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">times_two_cpp_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">times_two_cpp_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="m">2</span><span class="p">)),</span><span class="w">
+</span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3L</span><span class="p">,</span><span class="w">
+</span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ms"</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Unit: milliseconds
+##                expr         min           lq         mean      median
+##      times_two_2(x) 7132.559041 7259.1777435 7.432300e+03 7385.796446
+##  times_two_cpp_1(x) 1101.980806 1122.8490165 1.168001e+03 1143.717227
+##  times_two_cpp_2(x)  518.208544  557.9278270 5.865563e+02  597.647110
+##   expression(x * 2)    0.000004    0.0000945 1.573333e-04    0.000185
+##           uq         max neval  cld
+##  7582.171048 7778.545650     3    d
+##  1201.010651 1258.304075     3   c 
+##   620.730248  643.813385     3  b  
+##     0.000234    0.000283     3 a
+</code></pre></div></div>
+
+<h3 id="microbenchmark---klasa">Microbenchmark - Klasa</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">class</span><span class="p">(</span><span class="n">mb</span><span class="p">)</span><span class="w">
+</span><span class="n">typeof</span><span class="p">(</span><span class="n">mb</span><span class="p">)</span><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span><span class="w">
+
+</span><span class="nf">names</span><span class="p">(</span><span class="nf">attributes</span><span class="p">(</span><span class="n">mb</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error: &lt;text&gt;:2:11: nieoczekiwany symbol
+## 1: class(mb)
+## 2: typeof(mb)library
+##              ^
+</code></pre></div></div>
+
+<h3 id="microbenchmark---klasa-s3">Microbenchmark - Klasa S3</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pryr</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in library(pryr): there is no package called 'pryr'
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">otype</span><span class="p">(</span><span class="n">mb</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in otype(mb): nie udało się znaleźć funkcji 'otype'
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">methods</span><span class="p">(</span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"microbenchmark"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] autoplot boxplot  print    summary 
+## see '?methods' for accessing help and source code
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">methods</span><span class="p">(</span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"data.frame"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##   [1] [                      [[                     [[&lt;-                  
+##   [4] [&lt;-                    $                      $&lt;-                   
+##   [7] aggregate              anti_join              anyDuplicated         
+##  [10] arrange_               arrange                as_data_frame         
+##  [13] as_tibble              as.data.frame          as.list               
+##  [16] as.matrix              as.tbl_cube            as.tbl                
+##  [19] by                     capLargeValues         cbind                 
+##  [22] coerce                 coerce&lt;-               collapse              
+##  [25] collect                compute                createDummyFeatures   
+##  [28] dim                    dimnames               dimnames&lt;-            
+##  [31] distinct_              distinct               do_                   
+##  [34] do                     droplevels             duplicated            
+##  [37] edit                   filter_                filter                
+##  [40] format                 formula                fortify               
+##  [43] full_join              ggplot                 glimpse               
+##  [46] group_by_              group_by               group_indices_        
+##  [49] group_indices          group_size             groups                
+##  [52] head                   impute                 initialize            
+##  [55] inner_join             intersect              is.na                 
+##  [58] left_join              Math                   merge                 
+##  [61] mutate_                mutate                 n_groups              
+##  [64] na.contiguous          na.exclude             na.omit               
+##  [67] normalizeFeatures      Ops                    plot                  
+##  [70] print                  prompt                 pull                  
+##  [73] rbind                  reimpute               removeConstantFeatures
+##  [76] rename_                rename                 right_join            
+##  [79] row.names              row.names&lt;-            rowsum                
+##  [82] same_src               sample_frac            sample_n              
+##  [85] select_                select                 semi_join             
+##  [88] setdiff                setequal               show                  
+##  [91] slice_                 slice                  slotsFromS3           
+##  [94] split                  split&lt;-                stack                 
+##  [97] str                    subset                 summarise_            
+## [100] summarise              summarizeColumns       summarizeLevels       
+## [103] summary                Summary                t                     
+## [106] tail                   tbl_vars               transform             
+## [109] type_sum               ungroup                union_all             
+## [112] union                  unique                 unstack               
+## [115] within                
+## see '?methods' for accessing help and source code
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">methods</span><span class="p">(</span><span class="n">boxplot</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] boxplot.default         boxplot.formula*        boxplot.matrix         
+## [4] boxplot.microbenchmark*
+## see '?methods' for accessing help and source code
+</code></pre></div></div>
+
+<h3 id="s3---funkcje-generyczne">S3 - Funkcje generyczne</h3>
+
+<p><em>UseMethod()</em></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ftype</span><span class="p">(</span><span class="n">print</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in ftype(print): nie udało się znaleźć funkcji 'ftype'
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (x, ...) 
+## UseMethod("print")
+## &lt;bytecode: 0x55eab70&gt;
+## &lt;environment: namespace:base&gt;
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getS3method</span><span class="p">(</span><span class="s2">"print"</span><span class="p">,</span><span class="s2">"microbenchmark"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (x, unit, order, signif, ...) 
+## {
+##     s &lt;- summary(x, unit = unit)
+##     timing_cols &lt;- c("min", "lq", "median", "uq", "max")
+##     if (!missing(signif)) {
+##         s[timing_cols] &lt;- lapply(s[timing_cols], base::signif, 
+##             signif)
+##     }
+##     cat("Unit: ", attr(s, "unit"), "\n", sep = "")
+##     if (!missing(order)) {
+##         if (order %in% colnames(s)) {
+##             s &lt;- s[order(s[[order]]), ]
+##         }
+##         else {
+##             warning("Cannot order results by", order, ".")
+##         }
+##     }
+##     print(s, ..., row.names = FALSE)
+## }
+## &lt;bytecode: 0x7d34368&gt;
+## &lt;environment: namespace:microbenchmark&gt;
+</code></pre></div></div>
+
+<h3 id="s3---funkcje-generyczne-1">S3 - Funkcje generyczne</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mean</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (x, ...) 
+## UseMethod("mean")
+## &lt;bytecode: 0x79a5318&gt;
+## &lt;environment: namespace:base&gt;
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">methods</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] mean,ANY-method          mean,Matrix-method      
+##  [3] mean,sparseMatrix-method mean,sparseVector-method
+##  [5] mean.Date                mean.default            
+##  [7] mean.difftime            mean.IDate*             
+##  [9] mean.POSIXct             mean.POSIXlt            
+## [11] mean.yearmon*            mean.yearqtr*           
+## [13] mean.zoo*               
+## see '?methods' for accessing help and source code
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getS3method</span><span class="p">(</span><span class="s2">"mean"</span><span class="p">,</span><span class="s2">"default"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (x, trim = 0, na.rm = FALSE, ...) 
+## {
+##     if (!is.numeric(x) &amp;&amp; !is.complex(x) &amp;&amp; !is.logical(x)) {
+##         warning("argument is not numeric or logical: returning NA")
+##         return(NA_real_)
+##     }
+##     if (na.rm) 
+##         x &lt;- x[!is.na(x)]
+##     if (!is.numeric(trim) || length(trim) != 1L) 
+##         stop("'trim' must be numeric of length one")
+##     n &lt;- length(x)
+##     if (trim &gt; 0 &amp;&amp; n) {
+##         if (is.complex(x)) 
+##             stop("trimmed means are not defined for complex data")
+##         if (anyNA(x)) 
+##             return(NA_real_)
+##         if (trim &gt;= 0.5) 
+##             return(stats::median(x, na.rm = FALSE))
+##         lo &lt;- floor(n * trim) + 1
+##         hi &lt;- n + 1 - lo
+##         x &lt;- sort.int(x, partial = unique(c(lo, hi)))[lo:hi]
+##     }
+##     .Internal(mean(x))
+## }
+## &lt;bytecode: 0x79a4168&gt;
+## &lt;environment: namespace:base&gt;
+</code></pre></div></div>
+
+<h3 id="s3---konstruktory">S3 - Konstruktory</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ftype</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in ftype(microbenchmark): nie udało się znaleźć funkcji 'ftype'
+</code></pre></div></div>
+
+<h3 id="klasy-s4-i-rc">Klasy S4 i RC</h3>
+
+<ul>
+  <li>S4 = S3 + więcej formalizmu</li>
+  <li>RC pozwalają na przekazywanie przez referencje</li>
+</ul>
+
+<h3 id="bezpośrednie-używanie-metod">Bezpośrednie używanie metod</h3>
+
+<p>However, this is just as dangerous as changing the class of an object, so you shouldn’t do it. Please don’t point the loaded gun at your foot! The only reason to call the method directly is that sometimes you can get considerable performance improvements by skipping method dispatch. [Advanced R]</p>
+
+<h3 id="wartości-na">Wartości NA</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">evalCpp</span><span class="p">(</span><span class="s2">"std::numeric_limits&lt;int&gt;::min()"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] NA
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">evalCpp</span><span class="p">(</span><span class="s2">"std::numeric_limits&lt;double&gt;::min()"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 2.225074e-308
+</code></pre></div></div>
+
+<h3 id="funkcje">Funkcje</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; To understand computations in R, two slogans are helpful:
+&gt;    Everything that exists is an object.
+&gt;    Everything that happens is a function call."
+
+— John Chambers
+</code></pre></div></div>
+
+<h3 id="funkcje---przykłady">Funkcje - przykłady</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dynamiczne typowanie!</span><span class="w">
+</span><span class="s2">"+"</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 3
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"["</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">9</span><span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 6
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sapply</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w">
+            </span><span class="m">11</span><span class="o">:</span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="s2">"["</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]  2 12
+</code></pre></div></div>
+
+<h3 id="primitive-functions">Primitive functions</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">length</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (x)  .Primitive("length")
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sum</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## function (..., na.rm = FALSE)  .Primitive("sum")
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show_c_source</span><span class="p">(</span><span class="n">.Primitive</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Error in show_c_source(.Primitive(sum(x))): nie udało się znaleźć funkcji 'show_c_source'
+</code></pre></div></div>
+
+<h3 id="internal-vs-primitive">.Internal vs. Primitive</h3>
+
+<p>.Internal and .Primitive refer to the interface used to call C-code. Internal is the standard approach, since you can check arguments in R-code before you call the C-code. Primitive is higher performance, but does not allow any R-code in the function.</p>
+
+<h3 id="lazy-evaluation">Lazy Evaluation</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+  </span><span class="m">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">f</span><span class="p">(</span><span class="n">doesnt_matter</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 2
+</code></pre></div></div>
+
+<h3 id="quote-i-substitute">Quote i Substitute</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">cat</span><span class="p">(</span><span class="n">deparse</span><span class="p">(</span><span class="nf">substitute</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## (2 + x) == 7
+</code></pre></div></div>
+
+<h3 id="environments">Environments</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="n">ff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="n">print</span><span class="p">(</span><span class="n">parent.frame</span><span class="p">())</span><span class="w">
+    </span><span class="n">print</span><span class="p">(</span><span class="n">environment</span><span class="p">())</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="closures">Closures</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">power</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">exponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">exponent</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">square</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">power</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">square</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 4
+</code></pre></div></div>
+
+<h3 id="closures-2">Closures 2</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fib</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="m">1</span><span class="p">)</span><span class="w">
+    </span><span class="nf">return</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">
+  </span><span class="k">else</span><span class="w">
+    </span><span class="nf">return</span><span class="p">(</span><span class="w"> </span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">))</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">fib</span><span class="p">(</span><span class="m">8</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 21
+</code></pre></div></div>
+
+<h3 id="closures-3">Closures 3</h3>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">memoise</span><span class="p">)</span><span class="w">
+</span><span class="n">fib2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">memoise</span><span class="p">(</span><span class="n">fib</span><span class="p">)</span><span class="w">
+</span><span class="n">fib2</span><span class="p">(</span><span class="m">8</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 21
+</code></pre></div></div>
+
+<h3 id="źródła">Źródła</h3>
+
+<ul>
+  <li>Advanced R by Hadley Wickham</li>
+  <li>https://cran.r-project.org/manuals.html</li>
+  <li>R Inferno</li>
+</ul>
+:ET

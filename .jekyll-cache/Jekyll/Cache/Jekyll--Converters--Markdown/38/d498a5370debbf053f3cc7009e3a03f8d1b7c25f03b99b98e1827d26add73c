@@ -1,0 +1,10 @@
+I"�<h2 id="jak-stwury-wizualizują-dane">Jak STWURy wizualizują dane?</h2>
+
+<p>Drugie spotkanie STWURa już się odbyło, a materiały i prezentacją są dostępne <a href="https://github.com/STWUR/STWUR-2017-03-01/blob/master/wprowadzenie_ggplot.Rmd">TUTAJ</a>. Gotowa prezentacja dostępna jest <a href="https://stwur.github.io/STWUR//blog/wprowadzenie_ggplot/">na naszej stronie</a>.</p>
+
+<p>Podczas prelekcji zajmowaliśmy się wizualizacją danych na przykładzie stosunku do życia przed rokiem 1989. Następnie zdobytą wiedzę natychmiast wykorzystaliśmy w praktyce pracując z innymi danymi z Diagnozy Społecznej, szczególnie z poziomem wykształcenia w Polsce w latach 2000-2015. Poniżej fantastyczna grafika przygotowana przez Bartosza Kolasę (<a href="https://github.com/bkolasa/dynamika-wyksztalcenia">kod na githubie</a>):</p>
+
+<p><img src="https://raw.githubusercontent.com/bkolasa/dynamika-wyksztalcenia/master/dynamika-wykszta%C5%82cenia.png" alt="" /></p>
+
+<p>Cieszy nas duża frekwencja i mamy nadzieję, że następne spotkanie, które zostanie ogłoszone już niebawem, przyciągnie jeszcze liczniejsze grono miłośników <strong>R</strong>.</p>
+:ET

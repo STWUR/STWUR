@@ -1,0 +1,62 @@
+I"�&<h3 id="roje-pszczół-zamiast-chmur-punktów">Roje pszczół zamiast chmur punktów</h3>
+
+<p>Przy większej liczbie obserwacji wykresy punktowe bywają nieczytelne. Losowe przesuwanie punktów (geom_point(position = “jitter”)) w ggplot2 nie wygląda zbyt estetycznie, poza tym punkty cały czas mogą na siebie nachodzić. Prostym rozwiązaniem jest zastosowanie pakietu <a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a>, który zawiera kilka geometrii tworzących estetyczne i informatywne wykresy punktowe.</p>
+
+<p>Funkcjonalność pakietu beeswarm najlepiej zaprezentować na przykładzie - w tym przypadku dochodzie netto mieszkańców dużych miast (powyżej 500 tys. mieszkanców) w województwach Mazowieckim i Dolnośląskim.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">haven</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggbeeswarm</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Skąd wziąć dane z diagnozy? Sprawdź tutaj:</span><span class="w">
+</span><span class="c1"># https://stwur.github.io/STWUR//articles/przygotowania/</span><span class="w">
+</span><span class="n">load</span><span class="p">(</span><span class="s2">"./Diagnoza_dane-master/osoby.RData"</span><span class="p">)</span><span class="w">
+</span><span class="n">dochod_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">woj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as_factor</span><span class="p">(</span><span class="n">osoby</span><span class="p">[[</span><span class="m">74</span><span class="p">]]),</span><span class="w">
+           </span><span class="n">dochod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">osoby</span><span class="p">[[</span><span class="m">646</span><span class="p">]],</span><span class="w">
+           </span><span class="n">miasto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">osoby</span><span class="p">[[</span><span class="m">75</span><span class="p">]])</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># wybieramy tylko osoby ktore maja podane informacje na temat dochodu i województwa</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">woj</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">dochod</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># tylko osoby o dochodzie kodowanym zmiennymi większymi niż 0</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">dochod</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">dochod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># tylko interesujące nas województwa</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">woj</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Dolnośląskie"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mazowieckie"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># tylko największe miasta</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">miasto</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># wykresy pudełkowe w tym przypadku nam nie wystarczają, chcemy zobaczyć poszczególne punkty</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dochod_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">woj</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/beeswarm/figure/beeswarm-1.png" alt="plot of chunk beeswarm" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># przy zwykłym wykresie punkty nachodzą na siebie</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dochod_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">woj</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/beeswarm/figure/beeswarm-2.png" alt="plot of chunk beeswarm" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># losowe umiejscowienie punktów jest mało informatywne, punkty wciąż czasami nachodzą na siebie</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dochod_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">woj</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"jitter"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/beeswarm/figure/beeswarm-3.png" alt="plot of chunk beeswarm" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># pseudolosowe umiejscowienie punktów jest dużo bardziej przejrzyste</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dochod_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">woj</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_quasirandom</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/beeswarm/figure/beeswarm-4.png" alt="plot of chunk beeswarm" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># rój pszczół to alternatywny sposób pseudolosowego umiejscowienia punktów</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dochod_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">woj</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dochod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_beeswarm</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/images/STWUR/beeswarm/figure/beeswarm-5.png" alt="plot of chunk beeswarm" /></p>
+:ET

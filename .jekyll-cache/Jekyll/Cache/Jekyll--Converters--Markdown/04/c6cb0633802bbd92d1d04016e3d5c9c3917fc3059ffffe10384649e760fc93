@@ -1,0 +1,16 @@
+I"=<p>Mamy przyjemność zaprosić na spotkanie o regresji grzbietowej, które poprowadzi Marta Karaś, absolwent kierunku Matematyka na Politechnice Wroclawskiej.</p>
+
+<p>Marta spędziła ponad rok w Stanach Zjednoczonych, pracujac w Departamencie Biostatystyki na Indiana University.</p>
+
+<blockquote>
+  <p>Pokażę na przykładzie kiedy warto pokusić sie o metody regularyzacji i jak zmieniają sie estymatory wspołczynników regresji w zależności od wyboru parametru lambda w modelu. Opowiem o analizie na danych rzeczywistych dotyczących zarażonych wirusem HIV, na których badaliśmy powiązanie infekcji z grubością kory mózgowej poszczególnych regionów mózgu. Użyta metodologia (regularyzacja oparta na grafie połączeń strukturalnych między obszarami mózgu), a takze “zwykła” regresia grzbietowa “ridge” są zaimplementowane w napisanym przez nas pakiecie R-owym mdpeer. Użyta w pakiecie metoda estymacji nie wykorzystuje walidacji krzyżowej (cross-validation). Nie omieszkam pokazać na żywo, jak nasz pakiet pokonuje popularny pakiet glmnet w estymacji wspolczynnikow modelu regresji.</p>
+</blockquote>
+
+<p>Proponowane metody estymacji są dostępne we współtworzonym przez Martę pakiecie <a href="mdpeer">https://CRAN.R-project.org/package=mdpeer</a> i zostały szerzej opisane w pracy <a href="http://www.biorxiv.org/content/early/2017/03/18/117945">Brain connectivity-informed regularization methods for regression</a>.</p>
+
+<p>Spotkanie odbywa się na Wydziale Biotechnologii UWr 19.07.2017 o 18:00 w sali 1.03. Ok. 20 przenosimy się do <a href="https://www.facebook.com/Cybermachina/">Cybermachiny</a> na rozmowy o <em>R</em> w luźniejszej atmosferze.</p>
+
+<p>Nasze spotkania wspiera Kruk SA.</p>
+
+<p><img src="https://stwur.github.io/STWUR//images/kruk_logo.jpg" id="logo" height="35%" width="35%" /></p>
+:ET
