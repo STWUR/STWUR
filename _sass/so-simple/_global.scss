@@ -108,15 +108,15 @@
   border-radius: $site-logo-width;
 
   @include breakpoint($medium) {
-    width: 12 * $site-logo-width;
-    height: 3 * $site-logo-height;
-    border-radius: 1.5 * $site-logo-width;
+    width: 8 * $site-logo-width;
+    height: 8 * $site-logo-height;
+    border-radius: 0.5 * $site-logo-width;
   }
 
   @include breakpoint($large) {
-    width: 20 * $site-logo-width;
-    height: 5 * $site-logo-height;
-    border-radius: 5 * $site-logo-width;
+    width: 8 * $site-logo-width;
+    height: 8 * $site-logo-height;
+    border-radius: 0.5 * $site-logo-width;
   }
 }
 
