@@ -1,1 +1,1 @@
-Sitemap: https://stwur.github.io/STWUR//sitemap.xml
+Sitemap: http://localhost:4000/STWUR/sitemap.xml
