@@ -1,8 +1,8 @@
 ---
 title: "Bartosz Pawliczak"
 image: 
-  path: /images/STWUR/stwur.png
-  thumbnail: /images/STWUR/stwur.png
+  path: /images/STWUR/bartosz_p.png
+  thumbnail: /images/STWUR/bartosz_p.png
  
 ---
 <br/>

@@ -7,7 +7,7 @@ destination: docs/
 description: ""
 baseurl: "/STWUR" # the subpath of your site, e.g. "/blog"
 url: "https://stwur.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-logo: "/images/STWUR/stwur_logo_Mar2017.svg" # path of site logo, e.g. "/assets/images/logo.png"
+logo: "/images/STWUR/stwur_10_18-01.svg" # path of site logo, e.g. "/assets/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: false
 words_per_minute: 200

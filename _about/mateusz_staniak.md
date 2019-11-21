@@ -1,8 +1,8 @@
 ---
 title: "Mateusz Staniak"
 image: 
-  path: /images/STWUR/stwur.png
-  thumbnail: /images/STWUR/stwur.png
+  path: /images/STWUR/mateusz.png
+  thumbnail: /images/STWUR/mateusz.png
  
 ---
 <br/>

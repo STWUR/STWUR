@@ -365,9 +365,9 @@ tr, td, th { vertical-align: middle; }
 
 .site-logo-img { width: 75px; height: 75px; border: 0.1px solid; border-radius: 75px; }
 
-@media (min-width: 48em) { .site-logo-img { width: 900px; height: 225px; border-radius: 112.5px; } }
+@media (min-width: 48em) { .site-logo-img { width: 525px; height: 525px; border-radius: 37.5px; } }
 
-@media (min-width: 64em) { .site-logo-img { width: 1500px; height: 375px; border-radius: 375px; } }
+@media (min-width: 64em) { .site-logo-img { width: 525px; height: 525px; border-radius: 37.5px; } }
 
 .site-footer { clear: both; margin: 2em 0; padding: 2em 0; text-align: center; border-top: 1px solid; }
 
