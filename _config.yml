@@ -1,9 +1,9 @@
-#theme: jekyll-theme-so-simple
-remote_theme: mmistakes/so-simple-theme
+theme: jekyll-theme-so-simple
+#remote_theme: mmistakes/so-simple-theme
 skin: "/assets/css/skins/light.css"
 locale: pl_PL
 title: STWUR
-# destination: docs/
+destination: docs/
 description: ""
 baseurl: "/STWUR" # the subpath of your site, e.g. "/blog"
 url: "https://stwur.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
