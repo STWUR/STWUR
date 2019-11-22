@@ -32,7 +32,7 @@ entries_layout: grid
 
 <br/>
 
-***<font size=7>McKinsey & Company</font>***
+***<font size=7>Jumping rivers</font>***
 
 <br/>
 
