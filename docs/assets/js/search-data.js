@@ -288,4 +288,4 @@ var store = [{
         "excerpt":"Wspólnie z Doktoranckim Kołem Naukowym Bioinformatyki i Kołem Naukowym Statystyki Matematycznej Gauss z PWr organizujemy kolejne całodniowe warsztaty z R. Celem warsztatów jest łagodne wprowadzenie do R osób, które dotychczas nie miały wiele wspólnego z analizą danych. Chcemy, aby nawet osoby, które do tej pory nie miały styczności z R...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/STWUR/2019/11/05/jesienny-eRementarz.html"
-      }]
+      },]

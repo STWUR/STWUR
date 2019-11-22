@@ -58,8 +58,9 @@ collections:
   art:
     output: true
     permalink: /:collection/:path
-
-
+  sponsors:
+    output: true
+    permalink: /:collection/:path   
 
 # Front Matter Defaults
 defaults:
@@ -87,6 +88,15 @@ defaults:
       layout: post
       comments: false
       share: true
+  #articles
+  - scope:
+      path: "_sponsors"
+      type: sponsors
+    values:
+      layout: page
+      comments: false
+      share: true
+
 # Site Author
 author:
   name: STWUR
@@ -111,14 +121,18 @@ author:
 footer_links:
   - title: Facebook
     url: https://www.facebook.com/stwur/
+    target: blank
     icon: fab fa-facebook-f
   - title: GitHub
     url: https://github.com/STWUR
+    target: blank
     icon: fab fa-github-square
   - title: Linkedin
     url: https://www.linkedin.com/company/stwur/?originalSubdomain=pl
+    target: blank
     icon: fab fa-linkedin
   - title: Meetup
     url: https://www.meetup.com/pl-PL/Wroclaw-R-Users-Group/
+    target: blank
     icon: fab fa-meetup
 
