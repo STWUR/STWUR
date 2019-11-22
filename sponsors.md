@@ -12,7 +12,7 @@ entries_layout: grid
 
 <br/>
 
-[<img src='/STWUR/images/STWUR/whyr.jpg' id="logo" height="65%" width="65%"/>](http://whyr.pl/foundation/)
+[<img src='/STWUR/images/STWUR/whyr.jpg' id="logo" height="65%" width="65%"/>](http://whyr.pl/foundation/){:target="_blank"}
 
 <br/>
 
@@ -20,7 +20,7 @@ entries_layout: grid
 
 <br/>
 
-[<img src='/STWUR/images/STWUR/RConsortium.png' id="logo" height="75%" width="75%"/>](https://www.r-consortium.org)
+[<img src='/STWUR/images/STWUR/RConsortium.png' id="logo" height="75%" width="75%"/>](https://www.r-consortium.org){:target="_blank"}
 
 <br/>
 
@@ -28,7 +28,7 @@ entries_layout: grid
 
 <br/>
 
-[<img src='/STWUR/images/STWUR/Mckinsey.png' id="logo" height="75%" width="75%"/>](https://www.mckinsey.com/pl)
+[<img src='/STWUR/images/STWUR/Mckinsey.png' id="logo" height="75%" width="75%"/>](https://www.mckinsey.com/pl){:target="_blank"}
 
 <br/>
 
@@ -36,7 +36,7 @@ entries_layout: grid
 
 <br/>
 
-[<img src='/STWUR/images/STWUR/jumping.png' id="logo" height="65%" width="65%"/>](https://www.jumpingrivers.com/)
+[<img src='/STWUR/images/STWUR/jumping.png' id="logo" height="65%" width="65%"/>](https://www.jumpingrivers.com/){:target="_blank"}
 
 <br/>
 
@@ -44,7 +44,7 @@ entries_layout: grid
 
 <br/>
 
-[<img src='/STWUR/images/STWUR/kruk_logo.jpg' id="logo" height="55%" width="55%"/>](https://pl.kruk.eu/klienci)
+[<img src='/STWUR/images/STWUR/kruk_logo.jpg' id="logo" height="55%" width="55%"/>](https://pl.kruk.eu/klienci){:target="_blank"}
 
 
 
