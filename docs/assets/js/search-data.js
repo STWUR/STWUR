@@ -54,7 +54,7 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/STWUR/about/michal_kurtys/"
       },{
-        "title": "Patryk Wielkopolski",
+        "title": "Patryk Wielopolski",
         "excerpt":" Student Matematyki Stosowanej na Wydziale Matematyki Politechniki Wrocławskiej; prezes Koła Naukowego Statystyki Matematycznej \"Gauss\". Data Scientist w firmie DataWalk.  ","categories": [],
         "tags": [],
         "url": "http://localhost:4000/STWUR/about/patryk_wielkopolski/"

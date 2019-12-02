@@ -1,8 +1,8 @@
 ---
-title: "Patryk Wielkopolski"
+title: "Patryk Wielopolski"
 image: 
-  path: /images/STWUR/stwur.png
-  thumbnail: /images/STWUR/stwur.png
+  path: /images/STWUR/wielopolski.png
+  thumbnail: /images/STWUR/wielopolski.png
  
 ---
 <br/>

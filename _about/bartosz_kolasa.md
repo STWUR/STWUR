@@ -1,8 +1,8 @@
 ---
 title: "Bartosz Kolasa"
 image: 
-  path: /images/STWUR/stwur.png
-  thumbnail: /images/STWUR/stwur.png
+  path: /images/STWUR/kolasa.png
+  thumbnail: /images/STWUR/kolasa.png
  
 ---
 <br/>
