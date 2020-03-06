@@ -7,7 +7,7 @@ image:
 ---
 <br/>
 
-***<font size=5>Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej. Zajmuje się interpretowalnym uczeniem maszynowym. Statystyk, programista R.</font>***
+***<font size=5>Doktorant w Instytucie Matematycznym UWr zajmujący się biostatystyką. Statystyk, programista R, freelancer.</font>***
 
 
 
