@@ -1,8 +1,8 @@
 ---
 title: "Bartłomiej Karaban"
 image: 
-  path: /images/STWUR/stwur.png
-  thumbnail: /images/STWUR/stwur.png
+  path: /images/STWUR/bartek_k.png
+  thumbnail: /images/STWUR/bartek_k.png
  
 ---
 <br/>

@@ -45,7 +45,7 @@ var store = [{
         "url": "http://localhost:4000/STWUR/about/katarzyna_sidorczuk/"
       },{
         "title": "Mateusz Staniak",
-        "excerpt":" Doktorant na Wydziale Matematyki i Nauk Informacyjnych Politechniki Warszawskiej. Zajmuje się interpretowalnym uczeniem maszynowym. Statystyk, programista R. ","categories": [],
+        "excerpt":" Doktorant w Instytucie Matematycznym UWr zajmujący się biostatystyką. Statystyk, programista R, freelancer. ","categories": [],
         "tags": [],
         "url": "http://localhost:4000/STWUR/about/mateusz_staniak/"
       },{
